@@ -47,6 +47,15 @@ public class ModBuildHelper
 	public static Property cubeDiggerWandId;
 	public static Item cubeDiggerWandItem;
 	
+	public static Property airFillWandId;
+	public static Item airFillWandItem;
+	
+	public static Property gapFillWandId;
+	public static Item gapFillWandItem;
+	
+	public static Property gapFillWaterWandId;
+	public static Item gapFillWaterWandItem;
+	
 	@Instance(Constants.TBH_MODID)
 	public static ModBuildHelper instance;
 
@@ -71,6 +80,9 @@ public class ModBuildHelper
 		cobbleFillWandId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "cobbleFlatWandItem.id", Constants.COBBLE_FILL_WAND_ID);
 		stoneFillWandId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "stoneFlatWandItem.id", Constants.STONE_FILL_WAND_ID);
 		cubeDiggerWandId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "cubeDiggerWandItem.id", Constants.CUBE_DIGGER_WAND_ID);
+		airFillWandId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "airFillWandItem.id", Constants.AIR_FILL_WAND_ID);
+		gapFillWandId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gapFillWandItem.id", Constants.GAP_FILL_WAND_ID);
+		gapFillWaterWandId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gapFillWaterWandItem.id", Constants.GAP_FILL_WATER_WAND_ID);
 		
 		mainConfiguration.save();
 	}
@@ -107,6 +119,18 @@ public class ModBuildHelper
 		cubeDiggerWandItem = (new ItemCubeDiggerWand(cubeDiggerWandId.getInt()));
 		cubeDiggerWandItem.setUnlocalizedName(Constants.KEY_CUBE_DIGGER_WAND);
 		LanguageRegistry.addName(cubeDiggerWandItem, "Cube Digger Wand");
+
+		airFillWandItem = (new ItemFillWandAir(airFillWandId.getInt()));
+		airFillWandItem.setUnlocalizedName(Constants.KEY_AIR_FILL_WAND);
+		LanguageRegistry.addName(airFillWandItem, "Area Digger Wand");
+
+		gapFillWandItem = (new ItemGapFillWand(gapFillWandId.getInt()));
+		gapFillWandItem.setUnlocalizedName(Constants.KEY_GAPFILL_WAND);
+		LanguageRegistry.addName(gapFillWandItem, "Gap Filler Wand");
+
+		gapFillWaterWandItem = (new ItemGapFillWaterWand(gapFillWaterWandId.getInt()));
+		gapFillWaterWandItem.setUnlocalizedName(Constants.KEY_GAPFILLWATER_WAND);
+		LanguageRegistry.addName(gapFillWaterWandItem, "Water Filler Wand");
 	}
 	
 	private void addRecipes()
@@ -171,7 +195,7 @@ public class ModBuildHelper
 		    Character.valueOf('-'), Item.stick,
 			Character.valueOf('N'), Item.goldNugget
 		});
-		                                                               		
+
 		GameRegistry.addRecipe(new ItemStack(cubeDiggerWandItem, 1), new Object[]
 		{
 			"  S", 
@@ -179,6 +203,36 @@ public class ModBuildHelper
 		    "N  ", 
 		    Character.valueOf('S'), Item.shovelWood, 
 		    Character.valueOf('-'), Item.stick,
+			Character.valueOf('N'), Item.goldNugget
+		});
+		
+		GameRegistry.addRecipe(new ItemStack(airFillWandItem, 1), new Object[]
+		{
+			"  S", 
+			" - ", 
+			"N  ", 
+			Character.valueOf('S'), Item.shovelIron, 
+			Character.valueOf('-'), Item.stick,
+			Character.valueOf('N'), Item.goldNugget
+		});
+
+		GameRegistry.addRecipe(new ItemStack(gapFillWandItem, 1), new Object[]
+		{
+			"  E", 
+			" - ", 
+			"N  ", 
+			Character.valueOf('E'), Item.emerald, 
+			Character.valueOf('-'), Item.stick,
+			Character.valueOf('N'), Item.goldNugget
+		});
+
+		GameRegistry.addRecipe(new ItemStack(gapFillWaterWandItem, 1), new Object[]
+		{
+			"  B",
+			" - ", 
+			"N  ", 
+			Character.valueOf('E'), Item.bucketWater, 
+			Character.valueOf('-'), Item.stick,
 			Character.valueOf('N'), Item.goldNugget
 		});
 	}

@@ -1,14 +1,11 @@
 package buildhelper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 public class ItemExchangeWand extends ItemFillWand
@@ -20,14 +17,10 @@ public class ItemExchangeWand extends ItemFillWand
 	public ItemExchangeWand(int itemId)
 	{
 		super(itemId);
-		this.maxStackSize = 1;
-		this.setCreativeTab(CreativeTabs.tabTools);
-		this.usedBlockId = new HashMap<String, BlockType>();
 		this.fillBlockId = new HashMap<String, BlockType>();
-		this.status = NONE;
-		this.icons = new ArrayList<Icon>();
 	}
 
+	@Override
 	public void registerIcons(IconRegister iconRegister)
 	{
 		this.icons.add(0, iconRegister.registerIcon(Constants.TBH_MODID + ":" + Constants.KEY_EXCHANGE_WAND));
