@@ -8,6 +8,6 @@ http://www.minecraftforum.net/topic/1803250-
 or follow me on twitter https://twitter.com/Torojima
 
 Changelog:
-1. updated mod for usage with minecraft 1.10.2
+1. created new for Minecraft 1.10.2
 
 Torojima

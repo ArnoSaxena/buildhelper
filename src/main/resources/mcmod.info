@@ -1,0 +1,16 @@
+[
+{
+  "modid": "buildhelper",
+  "name": "Torojima's Build Helper",
+  "description": "Adds wand items for convenient building to the game.",
+  "version": "0.3.0",
+  "mcversion": "1.10.2",
+  "url": "http://www.minecraftforum.net/topic/1803250-",
+  "updateUrl": "",
+  "authorList": ["Torojima <al-s@gmx.de>"],
+  "credits": "The Forge and FML guys, for creating forge :)",
+  "logoFile": "buildhelper_icon.png",
+  "screenshots": [],
+  "dependencies": []
+}
+]
