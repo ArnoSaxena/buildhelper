@@ -1,11 +1,10 @@
 {
-  "homepage": "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/torojimaBuildHelper-0.3.0.jar",
-  "1.10.2": {
-    "0.3.0": "updated for mc 1.10.2", 
-  },
-  ...
-  "promos": {
-    "1.10-latest": "0.3.0",
-    "1.10-recommended": "0.3.0",
-  }
+	"homepage": "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/torojimaBuildHelper-0.3.0.jar",
+	"1.10.2": {
+		"0.3.0": "updated for mc 1.10.2"
+	},
+	"promos": {
+		"1.10-latest": "0.3.0",
+		"1.10-recommended": "0.3.0"
+	}
 }
