@@ -30,7 +30,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemExchangeWand extends ItemFillWand
 {
-	protected static final int FILL = 3;
+	public static final int FILL = 3;
 	
 	public static final String NAME = "exchangewand";
 
@@ -42,6 +42,7 @@ public class ItemExchangeWand extends ItemFillWand
 		this.setRegistryName(ItemExchangeWand.NAME);
 		this.setUnlocalizedName(ItemExchangeWand.NAME);
 		this.setMaxStackSize(1);
+		//this.setHasSubtypes(true);
 		GameRegistry.register(this);		
 		this.fillBlock = new HashMap<String, Block>();
 	}
@@ -63,7 +64,10 @@ public class ItemExchangeWand extends ItemFillWand
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		String username = playerIn.getName();
-
+		
+		//stack.setItemDamage(this.status);
+		EnumActionResult returnValue = EnumActionResult.FAIL;
+		
 		if (!worldIn.isRemote)
 		{
 			if(this.usedBlock.containsKey(username))
@@ -102,7 +106,8 @@ public class ItemExchangeWand extends ItemFillWand
 								}
 							}
 							this.status = NONE;
-							return EnumActionResult.SUCCESS;
+							//stack.setItemDamage(this.status);
+							returnValue = EnumActionResult.SUCCESS;
 						}
 						else
 						{
@@ -113,23 +118,27 @@ public class ItemExchangeWand extends ItemFillWand
 					{
 						this.putStartPos(pos, username);
 						this.status = CHARGED;
-						return EnumActionResult.SUCCESS;
+						//stack.setItemDamage(this.status);
+						returnValue = EnumActionResult.SUCCESS;
 					}
 				}
 				else
 				{
 					this.fillBlock.put(username, worldIn.getBlockState(pos).getBlock());
 					this.status = FILL;
-					return EnumActionResult.SUCCESS;
+					//stack.setItemDamage(this.status);
+					returnValue = EnumActionResult.SUCCESS;
 				}
 			}
 			else
 			{
 				this.usedBlock.put(username, worldIn.getBlockState(pos).getBlock());
 				this.status = NAMED;
-				return EnumActionResult.SUCCESS;
+				//stack.setItemDamage(this.status);
+				returnValue = EnumActionResult.SUCCESS;
 			}
 		}
-		return EnumActionResult.FAIL;
+		//stack.setItemDamage(this.status);
+		return returnValue;
 	}
 }

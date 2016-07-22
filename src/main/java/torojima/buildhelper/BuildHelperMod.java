@@ -35,7 +35,7 @@ updateJSON=BuildHelperMod.UPDATEJSON)
 public class BuildHelperMod
 {
     public static final String MODID = "buildhelper";
-    public static final String VERSION = "0.3.0";
+    public static final String VERSION = "0.3.1";
     public static final String UPDATEJSON = "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/update.json";
     
     public static ItemSandWaterWand sandWaterWand;
@@ -47,6 +47,7 @@ public class BuildHelperMod
     public static ItemGapFillWand gapFillWand;
     public static ItemGapFillWaterWand gapFillWaterWand;
     public static ItemCubeDiggerWand cubeDiggerWand;
+    public static ItemRemoveWaterWand removeWaterWand;
     
     @Instance
     public static BuildHelperMod instance;
@@ -63,7 +64,7 @@ public class BuildHelperMod
 		{
 			"  S", 
 			" - ", 
-			"N  ", 
+			"W  ", 
 			Character.valueOf('S'), Blocks.SAND, 
 			Character.valueOf('-'), Items.STICK,
 			Character.valueOf('W'), Items.WATER_BUCKET
@@ -86,7 +87,7 @@ public class BuildHelperMod
 			"  C", 
 			" - ",
 			"N  ", 
-			Character.valueOf('D'), Blocks.COBBLESTONE, 
+			Character.valueOf('C'), Blocks.COBBLESTONE, 
 			Character.valueOf('-'), Items.STICK,
 			Character.valueOf('N'), Items.GOLD_NUGGET
 		});
@@ -97,7 +98,7 @@ public class BuildHelperMod
 			"  S", 
 			" - ",
 			"N  ", 
-			Character.valueOf('D'), Blocks.STONE, 
+			Character.valueOf('S'), Blocks.STONE, 
 			Character.valueOf('-'), Items.STICK,
 			Character.valueOf('N'), Items.GOLD_NUGGET
 		});
@@ -138,10 +139,10 @@ public class BuildHelperMod
 		gapFillWaterWand = new ItemGapFillWaterWand();
 		GameRegistry.addRecipe(new ItemStack(gapFillWaterWand, 1), new Object[]
 		{
-				"  E", 
+				"  W", 
 				" - ", 
 				"N  ", 
-				Character.valueOf('E'), Items.WATER_BUCKET, 
+				Character.valueOf('W'), Items.WATER_BUCKET, 
 				Character.valueOf('-'), Items.STICK,
 				Character.valueOf('N'), Items.GOLD_NUGGET
 		});
@@ -153,6 +154,17 @@ public class BuildHelperMod
 			    " - ", 
 			    "N  ", 
 			    Character.valueOf('S'), Items.DIAMOND_SHOVEL, 
+			    Character.valueOf('-'), Items.STICK,
+				Character.valueOf('N'), Items.GOLD_NUGGET
+		});
+		
+		removeWaterWand = new ItemRemoveWaterWand();
+		GameRegistry.addRecipe(new ItemStack(removeWaterWand, 1), new Object[]
+		{
+				"  B", 
+			    " - ", 
+			    "N  ", 
+			    Character.valueOf('B'), Items.BUCKET, 
 			    Character.valueOf('-'), Items.STICK,
 				Character.valueOf('N'), Items.GOLD_NUGGET
 		});

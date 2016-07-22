@@ -20,6 +20,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import torojima.buildhelper.BuildHelperMod;
+//import torojima.buildhelper.common.itemMeshDefinitions.ItemExchangeWandMeshDefinition;
 
 public class ProxyClient extends ProxyServer
 {
@@ -29,11 +30,21 @@ public class ProxyClient extends ProxyServer
 		this.registerModel(BuildHelperMod.fillWandDirt);
 		this.registerModel(BuildHelperMod.fillWandCobble);
 		this.registerModel(BuildHelperMod.fillWandStone);
-		this.registerModel(BuildHelperMod.exchangeWand);
 		this.registerModel(BuildHelperMod.fillWandAir);
 		this.registerModel(BuildHelperMod.gapFillWand);
 		this.registerModel(BuildHelperMod.gapFillWaterWand);
 		this.registerModel(BuildHelperMod.cubeDiggerWand);
+		this.registerModel(BuildHelperMod.exchangeWand);
+		this.registerModel(BuildHelperMod.removeWaterWand);
+		/*
+		ModelBakery.registerItemVariants(BuildHelperMod.exchangeWand, 
+				new ModelResourceLocation(BuildHelperMod.MODID + ":" + BuildHelperMod.exchangeWand.getUnlocalizedName().substring(5), "inventory"),
+				new ModelResourceLocation(BuildHelperMod.MODID + ":" + BuildHelperMod.exchangeWand.getUnlocalizedName().substring(5) + "_c1", "inventory"),
+				new ModelResourceLocation(BuildHelperMod.MODID + ":" + BuildHelperMod.exchangeWand.getUnlocalizedName().substring(5) + "_c2", "inventory"),
+				new ModelResourceLocation(BuildHelperMod.MODID + ":" + BuildHelperMod.exchangeWand.getUnlocalizedName().substring(5) + "_c3", "inventory")
+				);
+		ModelLoader.setCustomMeshDefinition(BuildHelperMod.exchangeWand, new ItemExchangeWandMeshDefinition());
+		*/
 	}
 	
 	private void registerModel(Item item)

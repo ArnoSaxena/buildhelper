@@ -32,9 +32,9 @@ import net.minecraft.world.World;
 
 public class ItemFillWand extends ItemPosWand
 {
-	protected static final int NONE = 0;
-	protected static final int NAMED = 1;
-	protected static final int CHARGED = 2;
+	public static final int NONE = 0;
+	public static final int NAMED = 1;
+	public static final int CHARGED = 2;
 
 	protected Map<String, Block> usedBlock;
 	protected int status;
