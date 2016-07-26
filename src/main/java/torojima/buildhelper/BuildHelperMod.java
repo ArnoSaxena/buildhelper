@@ -14,6 +14,9 @@
 
 package torojima.buildhelper;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -34,6 +37,8 @@ version = BuildHelperMod.VERSION,
 updateJSON=BuildHelperMod.UPDATEJSON)
 public class BuildHelperMod
 {
+	public static Logger logger;
+	
     public static final String MODID = "buildhelper";
     public static final String VERSION = "0.3.1";
     public static final String UPDATEJSON = "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/update.json";
@@ -59,6 +64,8 @@ public class BuildHelperMod
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+    	logger = LogManager.getLogger(BuildHelperMod.MODID);
+    	
     	sandWaterWand = new ItemSandWaterWand();
 		GameRegistry.addRecipe(new ItemStack(sandWaterWand, 1), new Object[]
 		{
@@ -168,11 +175,13 @@ public class BuildHelperMod
 			    Character.valueOf('-'), Items.STICK,
 				Character.valueOf('N'), Items.GOLD_NUGGET
 		});
+		
+		proxy.registerModels();
     }
     
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        proxy.registerModels();
+    	proxy.registerModelVariants();
     }
 }

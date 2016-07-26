@@ -39,11 +39,8 @@ public class ItemExchangeWand extends ItemFillWand
 	public ItemExchangeWand()
 	{
 		super();
-		this.setRegistryName(ItemExchangeWand.NAME);
-		this.setUnlocalizedName(ItemExchangeWand.NAME);
-		this.setMaxStackSize(1);
-		//this.setHasSubtypes(true);
-		GameRegistry.register(this);		
+		this.setHasSubtypes(true);
+		this.register();
 		this.fillBlock = new HashMap<String, Block>();
 	}
 	
@@ -52,12 +49,17 @@ public class ItemExchangeWand extends ItemFillWand
 		super();
 		if(register)
 		{
-			this.setRegistryName(ItemExchangeWand.NAME);
-			this.setUnlocalizedName(ItemExchangeWand.NAME);
-			this.setMaxStackSize(1);
-			GameRegistry.register(this);
+			this.register();
 		}
 		this.fillBlock = new HashMap<String, Block>();			
+	}
+	
+	private void register()
+	{
+		this.setRegistryName(ItemExchangeWand.NAME);
+		this.setUnlocalizedName(ItemExchangeWand.NAME);
+		this.setMaxStackSize(1);
+		GameRegistry.register(this);
 	}
 
 	@Override
@@ -65,7 +67,7 @@ public class ItemExchangeWand extends ItemFillWand
 	{
 		String username = playerIn.getName();
 		
-		//stack.setItemDamage(this.status);
+		stack.setItemDamage(this.status);
 		EnumActionResult returnValue = EnumActionResult.FAIL;
 		
 		if (!worldIn.isRemote)
@@ -106,7 +108,7 @@ public class ItemExchangeWand extends ItemFillWand
 								}
 							}
 							this.status = NONE;
-							//stack.setItemDamage(this.status);
+							stack.setItemDamage(this.status);
 							returnValue = EnumActionResult.SUCCESS;
 						}
 						else
@@ -118,7 +120,7 @@ public class ItemExchangeWand extends ItemFillWand
 					{
 						this.putStartPos(pos, username);
 						this.status = CHARGED;
-						//stack.setItemDamage(this.status);
+						stack.setItemDamage(this.status);
 						returnValue = EnumActionResult.SUCCESS;
 					}
 				}
@@ -126,7 +128,7 @@ public class ItemExchangeWand extends ItemFillWand
 				{
 					this.fillBlock.put(username, worldIn.getBlockState(pos).getBlock());
 					this.status = FILL;
-					//stack.setItemDamage(this.status);
+					stack.setItemDamage(this.status);
 					returnValue = EnumActionResult.SUCCESS;
 				}
 			}
@@ -134,11 +136,11 @@ public class ItemExchangeWand extends ItemFillWand
 			{
 				this.usedBlock.put(username, worldIn.getBlockState(pos).getBlock());
 				this.status = NAMED;
-				//stack.setItemDamage(this.status);
+				stack.setItemDamage(this.status);
 				returnValue = EnumActionResult.SUCCESS;
 			}
 		}
-		//stack.setItemDamage(this.status);
+		stack.setItemDamage(this.status);
 		return returnValue;
 	}
 }

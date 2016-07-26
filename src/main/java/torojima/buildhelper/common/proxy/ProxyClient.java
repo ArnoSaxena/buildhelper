@@ -20,12 +20,14 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import torojima.buildhelper.BuildHelperMod;
-//import torojima.buildhelper.common.itemMeshDefinitions.ItemExchangeWandMeshDefinition;
+import torojima.buildhelper.common.itemMeshDefinitions.ExchangeWandMeshDefinition;
 
 public class ProxyClient extends ProxyServer
 {
+	@Override
 	public void registerModels()
 	{
+		BuildHelperMod.logger.info("registering models");
 		this.registerModel(BuildHelperMod.sandWaterWand);
 		this.registerModel(BuildHelperMod.fillWandDirt);
 		this.registerModel(BuildHelperMod.fillWandCobble);
@@ -34,24 +36,28 @@ public class ProxyClient extends ProxyServer
 		this.registerModel(BuildHelperMod.gapFillWand);
 		this.registerModel(BuildHelperMod.gapFillWaterWand);
 		this.registerModel(BuildHelperMod.cubeDiggerWand);
-		this.registerModel(BuildHelperMod.exchangeWand);
 		this.registerModel(BuildHelperMod.removeWaterWand);
-		/*
+		this.registerModel(BuildHelperMod.exchangeWand);
+	}
+	
+	@Override
+	public void registerModelVariants()
+	{
+		BuildHelperMod.logger.info("registering model variants");
 		ModelBakery.registerItemVariants(BuildHelperMod.exchangeWand, 
-				new ModelResourceLocation(BuildHelperMod.MODID + ":" + BuildHelperMod.exchangeWand.getUnlocalizedName().substring(5), "inventory"),
-				new ModelResourceLocation(BuildHelperMod.MODID + ":" + BuildHelperMod.exchangeWand.getUnlocalizedName().substring(5) + "_c1", "inventory"),
-				new ModelResourceLocation(BuildHelperMod.MODID + ":" + BuildHelperMod.exchangeWand.getUnlocalizedName().substring(5) + "_c2", "inventory"),
-				new ModelResourceLocation(BuildHelperMod.MODID + ":" + BuildHelperMod.exchangeWand.getUnlocalizedName().substring(5) + "_c3", "inventory")
+				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName(), "inventory"),
+				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName() + "_c1", "inventory"),
+				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName() + "_c2", "inventory"),
+				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName() + "_c3", "inventory")
 				);
-		ModelLoader.setCustomMeshDefinition(BuildHelperMod.exchangeWand, new ItemExchangeWandMeshDefinition());
-		*/
+		ModelLoader.setCustomMeshDefinition(BuildHelperMod.exchangeWand, new ExchangeWandMeshDefinition());
 	}
 	
 	private void registerModel(Item item)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(
+		ModelLoader.setCustomModelResourceLocation(
 				item, 
 				0, 
-	    		new ModelResourceLocation(BuildHelperMod.MODID + ":" + item.getUnlocalizedName().substring(5), "inventory"));		
+	    		new ModelResourceLocation(item.getRegistryName(), "inventory"));		
 	}
 }
