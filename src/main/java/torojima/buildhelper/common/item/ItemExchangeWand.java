@@ -102,7 +102,7 @@ public class ItemExchangeWand extends ItemFillWand
 										if(worldIn.getBlockState(changePos).getBlock() == fillBlock
 												&& !this.isBedRock(worldIn, changePos))
 										{
-											worldIn.setBlockState(changePos, usedBlock.getDefaultState(), 3);
+											worldIn.setBlockState(changePos, usedBlock.getBlockState().getBaseState(), 3);
 										}
 									}
 								}

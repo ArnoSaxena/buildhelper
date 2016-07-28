@@ -43,7 +43,7 @@ public class ProxyClient extends ProxyServer
 	@Override
 	public void registerModelVariants()
 	{
-		BuildHelperMod.logger.info("registering model variants");
+		BuildHelperMod.logger.info("registering model variants of " + BuildHelperMod.exchangeWand.getRegistryName());
 		ModelBakery.registerItemVariants(BuildHelperMod.exchangeWand, 
 				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName(), "inventory"),
 				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName() + "_c1", "inventory"),
