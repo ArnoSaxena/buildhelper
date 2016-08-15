@@ -33,7 +33,6 @@ public class ItemRemoveWaterWand extends ItemGapFillWand
 		super(false);
 		this.setRegistryName(ItemRemoveWaterWand.NAME);
 		this.setUnlocalizedName(ItemRemoveWaterWand.NAME);
-		this.setMaxStackSize(1);
 		GameRegistry.register(this);
 	}
 
@@ -42,8 +41,8 @@ public class ItemRemoveWaterWand extends ItemGapFillWand
 	{
 		if(this.status == NONE)
 		{
-			this.fillBlock.put(playerIn.getName(), Blocks.WATER);
-			this.usedBlock.put(playerIn.getName(), Blocks.AIR);
+			this.fillBlock.put(playerIn.getName(), Blocks.WATER.getDefaultState());
+			this.usedBlock.put(playerIn.getName(), Blocks.AIR.getDefaultState());
 			this.status = FILL;
 		}
 		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);

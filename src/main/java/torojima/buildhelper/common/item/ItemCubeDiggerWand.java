@@ -36,7 +36,6 @@ public class ItemCubeDiggerWand extends Item
 	public ItemCubeDiggerWand()
 	{
 		super();
-		this.maxStackSize = 1;
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.setRegistryName(ItemCubeDiggerWand.NAME);
 		this.setUnlocalizedName(ItemCubeDiggerWand.NAME);

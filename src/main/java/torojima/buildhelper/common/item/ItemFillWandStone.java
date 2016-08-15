@@ -31,17 +31,16 @@ public class ItemFillWandStone extends ItemFillWand
 	
 	public ItemFillWandStone()
 	{
-		super();
+		super(false);
 		this.setRegistryName(ItemFillWandStone.NAME);
 		this.setUnlocalizedName(ItemFillWandStone.NAME);
-		this.setMaxStackSize(1);
 		GameRegistry.register(this);
 	}
 
 	@Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		this.usedBlock.put(playerIn.getName(), Blocks.STONE);
+		this.usedBlock.put(playerIn.getName(), Blocks.STONE.getDefaultState());
 		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 }

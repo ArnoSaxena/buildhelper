@@ -40,7 +40,7 @@ public class BuildHelperMod
 	public static Logger logger;
 	
     public static final String MODID = "buildhelper";
-    public static final String VERSION = "0.3.2";
+    public static final String VERSION = "0.3.3";
     public static final String UPDATEJSON = "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/update.json";
     
     public static ItemSandWaterWand sandWaterWand;
@@ -53,6 +53,7 @@ public class BuildHelperMod
     public static ItemGapFillWaterWand gapFillWaterWand;
     public static ItemCubeDiggerWand cubeDiggerWand;
     public static ItemRemoveWaterWand removeWaterWand;
+    public static ItemFillWand allFillWand;
     
     @Instance
     public static BuildHelperMod instance;
@@ -172,6 +173,17 @@ public class BuildHelperMod
 			    " - ", 
 			    "N  ", 
 			    Character.valueOf('B'), Items.BUCKET, 
+			    Character.valueOf('-'), Items.STICK,
+				Character.valueOf('N'), Items.GOLD_NUGGET
+		});
+		
+		allFillWand = new ItemFillWand();
+		GameRegistry.addRecipe(new ItemStack(removeWaterWand, 1), new Object[]
+		{
+				"  D", 
+			    " - ", 
+			    "N  ", 
+			    Character.valueOf('D'), Items.DIAMOND, 
 			    Character.valueOf('-'), Items.STICK,
 				Character.valueOf('N'), Items.GOLD_NUGGET
 		});

@@ -40,17 +40,16 @@ public class ItemFillWandDirt extends ItemFillWand
 	
 	public ItemFillWandDirt()
 	{
-		super();
+		super(false);
 		this.setRegistryName(ItemFillWandDirt.NAME);
 		this.setUnlocalizedName(ItemFillWandDirt.NAME);
-		this.setMaxStackSize(1);
 		GameRegistry.register(this);
 	}
 
 	@Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		this.usedBlock.put(playerIn.getName(), Blocks.DIRT);
+		this.usedBlock.put(playerIn.getName(), Blocks.DIRT.getDefaultState());
 		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 }

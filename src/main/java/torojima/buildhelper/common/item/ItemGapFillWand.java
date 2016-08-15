@@ -31,9 +31,9 @@ public class ItemGapFillWand extends ItemExchangeWand
 	public ItemGapFillWand()
 	{
 		super(false);
+		this.setHasSubtypes(true);
 		this.setRegistryName(ItemGapFillWand.NAME);
 		this.setUnlocalizedName(ItemGapFillWand.NAME);
-		this.setMaxStackSize(1);
 		GameRegistry.register(this);
 	}
 	
@@ -44,7 +44,6 @@ public class ItemGapFillWand extends ItemExchangeWand
 		{
 			this.setRegistryName(ItemGapFillWand.NAME);
 			this.setUnlocalizedName(ItemGapFillWand.NAME);
-			this.setMaxStackSize(1);
 			GameRegistry.register(this);
 		}
 	}
@@ -54,9 +53,10 @@ public class ItemGapFillWand extends ItemExchangeWand
 	{		
 		if(this.status == NONE)
 		{
-			this.fillBlock.put(playerIn.getName(), Blocks.AIR);
+			this.fillBlock.put(playerIn.getName(), Blocks.AIR.getDefaultState());
 			this.status = NAMED;
 		}
+		stack.setItemDamage(this.status);
 		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 }

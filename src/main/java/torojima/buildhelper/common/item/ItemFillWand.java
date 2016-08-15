@@ -29,23 +29,44 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemFillWand extends ItemPosWand
 {
+	public static final String NAME = "fillwanduniversal";
+	
 	public static final int NONE = 0;
 	public static final int NAMED = 1;
 	public static final int CHARGED = 2;
 
-	protected Map<String, Block> usedBlock;
+	protected Map<String, IBlockState> usedBlock;
 	protected int status;
 
 	public ItemFillWand()
 	{
 		super();
-		this.maxStackSize = 1;
+		this.setMaxStackSize(1);
 		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.usedBlock = new HashMap<String, Block>();
+		this.usedBlock = new HashMap<String, IBlockState>();
 		this.status = NONE;
+		this.setRegistryName(ItemFillWand.NAME);
+		this.setUnlocalizedName(ItemFillWand.NAME);
+		GameRegistry.register(this);
+	}
+	
+	public ItemFillWand(boolean register)
+	{
+		super();
+		this.usedBlock = new HashMap<String, IBlockState>();
+		this.status = NONE;	
+		this.setCreativeTab(CreativeTabs.TOOLS);
+		this.setMaxStackSize(1);
+		if(register)
+		{
+			this.setRegistryName(ItemFillWand.NAME);
+			this.setUnlocalizedName(ItemFillWand.NAME);
+			GameRegistry.register(this);
+		}
 	}
 	
 	public int getStatus()
@@ -82,7 +103,7 @@ public class ItemFillWand extends ItemPosWand
 						BlockPos posA = this.getPosAllBig(startPos, endPos);
 						BlockPos posB = this.getPosAllSmall(startPos, endPos);
 					
-						Block usedBlock = this.usedBlock.get(username);
+						IBlockState usedBlock = this.usedBlock.get(username);
 						this.usedBlock.remove(username);
 
 						for(int x = posA.getX(); x <= posB.getX(); x++)
@@ -95,7 +116,7 @@ public class ItemFillWand extends ItemPosWand
 								
 									if(!this.isBedRock(worldIn, changePos))
 									{
-										worldIn.setBlockState(changePos, usedBlock.getDefaultState(), 3);
+										worldIn.setBlockState(changePos, usedBlock, 3);
 										blocksChanged = true;
 									}
 								}
@@ -117,7 +138,7 @@ public class ItemFillWand extends ItemPosWand
 			}
 			else
 			{
-				Block targetBlockState = worldIn.getBlockState(pos).getBlock();
+				IBlockState targetBlockState = worldIn.getBlockState(pos);
 				this.usedBlock.put(username, targetBlockState);
 				this.status = NAMED;
 				return EnumActionResult.SUCCESS;
