@@ -29,7 +29,7 @@ public class GapFillWaterWandMesh implements ItemMeshDefinition
 		if(stack.getItem() == BuildHelperMod.gapFillWaterWand)
 		{
 			ItemGapFillWaterWand igfw = (ItemGapFillWaterWand)stack.getItem();
-			ResourceLocation registryName = BuildHelperMod.gapFillWand.getRegistryName();
+			ResourceLocation registryName = BuildHelperMod.gapFillWaterWand.getRegistryName();
 			switch (igfw.getStatus())
 			{
 			case ItemGapFillWaterWand.NONE:
