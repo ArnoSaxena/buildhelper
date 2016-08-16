@@ -17,7 +17,6 @@ package torojima.buildhelper.common.item;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.properties.IProperty;
@@ -32,8 +31,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraft.block.BlockStone;
-import net.minecraft.block.BlockStone.EnumType;
 
 public class ItemExchangeWand extends ItemFillWand
 {
@@ -41,14 +38,14 @@ public class ItemExchangeWand extends ItemFillWand
 	
 	public static final String NAME = "exchangewand";
 
-	protected Map<String, IBlockState> fillBlock;
+	protected Map<String, IBlockState> fillBlocks;
 
 	public ItemExchangeWand()
 	{
 		super(false);
 		this.setHasSubtypes(true);
 		this.register();
-		this.fillBlock = new HashMap<String, IBlockState>();
+		this.fillBlocks = new HashMap<String, IBlockState>();
 	}
 	
 	public ItemExchangeWand(boolean register)
@@ -58,7 +55,7 @@ public class ItemExchangeWand extends ItemFillWand
 		{
 			this.register();
 		}
-		this.fillBlock = new HashMap<String, IBlockState>();			
+		this.fillBlocks = new HashMap<String, IBlockState>();			
 	}
 	
 	private void register()
@@ -78,9 +75,9 @@ public class ItemExchangeWand extends ItemFillWand
 		
 		if (!worldIn.isRemote)
 		{
-			if(this.usedBlock.containsKey(username))
+			if(this.usedBlocks.containsKey(username))
 			{
-				if(this.fillBlock.containsKey(username))
+				if(this.fillBlocks.containsKey(username))
 				{
 					if(this.isStartPointPresent(username))
 					{
@@ -91,11 +88,11 @@ public class ItemExchangeWand extends ItemFillWand
 							BlockPos posA = this.getPosAllBig(startPos, endPos);
 							BlockPos posB = this.getPosAllSmall(startPos, endPos);
 
-							IBlockState usedBlock = this.usedBlock.get(username);
-							this.usedBlock.remove(username);
+							IBlockState usedBlock = this.usedBlocks.get(username);
+							this.usedBlocks.remove(username);
 							
-							IBlockState fillBlock = this.fillBlock.get(username);
-							this.fillBlock.remove(username);
+							IBlockState fillBlock = this.fillBlocks.get(username);
+							this.fillBlocks.remove(username);
 
 							for(int x = posA.getX(); x <= posB.getX(); x++)
 							{
@@ -132,7 +129,7 @@ public class ItemExchangeWand extends ItemFillWand
 				}
 				else
 				{
-					this.fillBlock.put(username, worldIn.getBlockState(pos));
+					this.fillBlocks.put(username, worldIn.getBlockState(pos));
 					this.status = FILL;
 					stack.setItemDamage(this.status);
 					returnValue = EnumActionResult.SUCCESS;
@@ -140,7 +137,7 @@ public class ItemExchangeWand extends ItemFillWand
 			}
 			else
 			{
-				this.usedBlock.put(username, worldIn.getBlockState(pos));
+				this.usedBlocks.put(username, worldIn.getBlockState(pos));
 				this.status = NAMED;
 				stack.setItemDamage(this.status);
 				returnValue = EnumActionResult.SUCCESS;

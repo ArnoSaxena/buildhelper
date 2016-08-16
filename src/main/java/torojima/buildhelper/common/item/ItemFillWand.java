@@ -39,7 +39,7 @@ public class ItemFillWand extends ItemPosWand
 	public static final int NAMED = 1;
 	public static final int CHARGED = 2;
 
-	protected Map<String, IBlockState> usedBlock;
+	protected Map<String, IBlockState> usedBlocks;
 	protected int status;
 
 	public ItemFillWand()
@@ -47,7 +47,7 @@ public class ItemFillWand extends ItemPosWand
 		super();
 		this.setMaxStackSize(1);
 		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.usedBlock = new HashMap<String, IBlockState>();
+		this.usedBlocks = new HashMap<String, IBlockState>();
 		this.status = NONE;
 		this.setRegistryName(ItemFillWand.NAME);
 		this.setUnlocalizedName(ItemFillWand.NAME);
@@ -57,7 +57,7 @@ public class ItemFillWand extends ItemPosWand
 	public ItemFillWand(boolean register)
 	{
 		super();
-		this.usedBlock = new HashMap<String, IBlockState>();
+		this.usedBlocks = new HashMap<String, IBlockState>();
 		this.status = NONE;	
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.setMaxStackSize(1);
@@ -92,7 +92,7 @@ public class ItemFillWand extends ItemPosWand
 		
 		if(!worldIn.isRemote)
 		{
-			if(this.usedBlock.containsKey(username))
+			if(this.usedBlocks.containsKey(username))
 			{
 				if(this.isStartPointPresent(username))
 				{
@@ -103,8 +103,8 @@ public class ItemFillWand extends ItemPosWand
 						BlockPos posA = this.getPosAllBig(startPos, endPos);
 						BlockPos posB = this.getPosAllSmall(startPos, endPos);
 					
-						IBlockState usedBlock = this.usedBlock.get(username);
-						this.usedBlock.remove(username);
+						IBlockState usedBlock = this.usedBlocks.get(username);
+						this.usedBlocks.remove(username);
 
 						for(int x = posA.getX(); x <= posB.getX(); x++)
 						{
@@ -139,7 +139,7 @@ public class ItemFillWand extends ItemPosWand
 			else
 			{
 				IBlockState targetBlockState = worldIn.getBlockState(pos);
-				this.usedBlock.put(username, targetBlockState);
+				this.usedBlocks.put(username, targetBlockState);
 				this.status = NAMED;
 				return EnumActionResult.SUCCESS;
 			}
@@ -151,7 +151,7 @@ public class ItemFillWand extends ItemPosWand
 	protected void resetWand(String username)
 	{
 		super.resetWand(username);
-		this.usedBlock.remove(username);
+		this.usedBlocks.remove(username);
 		this.status = NONE;
 	}
 	

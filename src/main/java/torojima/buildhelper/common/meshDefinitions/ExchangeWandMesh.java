@@ -1,3 +1,17 @@
+// <copyright file="ExchangeWandMesh.java">
+// Copyright (c) 2016 All Right Reserved, http://buildhelper.arno-saxena.de/
+//
+// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+// KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// </copyright>
+// <author>Arno Saxena</author>
+// <email>al-s@gmx.de</email>
+// <date>2016-07-21</date>
+// <summary>Dynamically changing model for exchange wand</summary>
+
 package torojima.buildhelper.common.meshDefinitions;
 
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -7,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import torojima.buildhelper.BuildHelperMod;
 import torojima.buildhelper.common.item.ItemExchangeWand;
 
-public class ExchangeWandMeshDefinition implements ItemMeshDefinition
+public class ExchangeWandMesh implements ItemMeshDefinition
 {
 
 	@Override

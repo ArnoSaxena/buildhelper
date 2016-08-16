@@ -20,8 +20,6 @@ import java.util.HashMap;
 import java.util.Map;
 import torojima.buildhelper.common.Constants;
 
-
-
 public abstract class ItemPosWand extends Item
 {
 	protected Map<String, BlockPos> startPoint;

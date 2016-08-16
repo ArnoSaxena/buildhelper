@@ -39,7 +39,7 @@ public class ItemFillWandCobble extends ItemFillWand
 	@Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		this.usedBlock.put(playerIn.getName(), Blocks.COBBLESTONE.getDefaultState());
+		this.usedBlocks.put(playerIn.getName(), Blocks.COBBLESTONE.getDefaultState());
 		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 }

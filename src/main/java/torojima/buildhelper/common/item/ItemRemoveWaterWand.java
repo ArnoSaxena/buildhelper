@@ -41,8 +41,8 @@ public class ItemRemoveWaterWand extends ItemGapFillWand
 	{
 		if(this.status == NONE)
 		{
-			this.fillBlock.put(playerIn.getName(), Blocks.WATER.getDefaultState());
-			this.usedBlock.put(playerIn.getName(), Blocks.AIR.getDefaultState());
+			this.fillBlocks.put(playerIn.getName(), Blocks.WATER.getDefaultState());
+			this.usedBlocks.put(playerIn.getName(), Blocks.AIR.getDefaultState());
 			this.status = FILL;
 		}
 		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);

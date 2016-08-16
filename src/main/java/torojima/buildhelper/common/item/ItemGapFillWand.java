@@ -53,7 +53,7 @@ public class ItemGapFillWand extends ItemExchangeWand
 	{		
 		if(this.status == NONE)
 		{
-			this.fillBlock.put(playerIn.getName(), Blocks.AIR.getDefaultState());
+			this.fillBlocks.put(playerIn.getName(), Blocks.AIR.getDefaultState());
 			this.status = NAMED;
 		}
 		stack.setItemDamage(this.status);
