@@ -49,14 +49,14 @@ public class ItemGapFillWand extends ItemExchangeWand
 	}
 
 	@Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{		
 		if(this.status == NONE)
 		{
 			this.fillBlocks.put(playerIn.getName(), Blocks.AIR.getDefaultState());
 			this.status = NAMED;
 		}
-		stack.setItemDamage(this.status);
-		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		playerIn.getHeldItem(hand).setItemDamage(this.status);
+		return super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 }

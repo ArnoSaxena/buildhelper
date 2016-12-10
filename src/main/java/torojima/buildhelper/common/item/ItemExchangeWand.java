@@ -66,11 +66,11 @@ public class ItemExchangeWand extends ItemFillWand
 	}
 
 	@Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		String username = playerIn.getName();
 		
-		stack.setItemDamage(this.status);
+		playerIn.getHeldItem(hand).setItemDamage(this.status);
 		EnumActionResult returnValue = EnumActionResult.FAIL;
 		
 		if (!worldIn.isRemote)
@@ -111,7 +111,7 @@ public class ItemExchangeWand extends ItemFillWand
 								}
 							}
 							this.status = NONE;
-							stack.setItemDamage(this.status);
+							playerIn.getHeldItem(hand).setItemDamage(this.status);
 							returnValue = EnumActionResult.SUCCESS;
 						}
 						else
@@ -123,7 +123,7 @@ public class ItemExchangeWand extends ItemFillWand
 					{
 						this.putStartPos(pos, username);
 						this.status = CHARGED;
-						stack.setItemDamage(this.status);
+						playerIn.getHeldItem(hand).setItemDamage(this.status);
 						returnValue = EnumActionResult.SUCCESS;
 					}
 				}
@@ -131,7 +131,7 @@ public class ItemExchangeWand extends ItemFillWand
 				{
 					this.fillBlocks.put(username, worldIn.getBlockState(pos));
 					this.status = FILL;
-					stack.setItemDamage(this.status);
+					playerIn.getHeldItem(hand).setItemDamage(this.status);
 					returnValue = EnumActionResult.SUCCESS;
 				}
 			}
@@ -139,11 +139,11 @@ public class ItemExchangeWand extends ItemFillWand
 			{
 				this.usedBlocks.put(username, worldIn.getBlockState(pos));
 				this.status = NAMED;
-				stack.setItemDamage(this.status);
+				playerIn.getHeldItem(hand).setItemDamage(this.status);
 				returnValue = EnumActionResult.SUCCESS;
 			}
 		}
-		stack.setItemDamage(this.status);
+		playerIn.getHeldItem(hand).setItemDamage(this.status);
 		return returnValue;
 	}
 }
