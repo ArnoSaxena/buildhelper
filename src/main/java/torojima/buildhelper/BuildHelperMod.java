@@ -43,6 +43,7 @@ public class BuildHelperMod
     
     public static ItemSandWaterWand sandWaterWand;
     public static ItemFillWandDirt fillWandDirt;
+    public static ItemFillWandIronore fillWandIronore;
     public static ItemFillWandCobble fillWandCobble;
     public static ItemFillWandStone fillWandStone;
     public static ItemExchangeWand exchangeWand;
@@ -83,6 +84,17 @@ public class BuildHelperMod
 			" - ",
 			"N  ", 
 			Character.valueOf('D'), Blocks.DIRT, 
+			Character.valueOf('-'), Items.STICK,
+			Character.valueOf('N'), Items.GOLD_NUGGET
+		});
+		
+    	fillWandIronore = new ItemFillWandIronore();
+		GameRegistry.addRecipe(new ItemStack(fillWandIronore, 1), new Object[]
+		{
+			"  O", 
+			" - ",
+			"N  ", 
+			Character.valueOf('O'), Blocks.IRON_ORE, 
 			Character.valueOf('-'), Items.STICK,
 			Character.valueOf('N'), Items.GOLD_NUGGET
 		});

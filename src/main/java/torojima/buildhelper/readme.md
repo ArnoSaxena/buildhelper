@@ -8,6 +8,9 @@ http://www.minecraftforum.net/topic/1803250-
 or follow me on twitter https://twitter.com/Torojima
 
 Changelog:
+0.4.2 : 1. update mod for usage with minecraft 11.2
+        2. Adding iron ore wand
+
 0.4.1 : 1. update mod for usage with minecraft 11.1
 
 0.3.4 : 1. fixing gap fill water wand model bug

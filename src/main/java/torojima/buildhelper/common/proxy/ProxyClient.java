@@ -30,6 +30,7 @@ public class ProxyClient extends ProxyServer
 		BuildHelperMod.logger.info("registering models");
 		this.registerModel(BuildHelperMod.sandWaterWand);
 		this.registerModel(BuildHelperMod.fillWandDirt);
+		this.registerModel(BuildHelperMod.fillWandIronore);
 		this.registerModel(BuildHelperMod.fillWandCobble);
 		this.registerModel(BuildHelperMod.fillWandStone);
 		this.registerModel(BuildHelperMod.fillWandAir);
