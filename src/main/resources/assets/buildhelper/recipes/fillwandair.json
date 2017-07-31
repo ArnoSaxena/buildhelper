@@ -8,7 +8,7 @@
   "key": {
     "S":{
       "item": "minecraft:iron_shovel"
-	}
+	},
     "-":{
       "type": "forge:ore_dict",
       "ore": "stickWood"
