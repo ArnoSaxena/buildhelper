@@ -37,12 +37,13 @@ import torojima.buildhelper.BuildHelperMod;
 public class ItemFillWandIronore extends ItemFillWand
 {
 	public static final String NAME = "fillwandironore";
+	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemFillWandIronore.NAME;
 	
 	public ItemFillWandIronore()
 	{
 		super(false);
-		this.setRegistryName(ItemFillWandIronore.NAME);
-		this.setUnlocalizedName(ItemFillWandIronore.NAME);
+		this.setRegistryName(ItemFillWandIronore.FULLNAME);
+		this.setUnlocalizedName(ItemFillWandIronore.FULLNAME);
 		GameRegistry.register(this);
 	}
 

@@ -23,16 +23,18 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import torojima.buildhelper.BuildHelperMod;
 
 public class ItemFillWandAir extends ItemFillWand
 {
 	public static final String NAME = "fillwandair";
+	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemFillWandAir.NAME;
 
 	public ItemFillWandAir()
 	{
 		super(false);
-		this.setRegistryName(ItemFillWandAir.NAME);
-		this.setUnlocalizedName(ItemFillWandAir.NAME);
+		this.setRegistryName(ItemFillWandAir.FULLNAME);
+		this.setUnlocalizedName(ItemFillWandAir.FULLNAME);
 		GameRegistry.register(this);
 	}
 

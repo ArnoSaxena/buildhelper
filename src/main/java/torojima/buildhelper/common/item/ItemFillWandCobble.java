@@ -23,16 +23,18 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import torojima.buildhelper.BuildHelperMod;
 
 public class ItemFillWandCobble extends ItemFillWand
 {
 	public static final String NAME = "fillwandcobble";
+	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemFillWandCobble.NAME;
 	
 	public ItemFillWandCobble()
 	{
 		super(false);
-		this.setRegistryName(ItemFillWandCobble.NAME);
-		this.setUnlocalizedName(ItemFillWandCobble.NAME);
+		this.setRegistryName(ItemFillWandCobble.FULLNAME);
+		this.setUnlocalizedName(ItemFillWandCobble.FULLNAME);
 		GameRegistry.register(this);
 	}
 	

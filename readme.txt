@@ -1,4 +1,4 @@
-This is Torojimas Build Helper v0.4.1 for usage with minecraft 1.11. 
+This is Torojimas Build Helper v0.5.0 for usage with minecraft 1.12. 
 
 This mod adds wand items for convenient and fast building of of multiple blocks to the game. 
 
@@ -8,6 +8,8 @@ http://www.minecraftforum.net/topic/1803250-
 or follow me on twitter https://twitter.com/Torojima
 
 Changelog:
+0.5.0 : 1. updated mod for usage with minecraft 1.12
+
 0.4.1 : 1. updated mod for usage with minecraft 1.11
 
 0.3.4 : 1. fixing gap fill water wand model bug

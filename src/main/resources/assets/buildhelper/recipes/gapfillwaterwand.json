@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "  W”,
+    " - “,
+    “N  “
+  ],
+  "key": {
+    “W”: {
+      "item": "minecraft:water_bucket"
+    },
+    “-“:{
+      "type": "forge:ore_dict",
+      "ore": “stickWood”
+	},
+    “N”:{
+      "type": "forge:ore_dict",
+      "ore": “nuggetGold”
+	}
+  },
+  "result": {
+    "item": “buildhelper:gapfillwaterwand”
+  }
+}

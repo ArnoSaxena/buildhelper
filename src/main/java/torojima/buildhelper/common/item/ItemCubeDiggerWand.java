@@ -28,17 +28,19 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import torojima.buildhelper.BuildHelperMod;
 
 public class ItemCubeDiggerWand extends Item
 {
 	public static final String NAME = "cubediggerwand";
+	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemCubeDiggerWand.NAME;
 
 	public ItemCubeDiggerWand()
 	{
 		super();
 		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setRegistryName(ItemCubeDiggerWand.NAME);
-		this.setUnlocalizedName(ItemCubeDiggerWand.NAME);
+		this.setRegistryName(ItemCubeDiggerWand.FULLNAME);
+		this.setUnlocalizedName(ItemCubeDiggerWand.FULLNAME);
 		this.setMaxStackSize(1);
 		GameRegistry.register(this);
 	}

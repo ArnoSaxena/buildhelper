@@ -27,17 +27,19 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import torojima.buildhelper.BuildHelperMod;
 
 public class ItemSandWaterWand extends Item
 {
 	public static final String NAME = "sandwaterwand";
+	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemSandWaterWand.NAME;
 	
 	public ItemSandWaterWand()
 	{
 		super();
 		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setRegistryName(ItemSandWaterWand.NAME);
-		this.setUnlocalizedName(ItemSandWaterWand.NAME);
+		this.setRegistryName(ItemSandWaterWand.FULLNAME);
+		this.setUnlocalizedName(ItemSandWaterWand.FULLNAME);
 		this.setMaxStackSize(1);
 		GameRegistry.register(this);
 	}

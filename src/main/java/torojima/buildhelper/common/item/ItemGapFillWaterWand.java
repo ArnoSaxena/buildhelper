@@ -24,16 +24,18 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import torojima.buildhelper.BuildHelperMod;
 
 public class ItemGapFillWaterWand extends ItemGapFillWand
 {
 	public static final String NAME = "gapfillwaterwand";
+	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemGapFillWaterWand.NAME;
 	
 	public ItemGapFillWaterWand()
 	{
 		super(false);
-		this.setRegistryName(ItemGapFillWaterWand.NAME);
-		this.setUnlocalizedName(ItemGapFillWaterWand.NAME);
+		this.setRegistryName(ItemGapFillWaterWand.FULLNAME);
+		this.setUnlocalizedName(ItemGapFillWaterWand.FULLNAME);
 		GameRegistry.register(this);
 	}
 

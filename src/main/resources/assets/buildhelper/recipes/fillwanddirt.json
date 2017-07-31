@@ -1,0 +1,25 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "  D”,
+    " - “,
+    “N  “
+  ],
+  "key": {
+    “D”: {
+      "type": "forge:ore_dict",
+      "ore": “dirt”
+    },
+    “-“:{
+      "type": "forge:ore_dict",
+      "ore": “stickWood”
+	},
+    “N”:{
+      "type": "forge:ore_dict",
+      "ore": “nuggetGold”
+	}
+  },
+  "result": {
+    "item": “buildhelper:fillwanddirt”
+  }
+}

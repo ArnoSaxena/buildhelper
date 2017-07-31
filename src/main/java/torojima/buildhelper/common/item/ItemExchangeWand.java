@@ -31,12 +31,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import torojima.buildhelper.BuildHelperMod;
 
 public class ItemExchangeWand extends ItemFillWand
 {
 	public static final int FILL = 3;
 	
 	public static final String NAME = "exchangewand";
+	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemExchangeWand.NAME;
 
 	protected Map<String, IBlockState> fillBlocks;
 
@@ -60,8 +62,8 @@ public class ItemExchangeWand extends ItemFillWand
 	
 	private void register()
 	{
-		this.setRegistryName(ItemExchangeWand.NAME);
-		this.setUnlocalizedName(ItemExchangeWand.NAME);
+		this.setRegistryName(ItemExchangeWand.FULLNAME);
+		this.setUnlocalizedName(ItemExchangeWand.FULLNAME);
 		GameRegistry.register(this);
 	}
 

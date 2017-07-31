@@ -67,136 +67,17 @@ public class BuildHelperMod
     	logger = LogManager.getLogger(BuildHelperMod.MODID);
     	
     	sandWaterWand = new ItemSandWaterWand();
-		GameRegistry.addRecipe(new ItemStack(sandWaterWand, 1), new Object[]
-		{
-			"  S", 
-			" - ", 
-			"W  ", 
-			Character.valueOf('S'), Blocks.SAND, 
-			Character.valueOf('-'), Items.STICK,
-			Character.valueOf('W'), Items.WATER_BUCKET
-		});
-		
     	fillWandDirt = new ItemFillWandDirt();
-		GameRegistry.addRecipe(new ItemStack(fillWandDirt, 1), new Object[]
-		{
-			"  D", 
-			" - ",
-			"N  ", 
-			Character.valueOf('D'), Blocks.DIRT, 
-			Character.valueOf('-'), Items.STICK,
-			Character.valueOf('N'), Items.GOLD_NUGGET
-		});
-		
     	fillWandIronore = new ItemFillWandIronore();
-		GameRegistry.addRecipe(new ItemStack(fillWandIronore, 1), new Object[]
-		{
-			"  O", 
-			" - ",
-			"N  ", 
-			Character.valueOf('O'), Blocks.IRON_ORE, 
-			Character.valueOf('-'), Items.STICK,
-			Character.valueOf('N'), Items.GOLD_NUGGET
-		});
-		
     	fillWandCobble = new ItemFillWandCobble();
-		GameRegistry.addRecipe(new ItemStack(fillWandCobble, 1), new Object[]
-		{
-			"  C", 
-			" - ",
-			"N  ", 
-			Character.valueOf('C'), Blocks.COBBLESTONE, 
-			Character.valueOf('-'), Items.STICK,
-			Character.valueOf('N'), Items.GOLD_NUGGET
-		});
-		
     	fillWandStone = new ItemFillWandStone();
-		GameRegistry.addRecipe(new ItemStack(fillWandStone, 1), new Object[]
-		{
-			"  S", 
-			" - ",
-			"N  ", 
-			Character.valueOf('S'), Blocks.STONE, 
-			Character.valueOf('-'), Items.STICK,
-			Character.valueOf('N'), Items.GOLD_NUGGET
-		});
-		
 		exchangeWand = new ItemExchangeWand();
-		GameRegistry.addRecipe(new ItemStack(exchangeWand, 1), new Object[]
-		{
-			"  D", 
-			" - ", 
-			"E  ", 
-			Character.valueOf('D'), Items.DIAMOND, 
-			Character.valueOf('-'), Items.STICK,
-			Character.valueOf('E'), Items.EMERALD
-		});
-		
 		fillWandAir = new ItemFillWandAir();
-		GameRegistry.addRecipe(new ItemStack(fillWandAir, 1), new Object[]
-		{
-			"  S", 
-			" - ", 
-			"N  ", 
-			Character.valueOf('S'), Items.IRON_SHOVEL, 
-			Character.valueOf('-'), Items.STICK,
-			Character.valueOf('N'), Items.GOLD_NUGGET
-		});
-		
 		gapFillWand = new ItemGapFillWand();
-		GameRegistry.addRecipe(new ItemStack(gapFillWand, 1), new Object[]
-		{
-				"  E", 
-				" - ", 
-				"N  ", 
-				Character.valueOf('E'), Items.EMERALD, 
-				Character.valueOf('-'), Items.STICK,
-				Character.valueOf('N'), Items.GOLD_NUGGET
-		});
-		
 		gapFillWaterWand = new ItemGapFillWaterWand();
-		GameRegistry.addRecipe(new ItemStack(gapFillWaterWand, 1), new Object[]
-		{
-				"  W", 
-				" - ", 
-				"N  ", 
-				Character.valueOf('W'), Items.WATER_BUCKET, 
-				Character.valueOf('-'), Items.STICK,
-				Character.valueOf('N'), Items.GOLD_NUGGET
-		});
-		
 		cubeDiggerWand = new ItemCubeDiggerWand();
-		GameRegistry.addRecipe(new ItemStack(cubeDiggerWand, 1), new Object[]
-		{
-				"  S", 
-			    " - ", 
-			    "N  ", 
-			    Character.valueOf('S'), Items.DIAMOND_SHOVEL, 
-			    Character.valueOf('-'), Items.STICK,
-				Character.valueOf('N'), Items.GOLD_NUGGET
-		});
-		
 		removeWaterWand = new ItemRemoveWaterWand();
-		GameRegistry.addRecipe(new ItemStack(removeWaterWand, 1), new Object[]
-		{
-				"  B", 
-			    " - ", 
-			    "N  ", 
-			    Character.valueOf('B'), Items.BUCKET, 
-			    Character.valueOf('-'), Items.STICK,
-				Character.valueOf('N'), Items.GOLD_NUGGET
-		});
-		
 		allFillWand = new ItemFillWand();
-		GameRegistry.addRecipe(new ItemStack(removeWaterWand, 1), new Object[]
-		{
-				"  D", 
-			    " - ", 
-			    "N  ", 
-			    Character.valueOf('D'), Items.DIAMOND, 
-			    Character.valueOf('-'), Items.STICK,
-				Character.valueOf('N'), Items.GOLD_NUGGET
-		});
 		
 		proxy.registerModels();
 		proxy.registerModelVariants();

@@ -23,17 +23,19 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import torojima.buildhelper.BuildHelperMod;
 
 public class ItemGapFillWand extends ItemExchangeWand
 {
 	public static final String NAME = "gapfillwand";
+	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemGapFillWand.NAME;
 	
 	public ItemGapFillWand()
 	{
 		super(false);
 		this.setHasSubtypes(true);
-		this.setRegistryName(ItemGapFillWand.NAME);
-		this.setUnlocalizedName(ItemGapFillWand.NAME);
+		this.setRegistryName(ItemGapFillWand.FULLNAME);
+		this.setUnlocalizedName(ItemGapFillWand.FULLNAME);
 		GameRegistry.register(this);
 	}
 	
@@ -42,8 +44,8 @@ public class ItemGapFillWand extends ItemExchangeWand
 		super(register);
 		if(register)
 		{
-			this.setRegistryName(ItemGapFillWand.NAME);
-			this.setUnlocalizedName(ItemGapFillWand.NAME);
+			this.setRegistryName(ItemGapFillWand.FULLNAME);
+			this.setUnlocalizedName(ItemGapFillWand.FULLNAME);
 			GameRegistry.register(this);
 		}
 	}

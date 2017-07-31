@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "  S",
+    " - “,
+    “W  “
+  ],
+  "key": {
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": “sand”
+    },
+    “-“:{
+      "type": "forge:ore_dict",
+      "ore": “stickWood”
+	},
+    “W”:{
+      "item": "minecraft:water_bucket"
+	}
+  },
+  "result": {
+    "item": “buildhelper:sandwaterwand"
+  }
+}
