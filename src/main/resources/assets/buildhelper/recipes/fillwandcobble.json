@@ -1,25 +1,25 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  C”,
-    " - “,
-    “N  “
+    "  C",
+    " - ",
+    "N  "
   ],
   "key": {
-    “C”: {
+    "C": {
       "type": "forge:ore_dict",
-      "ore": “cobblestone”
+      "ore": "cobblestone"
     },
-    “-“:{
+    "-":{
       "type": "forge:ore_dict",
-      "ore": “stickWood”
+      "ore": "stickWood"
 	},
-    “N”:{
+    "N":{
       "type": "forge:ore_dict",
-      "ore": “nuggetGold”
+      "ore": "nuggetGold"
 	}
   },
   "result": {
-    "item": “buildhelper:fillwandcobble”
+    "item": "buildhelper:fillwandcobble"
   }
 }

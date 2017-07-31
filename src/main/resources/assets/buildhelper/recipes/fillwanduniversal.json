@@ -1,25 +1,25 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  D”,
-    " - “,
-    “N  “
+    "  D",
+    " - ",
+    "N  "
   ],
   "key": {
-    “D”: {
+    "D": {
       "type": "forge:ore_dict",
-      "ore": “gemDiamond”
+      "ore": "gemDiamond"
     },
-    “-“:{
+    "-":{
       "type": "forge:ore_dict",
-      "ore": “stickWood”
+      "ore": "stickWood"
 	},
-    “N”:{
+    "N":{
       "type": "forge:ore_dict",
-      "ore": “nuggetGold”
+      "ore": "nuggetGold"
 	}
   },
   "result": {
-    "item": “buildhelper:fillwanduniversal”
+    "item": "buildhelper:fillwanduniversal"
   }
 }

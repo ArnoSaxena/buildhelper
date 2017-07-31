@@ -38,7 +38,6 @@ public class ItemExchangeWand extends ItemFillWand
 	public static final int FILL = 3;
 	
 	public static final String NAME = "exchangewand";
-	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemExchangeWand.NAME;
 
 	protected Map<String, IBlockState> fillBlocks;
 
@@ -62,8 +61,8 @@ public class ItemExchangeWand extends ItemFillWand
 	
 	private void register()
 	{
-		this.setRegistryName(ItemExchangeWand.FULLNAME);
-		this.setUnlocalizedName(ItemExchangeWand.FULLNAME);
+		this.setRegistryName(ItemExchangeWand.NAME);
+		this.setUnlocalizedName(ItemExchangeWand.NAME);
 		GameRegistry.register(this);
 	}
 

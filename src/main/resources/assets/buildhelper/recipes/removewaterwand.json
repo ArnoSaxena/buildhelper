@@ -1,24 +1,24 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  B”,
-    " - “,
-    “N  “
+    "  B",
+    " - ",
+    "N  "
   ],
   "key": {
-    “B”: {
-      “item”: “minecraft:bucket”,
+    "B": {
+      "item": "minecraft:bucket"
     },
-    “-“:{
+    "-":{
       "type": "forge:ore_dict",
-      "ore": “stickWood”
+      "ore": "stickWood"
 	},
-    “N”:{
+    "N":{
       "type": "forge:ore_dict",
-      "ore": “nuggetGold”
+      "ore": "nuggetGold"
 	}
   },
   "result": {
-    "item": “buildhelper:removewaterwand"
+    "item": "buildhelper:removewaterwand"
   }
 }

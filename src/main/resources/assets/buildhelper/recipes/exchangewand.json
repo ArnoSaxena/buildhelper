@@ -1,25 +1,25 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  D”,
-    " - “,
-    “E  “
+    "  D",
+    " - ",
+    "E  "
   ],
   "key": {
-    “D”: {
+    "D": {
       "type": "forge:ore_dict",
-      "ore": “gemDiamond”
+      "ore": "gemDiamond"
     },
-    “-“:{
+    "-":{
       "type": "forge:ore_dict",
-      "ore": “stickWood”
+      "ore": "stickWood"
 	},
-    “E”:{
+    "E":{
       "type": "forge:ore_dict",
-      "ore": “gemEmerald”
+      "ore": "gemEmerald"
 	}
   },
   "result": {
-    "item": “buildhelper:exchangewand”
+    "item": "buildhelper:exchangewand"
   }
 }

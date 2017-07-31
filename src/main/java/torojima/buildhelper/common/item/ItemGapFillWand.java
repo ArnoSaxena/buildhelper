@@ -28,14 +28,13 @@ import torojima.buildhelper.BuildHelperMod;
 public class ItemGapFillWand extends ItemExchangeWand
 {
 	public static final String NAME = "gapfillwand";
-	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemGapFillWand.NAME;
-	
+
 	public ItemGapFillWand()
 	{
 		super(false);
 		this.setHasSubtypes(true);
-		this.setRegistryName(ItemGapFillWand.FULLNAME);
-		this.setUnlocalizedName(ItemGapFillWand.FULLNAME);
+		this.setRegistryName(ItemGapFillWand.NAME);
+		this.setUnlocalizedName(ItemGapFillWand.NAME);
 		GameRegistry.register(this);
 	}
 	
@@ -44,8 +43,8 @@ public class ItemGapFillWand extends ItemExchangeWand
 		super(register);
 		if(register)
 		{
-			this.setRegistryName(ItemGapFillWand.FULLNAME);
-			this.setUnlocalizedName(ItemGapFillWand.FULLNAME);
+			this.setRegistryName(ItemGapFillWand.NAME);
+			this.setUnlocalizedName(ItemGapFillWand.NAME);
 			GameRegistry.register(this);
 		}
 	}

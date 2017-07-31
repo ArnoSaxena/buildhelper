@@ -28,13 +28,12 @@ import torojima.buildhelper.BuildHelperMod;
 public class ItemFillWandAir extends ItemFillWand
 {
 	public static final String NAME = "fillwandair";
-	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemFillWandAir.NAME;
 
 	public ItemFillWandAir()
 	{
 		super(false);
-		this.setRegistryName(ItemFillWandAir.FULLNAME);
-		this.setUnlocalizedName(ItemFillWandAir.FULLNAME);
+		this.setRegistryName(ItemFillWandAir.NAME);
+		this.setUnlocalizedName(ItemFillWandAir.NAME);
 		GameRegistry.register(this);
 	}
 

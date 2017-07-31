@@ -32,14 +32,13 @@ import torojima.buildhelper.BuildHelperMod;
 public class ItemSandWaterWand extends Item
 {
 	public static final String NAME = "sandwaterwand";
-	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemSandWaterWand.NAME;
 	
 	public ItemSandWaterWand()
 	{
 		super();
 		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setRegistryName(ItemSandWaterWand.FULLNAME);
-		this.setUnlocalizedName(ItemSandWaterWand.FULLNAME);
+		this.setRegistryName(ItemSandWaterWand.NAME);
+		this.setUnlocalizedName(ItemSandWaterWand.NAME);
 		this.setMaxStackSize(1);
 		GameRegistry.register(this);
 	}

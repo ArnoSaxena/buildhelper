@@ -35,7 +35,6 @@ import torojima.buildhelper.BuildHelperMod;
 public class ItemFillWand extends ItemPosWand
 {
 	public static final String NAME = "fillwanduniversal";
-	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemFillWand.NAME;
 	
 	public static final int NONE = 0;
 	public static final int NAMED = 1;
@@ -51,8 +50,8 @@ public class ItemFillWand extends ItemPosWand
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.usedBlocks = new HashMap<String, IBlockState>();
 		this.status = NONE;
-		this.setRegistryName(ItemFillWand.FULLNAME);
-		this.setUnlocalizedName(ItemFillWand.FULLNAME);
+		this.setRegistryName(ItemFillWand.NAME);
+		this.setUnlocalizedName(ItemFillWand.NAME);
 		GameRegistry.register(this);
 	}
 	
@@ -65,8 +64,8 @@ public class ItemFillWand extends ItemPosWand
 		this.setMaxStackSize(1);
 		if(register)
 		{
-			this.setRegistryName(ItemFillWand.FULLNAME);
-			this.setUnlocalizedName(ItemFillWand.FULLNAME);
+			this.setRegistryName(ItemFillWand.NAME);
+			this.setUnlocalizedName(ItemFillWand.NAME);
 			GameRegistry.register(this);
 		}
 	}

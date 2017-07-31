@@ -33,14 +33,13 @@ import torojima.buildhelper.BuildHelperMod;
 public class ItemCubeDiggerWand extends Item
 {
 	public static final String NAME = "cubediggerwand";
-	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemCubeDiggerWand.NAME;
 
 	public ItemCubeDiggerWand()
 	{
 		super();
 		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setRegistryName(ItemCubeDiggerWand.FULLNAME);
-		this.setUnlocalizedName(ItemCubeDiggerWand.FULLNAME);
+		this.setRegistryName(ItemCubeDiggerWand.NAME);
+		this.setUnlocalizedName(ItemCubeDiggerWand.NAME);
 		this.setMaxStackSize(1);
 		GameRegistry.register(this);
 	}

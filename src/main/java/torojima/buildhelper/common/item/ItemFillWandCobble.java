@@ -28,13 +28,12 @@ import torojima.buildhelper.BuildHelperMod;
 public class ItemFillWandCobble extends ItemFillWand
 {
 	public static final String NAME = "fillwandcobble";
-	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemFillWandCobble.NAME;
 	
 	public ItemFillWandCobble()
 	{
 		super(false);
-		this.setRegistryName(ItemFillWandCobble.FULLNAME);
-		this.setUnlocalizedName(ItemFillWandCobble.FULLNAME);
+		this.setRegistryName(ItemFillWandCobble.NAME);
+		this.setUnlocalizedName(ItemFillWandCobble.NAME);
 		GameRegistry.register(this);
 	}
 	

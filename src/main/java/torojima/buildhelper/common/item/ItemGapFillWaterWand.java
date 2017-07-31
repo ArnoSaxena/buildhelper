@@ -29,13 +29,12 @@ import torojima.buildhelper.BuildHelperMod;
 public class ItemGapFillWaterWand extends ItemGapFillWand
 {
 	public static final String NAME = "gapfillwaterwand";
-	public static final String FULLNAME = BuildHelperMod.MODID + "." + ItemGapFillWaterWand.NAME;
 	
 	public ItemGapFillWaterWand()
 	{
 		super(false);
-		this.setRegistryName(ItemGapFillWaterWand.FULLNAME);
-		this.setUnlocalizedName(ItemGapFillWaterWand.FULLNAME);
+		this.setRegistryName(ItemGapFillWaterWand.NAME);
+		this.setUnlocalizedName(ItemGapFillWaterWand.NAME);
 		GameRegistry.register(this);
 	}
 

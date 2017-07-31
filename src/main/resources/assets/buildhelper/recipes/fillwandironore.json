@@ -1,25 +1,25 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  O”,
-    " - “,
-    “N  “
+    "  O",
+    " - ",
+    "N  "
   ],
   "key": {
-    “O”: {
+    "O": {
       "type": "forge:ore_dict",
-      "ore": “oreIron”
+      "ore": "oreIron"
     },
-    “-“:{
+    "-":{
       "type": "forge:ore_dict",
-      "ore": “stickWood”
+      "ore": "stickWood"
 	},
-    “N”:{
+    "N":{
       "type": "forge:ore_dict",
-      "ore": “nuggetGold”
+      "ore": "nuggetGold"
 	}
   },
   "result": {
-    "item": “buildhelper:fillwandironore”
+    "item": "buildhelper:fillwandironore"
   }
 }
