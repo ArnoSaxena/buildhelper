@@ -59,7 +59,7 @@ public class BuildHelperMod
     
     @SidedProxy(serverSide="torojima.buildhelper.common.proxy.ProxyServer", 
     		clientSide="torojima.buildhelper.common.proxy.ProxyClient")
-    public static ProxyServer proxy;
+    public static ProxyCommon proxy;
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -79,8 +79,9 @@ public class BuildHelperMod
 		removeWaterWand = new ItemRemoveWaterWand();
 		allFillWand = new ItemFillWand();
 		
-		proxy.registerModels();
-		proxy.registerModelVariants();
+//		proxy.registerModels();
+//		proxy.registerModelVariants();
+		proxy.registerEvents();
     }
     
     @EventHandler

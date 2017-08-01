@@ -13,6 +13,7 @@ public class BuildHelperRegistry
 	@SubscribeEvent
 	public static void registerItems(final RegistryEvent.Register<Item> e)
 	{
+		BuildHelperMod.logger.info("registering items");
 		e.getRegistry().register(BuildHelperMod.sandWaterWand);
 		e.getRegistry().register(BuildHelperMod.fillWandDirt);
 		e.getRegistry().register(BuildHelperMod.fillWandIronore);

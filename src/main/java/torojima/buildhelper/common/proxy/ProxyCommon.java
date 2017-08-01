@@ -1,4 +1,4 @@
-// <copyright file="ProxyServer.java">
+// <copyright file="ProxyCommon.java">
 // Copyright (c) 2016 All Right Reserved, http://buildhelper.arno-saxena.de/
 //
 // THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
@@ -10,19 +10,13 @@
 // <author>Arno Saxena</author>
 // <email>al-s@gmx.de</email>
 // <date>2016-07-21</date>
-// <summary>class for server specific methods</summary>
+// <summary>abstract common class for proxy methods</summary>
 
 package torojima.buildhelper.common.proxy;
 
-public class ProxyServer extends ProxyCommon
+public abstract class ProxyCommon
 {
-
-	@Override
-	public void registerModels() {}
-
-	@Override
-	public void registerModelVariants() {}
-
-	@Override
-	public void registerEvents() {}
+	abstract public void registerModels();
+	abstract public void registerModelVariants();
+	abstract public void registerEvents();
 }
