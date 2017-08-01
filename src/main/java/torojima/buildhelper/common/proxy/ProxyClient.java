@@ -32,24 +32,6 @@ public class ProxyClient extends ProxyCommon
 		MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
     }
 	
-	@Override
-	public void registerModels()
-	{
-//		BuildHelperMod.logger.info("registering models");
-//		this.registerModel(BuildHelperMod.sandWaterWand);
-//		this.registerModel(BuildHelperMod.fillWandDirt);
-//		this.registerModel(BuildHelperMod.fillWandIronore);
-//		this.registerModel(BuildHelperMod.fillWandCobble);
-//		this.registerModel(BuildHelperMod.fillWandStone);
-//		this.registerModel(BuildHelperMod.fillWandAir);
-//		this.registerModel(BuildHelperMod.gapFillWand);
-//		this.registerModel(BuildHelperMod.gapFillWaterWand);
-//		this.registerModel(BuildHelperMod.cubeDiggerWand);
-//		this.registerModel(BuildHelperMod.removeWaterWand);
-//		this.registerModel(BuildHelperMod.exchangeWand);
-//		this.registerModel(BuildHelperMod.allFillWand);
-	}
-	
 //	private void registerModel(Item item)
 //	{
 //		ModelLoader.setCustomModelResourceLocation(

@@ -65,22 +65,6 @@ public class BuildHelperMod
     public void preInit(FMLPreInitializationEvent event)
     {
     	logger = LogManager.getLogger(BuildHelperMod.MODID);
-    	
-    	sandWaterWand = new ItemSandWaterWand();
-    	fillWandDirt = new ItemFillWandDirt();
-    	fillWandIronore = new ItemFillWandIronore();
-    	fillWandCobble = new ItemFillWandCobble();
-    	fillWandStone = new ItemFillWandStone();
-		exchangeWand = new ItemExchangeWand();
-		fillWandAir = new ItemFillWandAir();
-		gapFillWand = new ItemGapFillWand();
-		gapFillWaterWand = new ItemGapFillWaterWand();
-		cubeDiggerWand = new ItemCubeDiggerWand();
-		removeWaterWand = new ItemRemoveWaterWand();
-		allFillWand = new ItemFillWand();
-		
-//		proxy.registerModels();
-//		proxy.registerModelVariants();
 		proxy.registerEvents();
     }
     

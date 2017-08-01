@@ -16,7 +16,6 @@ package torojima.buildhelper.common.proxy;
 
 public abstract class ProxyCommon
 {
-	abstract public void registerModels();
 	abstract public void registerModelVariants();
 	abstract public void registerEvents();
 }

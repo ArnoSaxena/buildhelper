@@ -16,10 +16,6 @@ package torojima.buildhelper.common.proxy;
 
 public class ProxyServer extends ProxyCommon
 {
-
-	@Override
-	public void registerModels() {}
-
 	@Override
 	public void registerModelVariants() {}
 
