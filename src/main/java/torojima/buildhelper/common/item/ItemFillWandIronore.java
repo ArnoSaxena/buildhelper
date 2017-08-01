@@ -43,7 +43,6 @@ public class ItemFillWandIronore extends ItemFillWand
 		super(false);
 		this.setRegistryName(ItemFillWandIronore.NAME);
 		this.setUnlocalizedName(ItemFillWandIronore.NAME);
-		GameRegistry.register(this);
 	}
 
 	@Override

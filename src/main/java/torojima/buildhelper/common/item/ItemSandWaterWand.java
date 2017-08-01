@@ -40,7 +40,6 @@ public class ItemSandWaterWand extends Item
 		this.setRegistryName(ItemSandWaterWand.NAME);
 		this.setUnlocalizedName(ItemSandWaterWand.NAME);
 		this.setMaxStackSize(1);
-		GameRegistry.register(this);
 	}
 	
 	@Override

@@ -34,7 +34,6 @@ public class ItemFillWandCobble extends ItemFillWand
 		super(false);
 		this.setRegistryName(ItemFillWandCobble.NAME);
 		this.setUnlocalizedName(ItemFillWandCobble.NAME);
-		GameRegistry.register(this);
 	}
 	
 	@Override

@@ -34,7 +34,6 @@ public class ItemRemoveWaterWand extends ItemGapFillWand
 		super(false);
 		this.setRegistryName(ItemRemoveWaterWand.NAME);
 		this.setUnlocalizedName(ItemRemoveWaterWand.NAME);
-		GameRegistry.register(this);
 	}
 
 	@Override

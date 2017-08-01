@@ -63,7 +63,6 @@ public class ItemExchangeWand extends ItemFillWand
 	{
 		this.setRegistryName(ItemExchangeWand.NAME);
 		this.setUnlocalizedName(ItemExchangeWand.NAME);
-		GameRegistry.register(this);
 	}
 
 	@Override

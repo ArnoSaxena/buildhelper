@@ -35,7 +35,6 @@ public class ItemGapFillWand extends ItemExchangeWand
 		this.setHasSubtypes(true);
 		this.setRegistryName(ItemGapFillWand.NAME);
 		this.setUnlocalizedName(ItemGapFillWand.NAME);
-		GameRegistry.register(this);
 	}
 	
 	public ItemGapFillWand(boolean register)
@@ -45,7 +44,6 @@ public class ItemGapFillWand extends ItemExchangeWand
 		{
 			this.setRegistryName(ItemGapFillWand.NAME);
 			this.setUnlocalizedName(ItemGapFillWand.NAME);
-			GameRegistry.register(this);
 		}
 	}
 

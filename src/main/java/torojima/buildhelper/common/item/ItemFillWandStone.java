@@ -35,7 +35,6 @@ public class ItemFillWandStone extends ItemFillWand
 		super(false);
 		this.setRegistryName(ItemFillWandStone.NAME);
 		this.setUnlocalizedName(ItemFillWandStone.NAME);
-		GameRegistry.register(this);
 	}
 
 	@Override

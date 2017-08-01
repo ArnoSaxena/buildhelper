@@ -43,7 +43,6 @@ public class ItemFillWandDirt extends ItemFillWand
 		super(false);
 		this.setRegistryName(ItemFillWandDirt.NAME);
 		this.setUnlocalizedName(ItemFillWandDirt.NAME);
-		GameRegistry.register(this);
 	}
 
 	@Override

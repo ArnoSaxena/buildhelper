@@ -41,7 +41,6 @@ public class ItemCubeDiggerWand extends Item
 		this.setRegistryName(ItemCubeDiggerWand.NAME);
 		this.setUnlocalizedName(ItemCubeDiggerWand.NAME);
 		this.setMaxStackSize(1);
-		GameRegistry.register(this);
 	}
 	
     @Override

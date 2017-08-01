@@ -34,7 +34,6 @@ public class ItemFillWandAir extends ItemFillWand
 		super(false);
 		this.setRegistryName(ItemFillWandAir.NAME);
 		this.setUnlocalizedName(ItemFillWandAir.NAME);
-		GameRegistry.register(this);
 	}
 
 	@Override

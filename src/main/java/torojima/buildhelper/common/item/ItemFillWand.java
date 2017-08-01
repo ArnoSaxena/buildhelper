@@ -52,7 +52,6 @@ public class ItemFillWand extends ItemPosWand
 		this.status = NONE;
 		this.setRegistryName(ItemFillWand.NAME);
 		this.setUnlocalizedName(ItemFillWand.NAME);
-		GameRegistry.register(this);
 	}
 	
 	public ItemFillWand(boolean register)
@@ -66,7 +65,6 @@ public class ItemFillWand extends ItemPosWand
 		{
 			this.setRegistryName(ItemFillWand.NAME);
 			this.setUnlocalizedName(ItemFillWand.NAME);
-			GameRegistry.register(this);
 		}
 	}
 	

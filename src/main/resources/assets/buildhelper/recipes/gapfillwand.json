@@ -6,7 +6,7 @@
     "N  "
   ],
   "key": {
-    "E":{
+    "E": {
       "type": "forge:ore_dict",
       "ore": "gemEmerald"
 	},
