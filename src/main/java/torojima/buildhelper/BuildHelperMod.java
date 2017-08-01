@@ -41,18 +41,18 @@ public class BuildHelperMod
     public static final String VERSION = "0.5.0";
     public static final String UPDATEJSON = "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/update.json";
     
-    public static ItemSandWaterWand sandWaterWand;
-    public static ItemFillWandDirt fillWandDirt;
-    public static ItemFillWandIronore fillWandIronore;
-    public static ItemFillWandCobble fillWandCobble;
-    public static ItemFillWandStone fillWandStone;
-    public static ItemExchangeWand exchangeWand;
-    public static ItemFillWandAir fillWandAir;
-    public static ItemGapFillWand gapFillWand;
-    public static ItemGapFillWaterWand gapFillWaterWand;
-    public static ItemCubeDiggerWand cubeDiggerWand;
-    public static ItemRemoveWaterWand removeWaterWand;
-    public static ItemFillWand allFillWand;
+    public static ItemSandWaterWand sandWaterWand = new ItemSandWaterWand();
+    public static ItemFillWandDirt fillWandDirt = new ItemFillWandDirt();;
+    public static ItemFillWandIronore fillWandIronore = new ItemFillWandIronore();
+    public static ItemFillWandCobble fillWandCobble = new ItemFillWandCobble();
+    public static ItemFillWandStone fillWandStone = new ItemFillWandStone();
+    public static ItemExchangeWand exchangeWand = new ItemExchangeWand();
+    public static ItemFillWandAir fillWandAir = new ItemFillWandAir();
+    public static ItemGapFillWand gapFillWand = new ItemGapFillWand();
+    public static ItemGapFillWaterWand gapFillWaterWand = new ItemGapFillWaterWand();
+    public static ItemCubeDiggerWand cubeDiggerWand = new ItemCubeDiggerWand();
+    public static ItemRemoveWaterWand removeWaterWand = new ItemRemoveWaterWand();
+    public static ItemFillWand allFillWand = new ItemFillWand();
     
     @Instance
     public static BuildHelperMod instance;
