@@ -20,6 +20,7 @@
 	}
   },
   "result": {
-    "item": "buildhelper:gapfillwand"
+    "item": "buildhelper:gapfillwand",
+    "data": 0
   }
 }

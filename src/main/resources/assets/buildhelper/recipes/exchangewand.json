@@ -20,6 +20,7 @@
 	}
   },
   "result": {
-    "item": "buildhelper:exchangewand"
+    "item": "buildhelper:exchangewand",
+    "data": 0
   }
 }

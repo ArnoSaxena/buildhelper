@@ -16,7 +16,7 @@ public class ClientEventHandler {
 	@SubscribeEvent
 	public void onRegisterModels(ModelRegistryEvent event)
 	{
-		BuildHelperMod.logger.info("registering models (I)");
+		BuildHelperMod.logger.info("registering models");
 		ModelLoader.setCustomModelResourceLocation(BuildHelperMod.sandWaterWand, 0,
 				new ModelResourceLocation(BuildHelperMod.sandWaterWand.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(BuildHelperMod.fillWandDirt, 0,
