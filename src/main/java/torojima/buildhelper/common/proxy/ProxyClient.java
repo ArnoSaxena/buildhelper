@@ -31,37 +31,4 @@ public class ProxyClient extends ProxyCommon
 	{
 		MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
     }
-	
-	@Override
-	public void registerModelVariants()
-	{
-//		BuildHelperMod.logger.info("registering model variants");
-//		ModelBakery.registerItemVariants(BuildHelperMod.exchangeWand,
-//				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName(), "inventory"),
-//				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName() + "_c1", "inventory"),
-//				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName() + "_c2", "inventory"),
-//				new ModelResourceLocation(BuildHelperMod.exchangeWand.getRegistryName() + "_c3", "inventory")
-//				);
-//		ModelLoader.setCustomMeshDefinition(BuildHelperMod.exchangeWand, new ExchangeWandMesh());
-//
-//		ModelBakery.registerItemVariants(BuildHelperMod.gapFillWand,
-//				new ModelResourceLocation(BuildHelperMod.gapFillWand.getRegistryName(), "inventory"),
-//				new ModelResourceLocation(BuildHelperMod.gapFillWand.getRegistryName() + "_c1", "inventory"),
-//				new ModelResourceLocation(BuildHelperMod.gapFillWand.getRegistryName() + "_c2", "inventory")
-//				);
-//		ModelLoader.setCustomMeshDefinition(BuildHelperMod.gapFillWand, new GapFillWandMesh());
-//
-//		ModelBakery.registerItemVariants(BuildHelperMod.gapFillWaterWand,
-//				new ModelResourceLocation(BuildHelperMod.gapFillWaterWand.getRegistryName(), "inventory"),
-//				new ModelResourceLocation(BuildHelperMod.gapFillWaterWand.getRegistryName() + "_c", "inventory")
-//				);
-//		ModelLoader.setCustomMeshDefinition(BuildHelperMod.gapFillWaterWand, new GapFillWaterWandMesh());		
-//		
-//		ModelBakery.registerItemVariants(BuildHelperMod.allFillWand,
-//				new ModelResourceLocation(BuildHelperMod.allFillWand.getRegistryName(), "inventory"),
-//				new ModelResourceLocation(BuildHelperMod.allFillWand.getRegistryName() + "_c1", "inventory"),
-//				new ModelResourceLocation(BuildHelperMod.allFillWand.getRegistryName() + "_c2", "inventory")
-//				);
-//		ModelLoader.setCustomMeshDefinition(BuildHelperMod.allFillWand, new UniversalFillWandMesh());
-	}
 }
