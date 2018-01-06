@@ -26,5 +26,6 @@ public class BuildHelperRegistry
 		e.getRegistry().register(BuildHelperMod.cubeDiggerWand);
 		e.getRegistry().register(BuildHelperMod.removeWaterWand);
 		e.getRegistry().register(BuildHelperMod.allFillWand);
+		e.getRegistry().register(BuildHelperMod.arrowWand);
 	}
 }

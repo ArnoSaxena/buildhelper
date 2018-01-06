@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "  S",
+    " - ",
+    "N  "
+  ],
+  "key": {
+    "S":{
+      "item": "minecraft:diamond_shovel"
+	},
+    "-":{
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+	},
+    "N":{
+      "type": "forge:ore_dict",
+      "ore": "nuggetGold"
+	}
+  },
+  "result": {
+    "item": "buildhelper:cubediggerwand"
+  }
+}

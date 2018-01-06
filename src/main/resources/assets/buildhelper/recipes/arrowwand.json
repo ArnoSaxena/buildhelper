@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "  B",
+    " - ",
+    "D  "
+  ],
+  "key": {
+    "B":{
+      "item": "minecraft:bow"
+	},
+    "-":{
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+	},
+    "D": {
+      "type": "forge:ore_dict",
+      "ore": "gemDiamond"
+    }
+  },
+  "result": {
+    "item": "buildhelper:arrowwand"
+  }
+}
