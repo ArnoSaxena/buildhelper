@@ -38,7 +38,7 @@ public class BuildHelperMod
 	public static Logger logger;
 	
     public static final String MODID = "buildhelper";
-    public static final String VERSION = "1.0.1";
+    public static final String VERSION = "1.0.2";
     public static final String UPDATEJSON = "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/update.json";
     
     public static ItemSandWaterWand sandWaterWand = new ItemSandWaterWand();
@@ -54,6 +54,7 @@ public class BuildHelperMod
     public static ItemRemoveWaterWand removeWaterWand = new ItemRemoveWaterWand();
     public static ItemFillWand allFillWand = new ItemFillWand();
     public static ItemArrowWand arrowWand = new ItemArrowWand();
+    public static ItemGrowWand growWand = new ItemGrowWand();
     
     @Instance
     public static BuildHelperMod instance;
