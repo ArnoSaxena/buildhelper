@@ -17,10 +17,17 @@ package torojima.buildhelper.common.item;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.*;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -41,7 +48,7 @@ public class ItemSandWaterWand extends Item
 		this.setUnlocalizedName(ItemSandWaterWand.NAME);
 		this.setMaxStackSize(1);
 	}
-	
+		
 	@Override
     public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
@@ -80,6 +87,57 @@ public class ItemSandWaterWand extends Item
 		}		
 		return EnumActionResult.FAIL;
 	}
+	
+	
+//	@Override
+//    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+//    {
+//		System.out.println("rightclick");
+//		
+//		//// different approach
+//        if (!worldIn.isRemote)
+//        {
+//            ItemArrow itemarrow = (ItemArrow)Items.ARROW;
+//            EntityArrow entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
+//            entityarrow.setAim(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 60.0F, 1.0F);
+//            entityarrow.setDamage(50);
+//            worldIn.spawnEntity(entityarrow);
+//        }
+//		
+//		//// diff app end
+//				
+//		/// debug
+//    	if(null != Minecraft.getMinecraft().objectMouseOver)
+//    	{
+//    		System.out.println(Minecraft.getMinecraft().objectMouseOver.getClass().toString());
+//    		Entity hitEntity = Minecraft.getMinecraft().objectMouseOver.entityHit;
+//        	if (null != hitEntity)
+//        	{
+//        		if(hitEntity instanceof EntityLivingBase)
+//        		{
+//        			System.out.println(hitEntity.getClass().toString());
+//        		
+////        		Entity hitEntityInWorld = worldIn.getEntityByID(hitEntity.getEntityId());
+////        		hitEntityInWorld.attackEntityFrom(DamageSource.MAGIC, 10);
+////        		playerIn.attackTargetEntityWithCurrentItem(hitEntityInWorld);
+//        		}
+//        		else
+//        		{
+//        			System.out.println("entity is not livingBase");
+//        		}
+//        	}
+//        	else
+//        	{
+//        		System.out.println("entity is null");
+//        	}        		
+//    	}
+//    	else
+//    	{
+//    		System.out.println("objectMouseOver is null");
+//    	}
+//		/// debug end
+//        return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+//    }
 	
     private boolean placeSandColumn(World world, BlockPos pos)
     {
