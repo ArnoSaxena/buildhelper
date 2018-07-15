@@ -4,10 +4,20 @@
 		"0.4.2": "updated for mc 1.11"
 	},
 	"1.12": {
-		"1.0.0": "updated for mc 1.12"	
+		"1.0.4.1": "updated for mc 1.12"	
+	},
+	"1.12.1": {
+		"1.0.4.1": "updated for mc 1.12.1"	
+	},
+	"1.12.2": {
+		"1.0.4.1": "updated for mc 1.12.2"	
 	},
 	"promos": {
-		"1.12-latest": "1.0.0",
-		"1.12-recommended": "1.0.0"
+		"1.12-latest": "1.0.4.1",
+		"1.12-recommended": "1.0.4.1",
+		"1.12.1-latest": "1.0.4.1",
+		"1.12.1-recommended": "1.0.4.1",
+		"1.12.2-latest": "1.0.4.1",
+		"1.12.2-recommended": "1.0.4.1"
 	}
 }

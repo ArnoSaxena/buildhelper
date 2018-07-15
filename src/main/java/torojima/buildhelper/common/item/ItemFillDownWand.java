@@ -48,6 +48,11 @@ public class ItemFillDownWand extends Item
 		
 		IBlockState fillBlock = worldIn.getBlockState(pos);
 		
+		if (fillBlock.getBlock() == Blocks.BEDROCK)
+		{
+			fillBlock = Blocks.SAND.getDefaultState();
+		}
+		
     	switch(facing)
     	{
     		case UP:

@@ -8,6 +8,8 @@ http://www.minecraftforum.net/topic/1803250-
 or follow me on twitter https://twitter.com/Torojima
 
 Changelog:
+1.0.4.1 : 1. Down fill wand will used sand in case of clicked bedrock
+
 1.0.4 : 1. Adding down fill wand
 
 1.0.3 : 1. Adding torch wand
