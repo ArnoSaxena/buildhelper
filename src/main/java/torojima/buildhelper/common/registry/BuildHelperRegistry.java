@@ -29,5 +29,6 @@ public class BuildHelperRegistry
 		e.getRegistry().register(BuildHelperMod.arrowWand);
 		e.getRegistry().register(BuildHelperMod.growWand);
 		e.getRegistry().register(BuildHelperMod.torchWand);
+		e.getRegistry().register(BuildHelperMod.fillDownWand);
 	}
 }

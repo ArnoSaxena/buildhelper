@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 public class ItemArrowWand extends Item
 {
 	public static final String NAME = "arrowwand";
+	public static final float ATK_DMG = 50.0F;
 
 	public ItemArrowWand()
 	{
@@ -39,10 +40,15 @@ public class ItemArrowWand extends Item
             ItemArrow itemarrow = (ItemArrow)Items.ARROW;
             EntityArrow entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
             float arrowVelocity = 60.0F;
-            entityarrow.setAim(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
-            entityarrow.setDamage(50);
+            entityarrow.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
+            entityarrow.setDamage(ATK_DMG);
             worldIn.spawnEntity(entityarrow);
         }
         return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+    }
+	
+    public float getAttackDamage()
+    {
+        return ATK_DMG;
     }
 }

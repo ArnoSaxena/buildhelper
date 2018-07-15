@@ -64,9 +64,11 @@ public class ItemTorchWand extends Item
     	default:
     		return EnumActionResult.FAIL;
     	}
-    	
-    	worldIn.setBlockState(torchPos, Blocks.TORCH.getStateForPlacement(worldIn, torchPos, facing, hitX, hitY, hitZ, 0, playerIn, hand), 3);
-    			//getDefaultState(), 3);
-    	return EnumActionResult.SUCCESS;
+    	if(worldIn.getBlockState(torchPos).getBlock() == Blocks.AIR)
+    	{
+    		worldIn.setBlockState(torchPos, Blocks.TORCH.getStateForPlacement(worldIn, torchPos, facing, hitX, hitY, hitZ, 0, playerIn, hand), 3);
+    		return EnumActionResult.SUCCESS;
+    	}
+    	return EnumActionResult.FAIL;
     }
 }

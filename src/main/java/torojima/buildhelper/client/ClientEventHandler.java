@@ -49,6 +49,9 @@ public class ClientEventHandler {
 				new ModelResourceLocation(BuildHelperMod.growWand.getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(BuildHelperMod.torchWand, 0,
 				new ModelResourceLocation(BuildHelperMod.torchWand.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(BuildHelperMod.fillDownWand, 0,
+				new ModelResourceLocation(BuildHelperMod.fillDownWand.getRegistryName(), "inventory"));
+
 		
 		BuildHelperMod.logger.info("registering custom mesh defs");
 		ModelBakery.registerItemVariants(BuildHelperMod.exchangeWand,
