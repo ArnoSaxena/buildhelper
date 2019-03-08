@@ -14,66 +14,37 @@
 
 package torojima.buildhelper.common.item;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockStone;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import torojima.buildhelper.BuildHelperMod;
+import net.minecraft.util.text.ITextComponent;
 
 public class ItemExchangeWand extends ItemFillWand
 {
 	public static final int FILL = 3;
 	
-	public static final String NAME = "exchangewand";
+	public static final String NAME = "exchangewand_item";
 
-	protected Map<String, IBlockState> fillBlocks;
+	protected Map<ITextComponent, IBlockState> fillBlocks;
 
-	public ItemExchangeWand()
+	public ItemExchangeWand(Properties properties)
 	{
-		super(false);
-		this.setHasSubtypes(true);
-		this.register();
-		this.fillBlocks = new HashMap<String, IBlockState>();
+		super(properties);
+		this.fillBlocks = new HashMap<ITextComponent, IBlockState>();
 	}
 	
-	public ItemExchangeWand(boolean register)
-	{
-		super(register);
-		if(register)
-		{
-			this.register();
-		}
-		this.fillBlocks = new HashMap<String, IBlockState>();			
-	}
-	
-	private void register()
-	{
-		this.setRegistryName(ItemExchangeWand.NAME);
-		this.setUnlocalizedName(ItemExchangeWand.NAME);
-	}
-
 	@Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemUseContext iuc)
 	{
-		String username = playerIn.getName();
+		ITextComponent username = iuc.getPlayer().getName();
 		
-		playerIn.getHeldItem(hand).setItemDamage(this.status);
+		//iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 		EnumActionResult returnValue = EnumActionResult.FAIL;
 		
-		if (!worldIn.isRemote)
+		if (!iuc.getWorld().isRemote)
 		{
 			if(this.usedBlocks.containsKey(username))
 			{
@@ -82,7 +53,7 @@ public class ItemExchangeWand extends ItemFillWand
 					if(this.isStartPointPresent(username))
 					{
 						BlockPos startPos = this.popStartPos(username);
-						BlockPos endPos = pos;
+						BlockPos endPos = iuc.getPos();
 						if(this.pointsInDistanceLimit(startPos, endPos))
 						{
 							BlockPos posA = this.getPosAllBig(startPos, endPos);
@@ -102,16 +73,16 @@ public class ItemExchangeWand extends ItemFillWand
 									{
 										BlockPos changePos = new BlockPos(x,y,z);
 										
-										if(worldIn.getBlockState(changePos).getBlock() == fillBlock.getBlock()
-												&& !this.isBedRock(worldIn, changePos))
+										if(iuc.getWorld().getBlockState(changePos).getBlock() == fillBlock.getBlock()
+												&& !this.isBedRock(iuc.getWorld(), changePos))
 										{
-											worldIn.setBlockState(changePos, usedBlock, 3);
+											iuc.getWorld().setBlockState(changePos, usedBlock, 3);
 										}
 									}
 								}
 							}
 							this.status = NONE;
-							playerIn.getHeldItem(hand).setItemDamage(this.status);
+							iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 							returnValue = EnumActionResult.SUCCESS;
 						}
 						else
@@ -121,29 +92,29 @@ public class ItemExchangeWand extends ItemFillWand
 					}
 					else
 					{
-						this.putStartPos(pos, username);
+						this.putStartPos(iuc.getPos(), username);
 						this.status = CHARGED;
-						playerIn.getHeldItem(hand).setItemDamage(this.status);
+						iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 						returnValue = EnumActionResult.SUCCESS;
 					}
 				}
 				else
 				{
-					this.fillBlocks.put(username, worldIn.getBlockState(pos));
+					this.fillBlocks.put(username, iuc.getWorld().getBlockState(iuc.getPos()));
 					this.status = FILL;
-					playerIn.getHeldItem(hand).setItemDamage(this.status);
+					iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 					returnValue = EnumActionResult.SUCCESS;
 				}
 			}
 			else
 			{
-				this.usedBlocks.put(username, worldIn.getBlockState(pos));
+				this.usedBlocks.put(username, iuc.getWorld().getBlockState(iuc.getPos()));
 				this.status = NAMED;
-				playerIn.getHeldItem(hand).setItemDamage(this.status);
+				iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 				returnValue = EnumActionResult.SUCCESS;
 			}
 		}
-		playerIn.getHeldItem(hand).setItemDamage(this.status);
+		//iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 		return returnValue;
 	}
 }

@@ -14,40 +14,38 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class ItemTorchWand extends Item
 {
-	public static final String NAME = "torchwand";
+	public static final String NAME = "torchwand_item";
 	
-	public ItemTorchWand()
+	public ItemTorchWand(Properties properties)
 	{
-		super();
-		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setRegistryName(ItemTorchWand.NAME);
-		this.setUnlocalizedName(ItemTorchWand.NAME);
-		this.setMaxStackSize(1);
+		super(properties);
 	}
 	
     @Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemUseContext iuc)
     {    	
     	BlockPos torchPos;
+    	BlockPos pos = iuc.getPos();
     	
-    	switch(facing)
+    	Boolean torchBelow = false;
+    	switch(iuc.getFace())
     	{
     	case DOWN:
     		return EnumActionResult.FAIL;
     	case UP:
     		torchPos = new BlockPos(pos.getX(), pos.getY() +1, pos.getZ());
+    		if(iuc.getWorld().getBlockState(pos).getBlock() == Blocks.TORCH)
+    		{
+    			torchBelow = true;
+    		}
     		break;
     	case NORTH:
     		torchPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1);
@@ -64,9 +62,10 @@ public class ItemTorchWand extends Item
     	default:
     		return EnumActionResult.FAIL;
     	}
-    	if(worldIn.getBlockState(torchPos).getBlock() == Blocks.AIR)
+    	if(iuc.getWorld().getBlockState(torchPos).getBlock() == Blocks.AIR 
+    			&& !torchBelow)
     	{
-    		worldIn.setBlockState(torchPos, Blocks.TORCH.getStateForPlacement(worldIn, torchPos, facing, hitX, hitY, hitZ, 0, playerIn, hand), 3);
+    		iuc.getWorld().setBlockState(torchPos, Blocks.TORCH.getStateForPlacement(Blocks.TORCH.getDefaultState(), iuc.getFace(), iuc.getWorld().getBlockState(pos), iuc.getWorld(), torchPos, pos, iuc.getPlayer().getActiveHand()));
     		return EnumActionResult.SUCCESS;
     	}
     	return EnumActionResult.FAIL;

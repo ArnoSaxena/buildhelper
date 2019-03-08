@@ -1,14 +1,14 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  C",
+    "  D",
     " - ",
     "N  "
   ],
   "key": {
-    "C": {
+    "D": {
       "type": "forge:ore_dict",
-      "ore": "cobblestone"
+      "ore": "dirt"
     },
     "-":{
       "type": "forge:ore_dict",
@@ -20,6 +20,6 @@
 	}
   },
   "result": {
-    "item": "buildhelper:fillwandcobble"
+    "item": "buildhelper:fillwanddirt_item"
   }
 }

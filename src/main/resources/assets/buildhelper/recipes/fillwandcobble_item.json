@@ -1,13 +1,14 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  B",
+    "  C",
     " - ",
     "N  "
   ],
   "key": {
-    "B": {
-      "item": "minecraft:bucket"
+    "C": {
+      "type": "forge:ore_dict",
+      "ore": "cobblestone"
     },
     "-":{
       "type": "forge:ore_dict",
@@ -19,6 +20,6 @@
 	}
   },
   "result": {
-    "item": "buildhelper:removewaterwand"
+    "item": "buildhelper:fillwandcobble_item"
   }
 }

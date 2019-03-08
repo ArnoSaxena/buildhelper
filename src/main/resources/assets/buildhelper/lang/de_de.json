@@ -1,0 +1,18 @@
+{
+    "item.buildhelper.sandwaterwand_item": "Sand in Wasser Stab",
+    "item.buildhelper.fillwanddirt_item": "Erde Stab",
+    "item.buildhelper.fillwandironore_item": "Eisenerz Stab",
+    "item.buildhelper.fillwandcobble_item": "Kopfstein Stab",
+    "item.buildhelper.fillwandstone_item": "Stein Stab",
+    "item.buildhelper.exchangewand_item": "Austausch Stab",
+    "item.buildhelper.fillwandair_item": "Luft Stab",
+    "item.buildhelper.gapfillwand_item": "Fugen Füll Stab",
+    "item.buildhelper.gapfillwaterwand_item": "Wasser in Fugen Stab",
+    "item.buildhelper.cubediggerwand_item": "Würfel aushebe Stab",
+    "item.buildhelper.removewaterwand_item": "Wasser Entfern Stab",
+    "item.buildhelper.fillwanduniversal_item": "Universeller Füll Stab",
+    "item.buildhelper.arrowwand_item": "Pfeil Stab",
+    "item.buildhelper.growwand_item": "Pflanz Stab",
+    "item.buildhelper.torchwand_item": "Fackel Stab",
+    "item.buildhelper.filldownwand_item": "Runter Füll Stab"
+}

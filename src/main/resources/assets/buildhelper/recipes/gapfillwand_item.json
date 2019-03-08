@@ -1,26 +1,26 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  I",
+    "  E",
     " - ",
     "N  "
   ],
   "key": {
-	"I":{
+    "E": {
       "type": "forge:ore_dict",
-      "ore": "ingotGold"
+      "ore": "gemEmerald"
 	},
     "-":{
       "type": "forge:ore_dict",
       "ore": "stickWood"
 	},
-	"N":{
+    "N":{
       "type": "forge:ore_dict",
       "ore": "nuggetGold"
 	}
   },
   "result": {
-    "item": "buildhelper:filldownwand",
+    "item": "buildhelper:gapfillwand_item",
     "data": 0
   }
 }

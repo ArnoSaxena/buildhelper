@@ -1,25 +1,26 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  T",
+    "  D",
     " - ",
-    "N  "
+    "E  "
   ],
   "key": {
-    "T":{
+    "D": {
       "type": "forge:ore_dict",
-      "ore": "treeSapling"
-	},
+      "ore": "gemDiamond"
+    },
     "-":{
       "type": "forge:ore_dict",
       "ore": "stickWood"
 	},
-    "N":{
+    "E":{
       "type": "forge:ore_dict",
-      "ore": "nuggetGold"
+      "ore": "gemEmerald"
 	}
   },
   "result": {
-    "item": "buildhelper:growwand"
+    "item": "buildhelper:exchangewand_item",
+    "data": 0
   }
 }

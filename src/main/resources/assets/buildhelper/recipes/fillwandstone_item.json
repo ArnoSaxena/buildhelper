@@ -1,15 +1,15 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  E",
+    "  S",
     " - ",
     "N  "
   ],
   "key": {
-    "E": {
+    "S": {
       "type": "forge:ore_dict",
-      "ore": "gemEmerald"
-	},
+      "ore": "stone"
+    },
     "-":{
       "type": "forge:ore_dict",
       "ore": "stickWood"
@@ -20,7 +20,6 @@
 	}
   },
   "result": {
-    "item": "buildhelper:gapfillwand",
-    "data": 0
+    "item": "buildhelper:fillwandstone_item"
   }
 }

@@ -16,38 +16,40 @@ package torojima.buildhelper.common.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+
 import java.util.HashMap;
 import java.util.Map;
 import torojima.buildhelper.common.Constants;
 
 public abstract class ItemPosWand extends Item
 {
-	protected Map<String, BlockPos> startPoint;
+	protected Map<ITextComponent, BlockPos> startPoint;
 	
-	public ItemPosWand()
+	public ItemPosWand(Properties properties)
 	{
-		super();
-		this.startPoint = new HashMap<String, BlockPos>();
+		super(properties);
+		this.startPoint = new HashMap<ITextComponent, BlockPos>();
 	}
 	
-	protected boolean isStartPointPresent(String username)
+	protected boolean isStartPointPresent(ITextComponent username)
 	{
 		return this.startPoint.containsKey(username);
 	}
 	
-	protected void putStartPos(BlockPos pos, String username)
+	protected void putStartPos(BlockPos pos, ITextComponent username)
 	{
 		this.startPoint.put(username, pos);
 	}
 	
-	protected BlockPos popStartPos(String username)
+	protected BlockPos popStartPos(ITextComponent username)
 	{		
 		BlockPos pos = this.startPoint.get(username);
 		this.startPoint.remove(username);
 		return pos;		
 	}	
 
-	protected void resetWand(String username)
+	protected void resetWand(ITextComponent username)
 	{
 		this.startPoint.remove(username);
 	}

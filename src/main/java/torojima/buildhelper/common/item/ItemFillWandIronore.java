@@ -14,41 +14,23 @@
 
 package torojima.buildhelper.common.item;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import torojima.buildhelper.BuildHelperMod;
 
 public class ItemFillWandIronore extends ItemFillWand
 {
-	public static final String NAME = "fillwandironore";
+	public static final String NAME = "fillwandironore_item";
 	
-	public ItemFillWandIronore()
+	public ItemFillWandIronore(Properties properties)
 	{
-		super(false);
-		this.setRegistryName(ItemFillWandIronore.NAME);
-		this.setUnlocalizedName(ItemFillWandIronore.NAME);
+		super(properties);
 	}
-
+	
 	@Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemUseContext iuc)
 	{
-		this.usedBlocks.put(playerIn.getName(), Blocks.IRON_ORE.getDefaultState());
-		return super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.IRON_ORE.getDefaultState());
+		return super.onItemUse(iuc);
 	}
 }

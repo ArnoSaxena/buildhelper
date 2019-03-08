@@ -1,0 +1,18 @@
+{
+    "item.buildhelper.sandwaterwand_item": "Baguette Sable dans Eau",
+    "item.buildhelper.fillwanddirt_item": "Baguette Terre",
+    "item.buildhelper.fillwandironore_item": "Baguette Minerai de Fer",
+    "item.buildhelper.fillwandcobble_item": "Baguette Pavé",
+    "item.buildhelper.fillwandstone_item": "Baguette Pierre",
+    "item.buildhelper.exchangewand_item": "Baguette Échange",
+    "item.buildhelper.fillwandair_item": "Baguette Air",
+    "item.buildhelper.gapfillwand_item": "Baguette Remplissage de trou",
+    "item.buildhelper.gapfillwaterwand_item": "Baguette Eau en Remplissage",
+    "item.buildhelper.cubediggerwand_item": "Baguette caver de Cube",
+    "item.buildhelper.removewaterwand_item": "Baguette Enlever Eau",
+    "item.buildhelper.fillwanduniversal_item": "Baguette Remplissage Universel",
+    "item.buildhelper.arrowwand_item": "Baguette Flèche",
+    "item.buildhelper.growwand_item": "Baguette Cultiver",
+    "item.buildhelper.torchwand_item": "Baguette Torche",
+    "item.buildhelper.filldownwand_item": "Baguette Remplir en Bas"
+}

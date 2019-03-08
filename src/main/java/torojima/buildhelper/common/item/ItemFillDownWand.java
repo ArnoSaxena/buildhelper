@@ -15,74 +15,66 @@
 
 package torojima.buildhelper.common.item;
 
-import java.util.Map;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemFillDownWand extends Item
 {
-	public static final String NAME = "filldownwand";
+	public static final String NAME = "filldownwand_item";
 		
-	public ItemFillDownWand()
+	public ItemFillDownWand(Properties properties)
 	{
-		super();
-		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setRegistryName(ItemFillDownWand.NAME);
-		this.setUnlocalizedName(ItemFillDownWand.NAME);
-		this.setMaxStackSize(1);
+		super(properties);
 	}
 	
 	@Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemUseContext iuc)
 	{
+		BlockPos pos = iuc.getPos();
 		
-		IBlockState fillBlock = worldIn.getBlockState(pos);
+		IBlockState fillBlock = iuc.getWorld().getBlockState(pos);
 		
 		if (fillBlock.getBlock() == Blocks.BEDROCK)
 		{
 			fillBlock = Blocks.SAND.getDefaultState();
 		}
 		
-    	switch(facing)
+    	switch(iuc.getFace())
     	{
     		case UP:
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() -1), fillBlock);
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() +1), fillBlock);
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() -1), fillBlock);
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() +1), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() -1), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() +1), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() -1), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() +1), fillBlock);
     			break;
     	
     		case NORTH:
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
     			break;
     		case SOUTH:
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
     			break;
     		case WEST:
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
     			break;
     		case EAST:
-    			this.placeDownColumns(worldIn, new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
+    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
     			break;
     		default:
     			break;
     	}
     	
-		if(this.placeDownColumns(worldIn, pos, fillBlock))
+		if(this.placeDownColumns(iuc.getWorld(), pos, fillBlock))
 		{
 			return EnumActionResult.SUCCESS;
 		}		
@@ -110,6 +102,10 @@ public class ItemFillDownWand extends Item
     {
     	return world.getBlockState(pos).getMaterial() == Material.AIR
     			|| world.getBlockState(pos).getMaterial() == Material.WATER
-    			|| world.getBlockState(pos).getMaterial() == Material.LAVA;
+    			|| world.getBlockState(pos).getMaterial() == Material.LAVA
+    	    	|| world.getBlockState(pos).getMaterial() == Material.LEAVES
+    	    	|| world.getBlockState(pos).getBlock() == Blocks.GRASS
+    	    	|| world.getBlockState(pos).getBlock() == Blocks.TALL_GRASS
+    			|| world.getBlockState(pos).getMaterial() == Material.PLANTS;
     }
 }

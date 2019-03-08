@@ -14,33 +14,23 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import torojima.buildhelper.BuildHelperMod;
 
 public class ItemFillWandStone extends ItemFillWand
 {
-	public static final String NAME = "fillwandstone";
+	public static final String NAME = "fillwandstone_item";
 	
-	public ItemFillWandStone()
+	public ItemFillWandStone(Properties properties)
 	{
-		super(false);
-		this.setRegistryName(ItemFillWandStone.NAME);
-		this.setUnlocalizedName(ItemFillWandStone.NAME);
+		super(properties);
 	}
 
 	@Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemUseContext iuc)
 	{
-		this.usedBlocks.put(playerIn.getName(), Blocks.STONE.getDefaultState());
-		return super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.STONE.getDefaultState());
+		return super.onItemUse(iuc);
 	}
 }

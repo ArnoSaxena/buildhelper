@@ -14,58 +14,34 @@
 
 package torojima.buildhelper.common.item;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import torojima.buildhelper.BuildHelperMod;
 
 public class ItemFillWand extends ItemPosWand
 {
-	public static final String NAME = "fillwanduniversal";
+	public static final String NAME = "fillwanduniversal_item";
 	
 	public static final int NONE = 0;
 	public static final int NAMED = 1;
 	public static final int CHARGED = 2;
 
-	protected Map<String, IBlockState> usedBlocks;
+	protected Map<ITextComponent, IBlockState> usedBlocks;
 	protected int status;
 
-	public ItemFillWand()
+	public ItemFillWand(Properties properties)
 	{
-		super();
-		this.setMaxStackSize(1);
-		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.usedBlocks = new HashMap<String, IBlockState>();
+		super(properties);
+		this.usedBlocks = new HashMap<ITextComponent, IBlockState>();
 		this.status = NONE;
-		this.setRegistryName(ItemFillWand.NAME);
-		this.setUnlocalizedName(ItemFillWand.NAME);
-	}
-	
-	public ItemFillWand(boolean register)
-	{
-		super();
-		this.usedBlocks = new HashMap<String, IBlockState>();
-		this.status = NONE;	
-		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setMaxStackSize(1);
-		if(register)
-		{
-			this.setRegistryName(ItemFillWand.NAME);
-			this.setUnlocalizedName(ItemFillWand.NAME);
-		}
 	}
 	
 	public int getStatus()
@@ -84,19 +60,19 @@ public class ItemFillWand extends ItemPosWand
 	}
 
 	@Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemUseContext iuc)
     {
-		String username = playerIn.getName();
+		ITextComponent username = iuc.getPlayer().getName();
 		Boolean blocksChanged = false;
 		
-		if(!worldIn.isRemote)
+		if(!iuc.getWorld().isRemote)
 		{
 			if(this.usedBlocks.containsKey(username))
 			{
 				if(this.isStartPointPresent(username))
 				{
 					BlockPos startPos = this.popStartPos(username);
-					BlockPos endPos = pos;
+					BlockPos endPos = iuc.getPos();
 					if(this.pointsInDistanceLimit(startPos, endPos))
 					{
 						BlockPos posA = this.getPosAllBig(startPos, endPos);
@@ -113,9 +89,9 @@ public class ItemFillWand extends ItemPosWand
 								{
 									BlockPos changePos = new BlockPos(x,y,z);
 								
-									if(!this.isBedRock(worldIn, changePos))
+									if(!this.isBedRock(iuc.getWorld(), changePos))
 									{
-										worldIn.setBlockState(changePos, usedBlock, 3);
+										iuc.getWorld().setBlockState(changePos, usedBlock, 3);
 										blocksChanged = true;
 									}
 								}
@@ -130,14 +106,14 @@ public class ItemFillWand extends ItemPosWand
 				}
 				else
 				{
-					this.putStartPos(pos, username);
+					this.putStartPos(iuc.getPos(), username);
 					this.status = CHARGED;
 					return EnumActionResult.SUCCESS;
 				}
 			}
 			else
 			{
-				IBlockState targetBlockState = worldIn.getBlockState(pos);
+				IBlockState targetBlockState = iuc.getWorld().getBlockState(iuc.getPos());
 				this.usedBlocks.put(username, targetBlockState);
 				this.status = NAMED;
 				return EnumActionResult.SUCCESS;
@@ -147,7 +123,7 @@ public class ItemFillWand extends ItemPosWand
     }
 	
 	@Override
-	protected void resetWand(String username)
+	protected void resetWand(ITextComponent username)
 	{
 		super.resetWand(username);
 		this.usedBlocks.remove(username);

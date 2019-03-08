@@ -1,14 +1,14 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  S",
+    "  B",
     " - ",
     "N  "
   ],
   "key": {
-    "S":{
-      "item": "minecraft:diamond_shovel"
-	},
+    "B": {
+      "item": "minecraft:bucket"
+    },
     "-":{
       "type": "forge:ore_dict",
       "ore": "stickWood"
@@ -19,6 +19,6 @@
 	}
   },
   "result": {
-    "item": "buildhelper:cubediggerwand"
+    "item": "buildhelper:removewaterwand_item"
   }
 }

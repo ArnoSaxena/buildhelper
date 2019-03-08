@@ -1,14 +1,14 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  W",
+    "  S",
     " - ",
     "N  "
   ],
   "key": {
-    "W": {
-      "item": "minecraft:water_bucket"
-    },
+    "S":{
+      "item": "minecraft:diamond_shovel"
+	},
     "-":{
       "type": "forge:ore_dict",
       "ore": "stickWood"
@@ -19,6 +19,6 @@
 	}
   },
   "result": {
-    "item": "buildhelper:gapfillwaterwand"
+    "item": "buildhelper:cubediggerwand_item"
   }
 }

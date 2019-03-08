@@ -1,14 +1,14 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  D",
+    "  O",
     " - ",
     "N  "
   ],
   "key": {
-    "D": {
+    "O": {
       "type": "forge:ore_dict",
-      "ore": "gemDiamond"
+      "ore": "oreIron"
     },
     "-":{
       "type": "forge:ore_dict",
@@ -20,6 +20,6 @@
 	}
   },
   "result": {
-    "item": "buildhelper:fillwanduniversal"
+    "item": "buildhelper:fillwandironore_item"
   }
 }

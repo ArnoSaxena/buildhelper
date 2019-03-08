@@ -17,40 +17,33 @@ package torojima.buildhelper.common.item;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import torojima.buildhelper.BuildHelperMod;
 
 public class ItemCubeDiggerWand extends Item
 {
-	public static final String NAME = "cubediggerwand";
+	public static final String NAME = "cubediggerwand_item";
 
-	public ItemCubeDiggerWand()
+	public ItemCubeDiggerWand(Properties properties)
 	{
-		super();
-		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setRegistryName(ItemCubeDiggerWand.NAME);
-		this.setUnlocalizedName(ItemCubeDiggerWand.NAME);
-		this.setMaxStackSize(1);
+		super(properties);
 	}
 	
     @Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    //public ActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemUseContext iuc)
     {    	
     	BlockPos startPos;
     	BlockPos endPos;
+    	BlockPos pos = iuc.getPos();
+    	World worldIn = iuc.getWorld();
     	
     	// side: 0 => bottom;  1 => top;  2 => z-;  3 => z+;  4 => x-;  5 => x+
-    	switch(facing)
+    	switch(iuc.getFace())
     	{
     	case DOWN:
     		startPos = new BlockPos(pos.getX() -1, pos.getY(),    pos.getZ() -1);
@@ -77,7 +70,7 @@ public class ItemCubeDiggerWand extends Item
     		endPos   = new BlockPos(pos.getX(),    pos.getY() +1, pos.getZ() +1);
     		break;
     	default:
-    		return EnumActionResult.FAIL;
+            return EnumActionResult.FAIL;
     	}
     	    	
 		for(int x = startPos.getX(); x <= endPos.getX(); x++)
@@ -92,12 +85,12 @@ public class ItemCubeDiggerWand extends Item
 			    	if(this.isDiggableBlock(currentBlock)
 			    			&& !this.isBedRock(worldIn, currentPos))
 			    	{
-			    		worldIn.setBlockToAir(currentPos);
+			    		worldIn.setBlockState(currentPos, Blocks.AIR.getDefaultState(), 3);
 			    	}
 				}
 			}
 		}
-		return EnumActionResult.SUCCESS;
+        return EnumActionResult.PASS;
     }
     
 	protected boolean isBedRock(World world, BlockPos pos)
@@ -109,8 +102,13 @@ public class ItemCubeDiggerWand extends Item
     {
     	ArrayList<Block> diggableBlocks = new ArrayList<Block>();
     	diggableBlocks.add(Blocks.DIRT);
+    	diggableBlocks.add(Blocks.GRASS_BLOCK);
+    	diggableBlocks.add(Blocks.COARSE_DIRT);
     	diggableBlocks.add(Blocks.GRAVEL);
     	diggableBlocks.add(Blocks.STONE);
+    	diggableBlocks.add(Blocks.ANDESITE);
+    	diggableBlocks.add(Blocks.DIORITE);
+    	diggableBlocks.add(Blocks.GRANITE);
     	diggableBlocks.add(Blocks.COBBLESTONE);
     	diggableBlocks.add(Blocks.SAND);
     	diggableBlocks.add(Blocks.SANDSTONE);
@@ -118,7 +116,7 @@ public class ItemCubeDiggerWand extends Item
     	diggableBlocks.add(Blocks.END_STONE);
     	diggableBlocks.add(Blocks.NETHERRACK);
     	diggableBlocks.add(Blocks.RED_SANDSTONE);
-    	diggableBlocks.add(Blocks.STAINED_HARDENED_CLAY);
+    	diggableBlocks.add(Blocks.RED_SAND);
     	
     	return diggableBlocks.contains(block);
     }

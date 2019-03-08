@@ -1,15 +1,15 @@
 {
   "type": "forge:ore_shaped",
   "pattern": [
-    "  O",
+    "  T",
     " - ",
     "N  "
   ],
   "key": {
-    "O": {
+    "T":{
       "type": "forge:ore_dict",
-      "ore": "oreIron"
-    },
+      "ore": "treeSapling"
+	},
     "-":{
       "type": "forge:ore_dict",
       "ore": "stickWood"
@@ -20,6 +20,6 @@
 	}
   },
   "result": {
-    "item": "buildhelper:fillwandironore"
+    "item": "buildhelper:growwand_item"
   }
 }

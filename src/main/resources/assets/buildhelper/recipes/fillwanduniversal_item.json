@@ -8,7 +8,7 @@
   "key": {
     "D": {
       "type": "forge:ore_dict",
-      "ore": "dirt"
+      "ore": "gemDiamond"
     },
     "-":{
       "type": "forge:ore_dict",
@@ -20,6 +20,6 @@
 	}
   },
   "result": {
-    "item": "buildhelper:fillwanddirt"
+    "item": "buildhelper:fillwanduniversal_item"
   }
 }

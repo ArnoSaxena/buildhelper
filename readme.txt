@@ -1,4 +1,4 @@
-This is Torojimas Build Helper v1.0.4 for usage with minecraft 1.12.x 
+This is Torojimas Build Helper v2.0.0.0 for usage with minecraft 1.13.x 
 
 This mod adds wand items for convenient and fast building of of multiple blocks to the game. 
 
@@ -8,6 +8,8 @@ http://www.minecraftforum.net/topic/1803250-
 or follow me on twitter https://twitter.com/Torojima
 
 Changelog:
+2.0.0.0 : 1. updated for usage with minecraft 1.13.2
+
 1.0.4.1 : 1. Down fill wand will used sand in case of clicked bedrock
 
 1.0.4 : 1. Adding down fill wand

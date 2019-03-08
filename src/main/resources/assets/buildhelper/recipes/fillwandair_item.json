@@ -7,7 +7,7 @@
   ],
   "key": {
     "S":{
-      "item": "minecraft:diamond_shovel"
+      "item": "minecraft:iron_shovel"
 	},
     "-":{
       "type": "forge:ore_dict",
@@ -19,6 +19,6 @@
 	}
   },
   "result": {
-    "item": "buildhelper:cubediggerwand"
+    "item": "buildhelper:fillwandair_item"
   }
 }

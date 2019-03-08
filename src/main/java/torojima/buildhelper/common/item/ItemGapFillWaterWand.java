@@ -14,38 +14,28 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import torojima.buildhelper.BuildHelperMod;
 
 public class ItemGapFillWaterWand extends ItemGapFillWand
 {
-	public static final String NAME = "gapfillwaterwand";
+	public static final String NAME = "gapfillwaterwand_item";
 	
-	public ItemGapFillWaterWand()
+	public ItemGapFillWaterWand(Properties properties)
 	{
-		super(false);
-		this.setRegistryName(ItemGapFillWaterWand.NAME);
-		this.setUnlocalizedName(ItemGapFillWaterWand.NAME);
+		super(properties);
 	}
 
 	@Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(ItemUseContext iuc)
 	{
 		if(this.status == NONE)
 		{
-			this.fillBlocks.put(playerIn.getName(), Blocks.AIR.getDefaultState());
-			this.usedBlocks.put(playerIn.getName(), Blocks.WATER.getDefaultState());
+			this.fillBlocks.put(iuc.getPlayer().getName(), Blocks.AIR.getDefaultState());
+			this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.WATER.getDefaultState());
 			this.status = FILL;
 		}
-		return super.onItemUse(playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		return super.onItemUse(iuc);
 	}	
 }
