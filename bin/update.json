@@ -1,5 +1,5 @@
 {
-	"homepage": "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/torojimaBuildHelper-0.4.1.jar",
+	"homepage": "https://github.com/ArnoSaxena/buildhelper/",
 	"1.11": {
 		"0.4.2": "updated for mc 1.11"
 	},
@@ -12,6 +12,9 @@
 	"1.12.2": {
 		"1.0.4.1": "updated for mc 1.12.2"	
 	},
+	"1.13.2": {
+		"2.0.0.0": "updated for mc 1.13.2"	
+	},
 	"promos": {
 		"1.12-latest": "1.0.4.1",
 		"1.12-recommended": "1.0.4.1",
@@ -19,5 +22,7 @@
 		"1.12.1-recommended": "1.0.4.1",
 		"1.12.2-latest": "1.0.4.1",
 		"1.12.2-recommended": "1.0.4.1"
+		"1.13.2-latest": "2.0.0.0",
+		"1.13.2-recommended": "2.0.0.0"
 	}
 }

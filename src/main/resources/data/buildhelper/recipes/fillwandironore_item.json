@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "  O",
+    " - ",
+    "N  "
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:iron_ore"
+    },
+    "-":{
+      "item": "minecraft:stick"
+	},
+    "N":{
+      "tag": "forge:nuggets/gold"
+	}
+  },
+  "result": {
+    "item": "buildhelper:fillwandironore_item"
+  }
+}

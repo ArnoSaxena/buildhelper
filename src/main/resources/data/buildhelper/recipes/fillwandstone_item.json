@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "  S",
+    " - ",
+    "N  "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "-":{
+      "item": "minecraft:stick"
+	},
+    "N":{
+      "tag": "forge:nuggets/gold"
+	}
+  },
+  "result": {
+    "item": "buildhelper:fillwandstone_item"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "  D",
+    " - ",
+    "N  "
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "-":{
+      "item": "minecraft:stick"
+	},
+    "N":{
+      "tag": "forge:nuggets/gold"
+	}
+  },
+  "result": {
+    "item": "buildhelper:fillwanduniversal_item"
+  }
+}

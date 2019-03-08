@@ -1,5 +1,5 @@
 {
-  "type": "forge:ore_shaped",
+  "type": "crafting_shaped",
   "pattern":
   [
     "  S", 
@@ -10,13 +10,11 @@
   { 
     "S": 
     { 
-      "type": "forge:ore_dict", 
-      "ore": "sand"
+      "item": "minecraft:sand"
     },
     "-":
     {
-      "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "item": "minecraft:stick"
     },
     "W":
     {

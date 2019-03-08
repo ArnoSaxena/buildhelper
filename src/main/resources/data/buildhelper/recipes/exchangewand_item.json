@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "  D",
+    " - ",
+    "E  "
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "-":{
+      "item": "minecraft:stick"
+	},
+    "E":{
+      "item": "minecraft:emerald"
+	}
+  },
+  "result": {
+    "item": "buildhelper:exchangewand_item"
+  }
+}

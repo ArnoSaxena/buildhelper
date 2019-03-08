@@ -1,5 +1,5 @@
 {
-  "type": "forge:ore_shaped",
+  "type": "crafting_shaped",
   "pattern": [
     "  B",
     " - ",
@@ -10,12 +10,10 @@
       "item": "minecraft:bucket"
     },
     "-":{
-      "type": "forge:ore_dict",
-      "ore": "stickWood"
+      "item": "minecraft:stick"
 	},
     "N":{
-      "type": "forge:ore_dict",
-      "ore": "nuggetGold"
+      "tag": "forge:nuggets/gold"
 	}
   },
   "result": {

@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "  T",
+    " - ",
+    "N  "
+  ],
+  "key": {
+    "T":{
+      "item": "minecraft:torch"
+	},
+    "-":{
+      "item": "minecraft:stick"
+	},
+    "N":{
+      "tag": "forge:nuggets/gold"
+	}
+  },
+  "result": {
+    "item": "buildhelper:torchwand_item"
+  }
+}

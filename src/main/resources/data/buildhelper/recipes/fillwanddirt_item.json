@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "  D",
+    " - ",
+    "N  "
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:dirt"
+    },
+    "-":{
+      "item": "minecraft:stick"
+	},
+    "N":{
+      "tag": "forge:nuggets/gold"
+	}
+  },
+  "result": {
+    "item": "buildhelper:fillwanddirt_item"
+  }
+}

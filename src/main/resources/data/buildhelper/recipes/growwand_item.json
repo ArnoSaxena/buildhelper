@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "  T",
+    " - ",
+    "N  "
+  ],
+  "key": {
+    "T":{
+      "tag": "minecraft:saplings"
+	},
+    "-":{
+      "item": "minecraft:stick"
+	},
+    "N":{
+      "tag": "forge:nuggets/gold"
+	}
+  },
+  "result": {
+    "item": "buildhelper:growwand_item"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "  E",
+    " - ",
+    "N  "
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:emerald"
+	},
+    "-":{
+      "item": "minecraft:stick"
+	},
+    "N":{
+      "tag": "forge:nuggets/gold"
+	}
+  },
+  "result": {
+    "item": "buildhelper:gapfillwand_item"
+  }
+}
