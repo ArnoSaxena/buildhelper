@@ -1,28 +1,22 @@
 {
   "type": "crafting_shaped",
-  "pattern":
-  [
+  "pattern": [
     "  S", 
     " - ",
     "W  "
   ],
-  "key": 
-  { 
-    "S": 
-    { 
+  "key": { 
+    "S": { 
       "item": "minecraft:sand"
     },
-    "-":
-    {
-      "item": "minecraft:stick"
+    "-": {
+      "tag": "forge:rods/wooden"
     },
-    "W":
-    {
+    "W": {
       "item": "minecraft:water_bucket"
 	}
   },
-  "result":
-  {
+  "result": {
     "item": "buildhelper:sandwaterwand_item"
   }
 }

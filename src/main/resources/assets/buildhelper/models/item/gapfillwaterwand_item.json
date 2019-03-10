@@ -2,5 +2,13 @@
     "parent": "item/generated",
     "textures": {
         "layer0": "buildhelper:items/gapfillwaterwand"
-    }
+    },
+	"overrides": [
+		{
+			"predicate":{
+				"buildhelper:status": 0.1
+			},
+			"model":"buildhelper:item/gapfillwaterwand_item_c"
+		}
+	]
 }

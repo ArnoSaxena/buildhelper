@@ -14,6 +14,7 @@
 
 package torojima.buildhelper.common.item;
 
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
@@ -34,38 +35,50 @@ public class ItemTorchWand extends Item
     {    	
     	BlockPos torchPos;
     	BlockPos pos = iuc.getPos();
+		if(iuc.getWorld().getBlockState(pos).getBlock() == Blocks.TORCH
+				|| iuc.getWorld().getBlockState(pos).getBlock() == Blocks.WALL_TORCH)
+		{
+			return EnumActionResult.FAIL;
+		}
     	
-    	Boolean torchBelow = false;
+    	Boolean isWallTorch = false;
     	switch(iuc.getFace())
     	{
     	case DOWN:
     		return EnumActionResult.FAIL;
     	case UP:
     		torchPos = new BlockPos(pos.getX(), pos.getY() +1, pos.getZ());
-    		if(iuc.getWorld().getBlockState(pos).getBlock() == Blocks.TORCH)
-    		{
-    			torchBelow = true;
-    		}
     		break;
     	case NORTH:
     		torchPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1);
+    		isWallTorch = true;
     		break;
     	case SOUTH:
     		torchPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1);
+    		isWallTorch = true;
     		break;
     	case WEST:
     		torchPos = new BlockPos(pos.getX() -1, pos.getY(), pos.getZ());
+    		isWallTorch = true;
     		break;
     	case EAST:
     		torchPos = new BlockPos(pos.getX() +1, pos.getY(), pos.getZ());
+    		isWallTorch = true;
     		break;
     	default:
     		return EnumActionResult.FAIL;
     	}
-    	if(iuc.getWorld().getBlockState(torchPos).getBlock() == Blocks.AIR 
-    			&& !torchBelow)
+    	
+    	if(iuc.getWorld().getBlockState(torchPos).getBlock() == Blocks.AIR)
     	{
-    		iuc.getWorld().setBlockState(torchPos, Blocks.TORCH.getStateForPlacement(Blocks.TORCH.getDefaultState(), iuc.getFace(), iuc.getWorld().getBlockState(pos), iuc.getWorld(), torchPos, pos, iuc.getPlayer().getActiveHand()));
+    		if (isWallTorch)
+    		{
+    			iuc.getWorld().setBlockState(torchPos, Blocks.WALL_TORCH.getDefaultState().with(BlockHorizontal.HORIZONTAL_FACING, iuc.getFace()));
+    		}
+    		else
+    		{
+    			iuc.getWorld().setBlockState(torchPos, Blocks.TORCH.getDefaultState());
+    		}
     		return EnumActionResult.SUCCESS;
     	}
     	return EnumActionResult.FAIL;

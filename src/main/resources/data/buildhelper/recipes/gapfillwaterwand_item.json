@@ -10,7 +10,7 @@
       "item": "minecraft:water_bucket"
     },
     "-":{
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
 	},
     "N":{
       "tag": "forge:nuggets/gold"

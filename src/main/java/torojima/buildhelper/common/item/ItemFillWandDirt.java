@@ -26,7 +26,6 @@ public class ItemFillWandDirt extends ItemFillWand
 	{
 		super(properties);
 	}
-
 	
 	@Override
     public EnumActionResult onItemUse(ItemUseContext iuc)

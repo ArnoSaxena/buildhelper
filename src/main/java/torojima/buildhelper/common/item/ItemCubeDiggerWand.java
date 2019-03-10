@@ -34,7 +34,6 @@ public class ItemCubeDiggerWand extends Item
 	}
 	
     @Override
-    //public ActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     public EnumActionResult onItemUse(ItemUseContext iuc)
     {    	
     	BlockPos startPos;

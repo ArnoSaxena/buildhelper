@@ -22,6 +22,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -42,6 +43,25 @@ public class ItemFillWand extends ItemPosWand
 		super(properties);
 		this.usedBlocks = new HashMap<ITextComponent, IBlockState>();
 		this.status = NONE;
+		
+		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
+				(_itemStack, _world, _livingBase) -> 
+			{
+				if(_itemStack.getItem() instanceof ItemFillWand)
+				{
+					ItemFillWand ifw = (ItemFillWand)_itemStack.getItem();
+					if (ifw.getStatus() == ItemFillWand.NAMED)
+					{
+						return 0.1F;
+					}
+					else if (ifw.getStatus() == ItemFillWand.CHARGED)
+					{
+						return 0.2F;
+					}
+				}
+				return 0.0F;
+			}
+		);
 	}
 	
 	public int getStatus()

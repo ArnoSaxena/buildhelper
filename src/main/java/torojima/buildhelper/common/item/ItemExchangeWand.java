@@ -16,9 +16,11 @@ package torojima.buildhelper.common.item;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 
@@ -34,14 +36,36 @@ public class ItemExchangeWand extends ItemFillWand
 	{
 		super(properties);
 		this.fillBlocks = new HashMap<ITextComponent, IBlockState>();
-	}
+		
+		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
+				(_itemStack, _world, _livingBase) -> 
+			{
+				if(_itemStack.getItem() instanceof ItemExchangeWand)
+				{
+					ItemExchangeWand iew = (ItemExchangeWand)_itemStack.getItem();
+					if (iew.getStatus() == ItemExchangeWand.NAMED)
+					{
+						return 0.1F;
+					}
+					else if (iew.getStatus() == ItemExchangeWand.FILL)
+					{
+						return 0.2F;
+					}
+					else if (iew.getStatus() == ItemExchangeWand.CHARGED)
+					{
+						return 0.3F;
+					}
+				}
+				return 0.0F;
+			}
+		);
+	}	
 	
 	@Override
     public EnumActionResult onItemUse(ItemUseContext iuc)
 	{
 		ITextComponent username = iuc.getPlayer().getName();
 		
-		//iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 		EnumActionResult returnValue = EnumActionResult.FAIL;
 		
 		if (!iuc.getWorld().isRemote)
@@ -82,7 +106,6 @@ public class ItemExchangeWand extends ItemFillWand
 								}
 							}
 							this.status = NONE;
-							iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 							returnValue = EnumActionResult.SUCCESS;
 						}
 						else
@@ -94,7 +117,6 @@ public class ItemExchangeWand extends ItemFillWand
 					{
 						this.putStartPos(iuc.getPos(), username);
 						this.status = CHARGED;
-						iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 						returnValue = EnumActionResult.SUCCESS;
 					}
 				}
@@ -102,7 +124,6 @@ public class ItemExchangeWand extends ItemFillWand
 				{
 					this.fillBlocks.put(username, iuc.getWorld().getBlockState(iuc.getPos()));
 					this.status = FILL;
-					iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 					returnValue = EnumActionResult.SUCCESS;
 				}
 			}
@@ -110,11 +131,10 @@ public class ItemExchangeWand extends ItemFillWand
 			{
 				this.usedBlocks.put(username, iuc.getWorld().getBlockState(iuc.getPos()));
 				this.status = NAMED;
-				iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 				returnValue = EnumActionResult.SUCCESS;
 			}
 		}
-		//iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
+		
 		return returnValue;
 	}
 }

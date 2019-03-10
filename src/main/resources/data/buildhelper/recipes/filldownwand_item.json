@@ -10,7 +10,7 @@
       "tag": "forge:ingots/gold"
 	},
     "-":{
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
 	},
 	"N":{
       "tag": "forge:nuggets/gold"

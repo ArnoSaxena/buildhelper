@@ -17,6 +17,7 @@ package torojima.buildhelper.common.item;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ResourceLocation;
 
 public class ItemGapFillWand extends ItemExchangeWand
 {
@@ -25,6 +26,25 @@ public class ItemGapFillWand extends ItemExchangeWand
 	public ItemGapFillWand(Properties properties)
 	{
 		super(properties);
+		
+		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
+				(_itemStack, _world, _livingBase) -> 
+			{
+				if(_itemStack.getItem() instanceof ItemGapFillWand)
+				{
+					ItemGapFillWand igfw = (ItemGapFillWand)_itemStack.getItem();
+					if (igfw.getStatus() == ItemGapFillWand.NAMED)
+					{
+						return 0.1F;
+					}
+					else if (igfw.getStatus() == ItemGapFillWand.CHARGED)
+					{
+						return 0.2F;
+					}
+				}
+				return 0.0F;
+			}
+		);
 	}
 	
 	@Override
@@ -35,7 +55,6 @@ public class ItemGapFillWand extends ItemExchangeWand
 			this.fillBlocks.put(iuc.getPlayer().getName(), Blocks.AIR.getDefaultState());
 			this.status = NAMED;
 		}
-		//iuc.getPlayer().getHeldItem(iuc.getPlayer().getActiveHand()).setDamage(this.status);
 		return super.onItemUse(iuc);
 	}
 }

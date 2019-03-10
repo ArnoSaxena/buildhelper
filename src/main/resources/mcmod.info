@@ -5,7 +5,7 @@
   "description": "Adds wand items for convenient building to the game.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "http://www.minecraftforum.net/topic/1803250-",
+  "url": "https://minecraft.curseforge.com/projects/torojimas-buildhelper",
   "updateUrl": "",
   "authorList": ["Torojima <al-s@gmx.de>"],
   "credits": "The Forge and FML guys, for creating forge :)",

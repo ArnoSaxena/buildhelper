@@ -10,7 +10,7 @@
       "tag": "minecraft:saplings"
 	},
     "-":{
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
 	},
     "N":{
       "tag": "forge:nuggets/gold"

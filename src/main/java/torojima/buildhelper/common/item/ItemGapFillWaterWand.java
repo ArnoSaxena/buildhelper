@@ -17,6 +17,7 @@ package torojima.buildhelper.common.item;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ResourceLocation;
 
 public class ItemGapFillWaterWand extends ItemGapFillWand
 {
@@ -25,6 +26,21 @@ public class ItemGapFillWaterWand extends ItemGapFillWand
 	public ItemGapFillWaterWand(Properties properties)
 	{
 		super(properties);
+		
+		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
+				(_itemStack, _world, _livingBase) -> 
+			{
+				if(_itemStack.getItem() instanceof ItemGapFillWaterWand)
+				{
+					ItemGapFillWaterWand igfww = (ItemGapFillWaterWand)_itemStack.getItem();
+					if (igfww.getStatus() == ItemGapFillWaterWand.CHARGED)
+					{
+						return 0.1F;
+					}
+				}
+				return 0.0F;
+			}
+		);
 	}
 
 	@Override

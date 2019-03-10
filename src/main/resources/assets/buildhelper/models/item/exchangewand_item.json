@@ -2,5 +2,25 @@
     "parent": "item/generated",
     "textures": {
         "layer0": "buildhelper:items/exchangewand"
-    }
+    },
+	"overrides": [
+		{
+			"predicate":{
+				"buildhelper:status": 0.1
+			},
+			"model":"buildhelper:item/exchangewand_item_c1"
+		},
+		{
+			"predicate":{
+				"buildhelper:status": 0.2
+			},
+			"model":"buildhelper:item/exchangewand_item_c2"
+		},
+		{
+			"predicate":{
+				"buildhelper:status": 0.3
+			},
+			"model":"buildhelper:item/exchangewand_item_c3"
+		}		
+	]
 }

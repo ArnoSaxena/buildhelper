@@ -3,7 +3,7 @@ loaderVersion="[25,)"
 logoFile="buildhelper_icon.png"
 [[mods]]
 modId="buildhelper"
-version="2.0.0.0"
+version="2.0.1.0"
 displayName="Torojima's Buildhelper"
 credits="Thanks to the forge team for their work and occasional pointers in the right direction :)"
 authors="Torojima"
