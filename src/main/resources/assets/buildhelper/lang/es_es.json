@@ -1,0 +1,18 @@
+{
+    "item.buildhelper.sandwaterwand_item": "Varita de arena en agua",
+    "item.buildhelper.fillwanddirt_item": "Varita de tierra",
+    "item.buildhelper.fillwandironore_item": "Varita de mineral de hierro",
+    "item.buildhelper.fillwandcobble_item": "Varita de adoquín",
+    "item.buildhelper.fillwandstone_item": "Varita de piedra",
+    "item.buildhelper.exchangewand_item": "Varita de intercambio",
+    "item.buildhelper.fillwandair_item": "Varita de aire",
+    "item.buildhelper.gapfillwand_item": "Varita de llenar al vacío",
+    "item.buildhelper.gapfillwaterwand_item": "Varita de agua en la brecha",
+    "item.buildhelper.cubediggerwand_item": "Varita excavadora de cubos",
+    "item.buildhelper.removewaterwand_item": "Varita de quitar el agua",
+    "item.buildhelper.fillwanduniversal_item": "Varita de llenar universal",
+    "item.buildhelper.arrowwand_item": "Varita de flecha",
+    "item.buildhelper.growwand_item": "Varita de crecer",
+    "item.buildhelper.torchwand_item": "Varita de la antorcha",
+    "item.buildhelper.filldownwand_item": "Varita de llenar hacia abajo"
+}

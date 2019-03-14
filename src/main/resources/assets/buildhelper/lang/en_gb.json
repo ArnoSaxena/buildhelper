@@ -1,0 +1,18 @@
+{
+    "item.buildhelper.sandwaterwand_item": "Sand in Water Wand",
+    "item.buildhelper.fillwanddirt_item": "Dirt Wand",
+    "item.buildhelper.fillwandironore_item": "Iron Ore Wand",
+    "item.buildhelper.fillwandcobble_item": "Cobble Wand",
+    "item.buildhelper.fillwandstone_item": "Stone Wand",
+    "item.buildhelper.exchangewand_item": "Exchange Wand",
+    "item.buildhelper.fillwandair_item": "Air Wand",
+    "item.buildhelper.gapfillwand_item": "Gap Fill Wand",
+    "item.buildhelper.gapfillwaterwand_item": "Water in Gaps Wand",
+    "item.buildhelper.cubediggerwand_item": "Cube Digger Wand",
+    "item.buildhelper.removewaterwand_item": "Remove Water Wand",
+    "item.buildhelper.fillwanduniversal_item": "Universal Fill Wand",
+    "item.buildhelper.arrowwand_item": "Arrow Wand",
+    "item.buildhelper.growwand_item": "Grow Wand",
+    "item.buildhelper.torchwand_item": "Torch Wand",
+    "item.buildhelper.filldownwand_item": "Fill Down Wand"
+}

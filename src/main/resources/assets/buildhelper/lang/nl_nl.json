@@ -1,0 +1,18 @@
+{
+    "item.buildhelper.sandwaterwand_item": "Zand in water toverstaf",
+    "item.buildhelper.fillwanddirt_item": "Aarde toverstaf",
+    "item.buildhelper.fillwandironore_item": "Ijzererts toverstaf",
+    "item.buildhelper.fillwandcobble_item": "Straatkei toverstaf",
+    "item.buildhelper.fillwandstone_item": "Steen toverstaf",
+    "item.buildhelper.exchangewand_item": "Wissel toverstaf",
+    "item.buildhelper.fillwandair_item": "Lucht toverstaf",
+    "item.buildhelper.gapfillwand_item": "Gaten vuller toverstaf",
+    "item.buildhelper.gapfillwaterwand_item": "Water in gat toverstaf",
+    "item.buildhelper.cubediggerwand_item": "Blok graver toverstaf",
+    "item.buildhelper.removewaterwand_item": "Verwijder water toverstaf",
+    "item.buildhelper.fillwanduniversal_item": "Algemene vuller toverstaf",
+    "item.buildhelper.arrowwand_item": "Pijl toverstaf",
+    "item.buildhelper.growwand_item": "Groei toverstaf",
+    "item.buildhelper.torchwand_item": "Fakkel toverstal",
+    "item.buildhelper.filldownwand_item": "Opvuller toverstag"
+}
