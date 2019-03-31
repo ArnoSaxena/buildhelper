@@ -1,0 +1,18 @@
+{
+    "item.buildhelper.sandwaterwand_item": "填沙海仗",
+    "item.buildhelper.fillwanddirt_item": "制土神仗",
+    "item.buildhelper.fillwandironore_item": "矿铁神仗",
+    "item.buildhelper.fillwandcobble_item": "鹅卵神仗",
+    "item.buildhelper.fillwandstone_item": "点石神仗",
+    "item.buildhelper.exchangewand_item": "变种神仗",
+    "item.buildhelper.fillwandair_item": "空气神仗",
+    "item.buildhelper.gapfillwand_item": "填隙神仗",
+    "item.buildhelper.gapfillwaterwand_item": "治水神仗",
+    "item.buildhelper.cubediggerwand_item": "方掘神仗",
+    "item.buildhelper.removewaterwand_item": "干旱神仗",
+    "item.buildhelper.fillwanduniversal_item": "万用神仗",
+    "item.buildhelper.arrowwand_item": "箭神神仗",
+    "item.buildhelper.growwand_item": "茁壮神仗",
+    "item.buildhelper.torchwand_item": "照明神仗",
+    "item.buildhelper.filldownwand_item": "延地神仗"
+}
