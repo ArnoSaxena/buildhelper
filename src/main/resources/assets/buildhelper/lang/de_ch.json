@@ -14,5 +14,6 @@
     "item.buildhelper.arrowwand_item": "Pfeil Stab",
     "item.buildhelper.growwand_item": "Pflanz Stab",
     "item.buildhelper.torchwand_item": "Fackel Stab",
-    "item.buildhelper.filldownwand_item": "Runter Füll Stab"
+    "item.buildhelper.filldownwand_item": "Runter Füll Stab",
+    "item.buildhelper.copypastewand_item": "Kopier Stab"
 }

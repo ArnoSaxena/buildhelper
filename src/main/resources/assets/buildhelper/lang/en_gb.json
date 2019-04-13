@@ -14,5 +14,6 @@
     "item.buildhelper.arrowwand_item": "Arrow Wand",
     "item.buildhelper.growwand_item": "Grow Wand",
     "item.buildhelper.torchwand_item": "Torch Wand",
-    "item.buildhelper.filldownwand_item": "Fill Down Wand"
+    "item.buildhelper.filldownwand_item": "Fill Down Wand",
+    "item.buildhelper.copypastewand_item": "Copy Paste Wand"
 }

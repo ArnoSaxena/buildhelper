@@ -14,5 +14,6 @@
     "item.buildhelper.arrowwand_item": "Baguette Flèche",
     "item.buildhelper.growwand_item": "Baguette Cultiver",
     "item.buildhelper.torchwand_item": "Baguette Torche",
-    "item.buildhelper.filldownwand_item": "Baguette Remplir en Bas"
+    "item.buildhelper.filldownwand_item": "Baguette Remplir en Bas",
+    "item.buildhelper.filldownwand_item": "Baguette copier et coller"
 }

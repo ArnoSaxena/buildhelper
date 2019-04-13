@@ -1,0 +1,20 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "buildhelper:items/copypastewand"
+    },
+	"overrides": [
+		{
+			"predicate":{
+				"buildhelper:status": 0.1
+			},
+			"model":"buildhelper:item/copypastewand_item_c1"
+		},
+		{
+			"predicate":{
+				"buildhelper:status": 0.2
+			},
+			"model":"buildhelper:item/copypastewand_item_c2"
+		}
+	]
+}

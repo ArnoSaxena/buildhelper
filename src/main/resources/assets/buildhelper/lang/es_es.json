@@ -14,5 +14,6 @@
     "item.buildhelper.arrowwand_item": "Varita de flecha",
     "item.buildhelper.growwand_item": "Varita de crecer",
     "item.buildhelper.torchwand_item": "Varita de la antorcha",
-    "item.buildhelper.filldownwand_item": "Varita de llenar hacia abajo"
+    "item.buildhelper.filldownwand_item": "Varita de llenar hacia abajo",
+    "item.buildhelper.copypastewand_item": "Varita de copiar"
 }

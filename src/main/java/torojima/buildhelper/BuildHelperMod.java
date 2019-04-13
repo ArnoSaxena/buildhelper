@@ -34,6 +34,8 @@ import torojima.buildhelper.common.item.ItemSandWaterWand;
 import torojima.buildhelper.common.item.ItemTorchWand;
 import torojima.buildhelper.lists.ItemList;
 
+//import torojima.buildhelper.common.item.ItemCopyPasteWand;
+
 @Mod(BuildHelperMod.MODID)
 public class BuildHelperMod
 {
@@ -105,7 +107,9 @@ public class BuildHelperMod
     				ItemList.allfillwand_item = new ItemFillWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWand.NAME)),
     				ItemList.growwand_item = new ItemGrowWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemGrowWand.NAME)),
     				ItemList.torchwand_item = new ItemTorchWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemTorchWand.NAME)),
-    				ItemList.filldownwand_item = new ItemFillDownWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillDownWand.NAME))
+    				ItemList.filldownwand_item = new ItemFillDownWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillDownWand.NAME)) 
+    				//,    				
+    				//ItemList.copypastewand_item = new ItemCopyPasteWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemCopyPasteWand.NAME))
     		);
     		LOGGER.info("Torojima's Buildhelper Items registered.");
     	}

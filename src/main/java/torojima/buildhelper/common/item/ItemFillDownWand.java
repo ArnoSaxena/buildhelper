@@ -15,6 +15,9 @@
 
 package torojima.buildhelper.common.item;
 
+import java.util.ArrayList;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -100,12 +103,30 @@ public class ItemFillDownWand extends Item
     
     private boolean blockPosIsTargetBlock(World world, BlockPos pos)
     {
-    	return world.getBlockState(pos).getMaterial() == Material.AIR
-    			|| world.getBlockState(pos).getMaterial() == Material.WATER
-    			|| world.getBlockState(pos).getMaterial() == Material.LAVA
-    	    	|| world.getBlockState(pos).getMaterial() == Material.LEAVES
-    	    	|| world.getBlockState(pos).getBlock() == Blocks.GRASS
-    	    	|| world.getBlockState(pos).getBlock() == Blocks.TALL_GRASS
-    			|| world.getBlockState(pos).getMaterial() == Material.PLANTS;
+    	ArrayList<Material> targetMaterial = new ArrayList<Material>();
+    	targetMaterial.add(Material.AIR);
+    	targetMaterial.add(Material.WATER);
+    	targetMaterial.add(Material.LAVA);
+    	targetMaterial.add(Material.LEAVES);
+    	targetMaterial.add(Material.PLANTS);
+    	targetMaterial.add(Material.SNOW);
+    	targetMaterial.add(Material.CACTUS);
+    	targetMaterial.add(Material.CARPET);
+    	targetMaterial.add(Material.CAKE);
+    	targetMaterial.add(Material.CLOTH);
+    	targetMaterial.add(Material.ICE);
+    	targetMaterial.add(Material.OCEAN_PLANT);
+    	targetMaterial.add(Material.SEA_GRASS);
+    	targetMaterial.add(Material.VINE);
+    	targetMaterial.add(Material.WEB);
+    	
+    	ArrayList<Block> targetBlocks = new ArrayList<Block>();
+    	targetBlocks.add(Blocks.GRASS);
+    	targetBlocks.add(Blocks.FERN);
+    	targetBlocks.add(Blocks.TALL_GRASS);
+    	targetBlocks.add(Blocks.TORCH);
+    	
+    	return targetMaterial.contains(world.getBlockState(pos).getMaterial())
+    			|| targetBlocks.contains(world.getBlockState(pos).getBlock());
     }
 }
