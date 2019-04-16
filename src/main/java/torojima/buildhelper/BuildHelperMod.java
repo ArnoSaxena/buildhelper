@@ -34,7 +34,7 @@ import torojima.buildhelper.common.item.ItemSandWaterWand;
 import torojima.buildhelper.common.item.ItemTorchWand;
 import torojima.buildhelper.lists.ItemList;
 
-//import torojima.buildhelper.common.item.ItemCopyPasteWand;
+import torojima.buildhelper.common.item.ItemCopyPasteWand;
 
 @Mod(BuildHelperMod.MODID)
 public class BuildHelperMod
@@ -44,7 +44,7 @@ public class BuildHelperMod
     private static final Logger LOGGER = LogManager.getLogger();
     
     public static final String MODID = "buildhelper";
-    public static final String VERSION = "2.0.1.1";
+    public static final String VERSION = "2.1.0.0";
     public static final String UPDATEJSON = "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/update.json";
 
     public BuildHelperMod()
@@ -92,24 +92,24 @@ public class BuildHelperMod
     	public static void registerItems(final RegistryEvent.Register<Item> event)
     	{
     		event.getRegistry().registerAll(    		
-    				ItemList.arrowwand_item = new ItemArrowWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemArrowWand.NAME)),
-    				ItemList.cubediggerwand_item = new ItemCubeDiggerWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemCubeDiggerWand.NAME)),
-    				ItemList.exchangewand_item = new ItemExchangeWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemExchangeWand.NAME)),
-    				ItemList.sandwaterwand_item = new ItemSandWaterWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemSandWaterWand.NAME)),
-    				ItemList.fillwanddirt_item = new ItemFillWandDirt(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandDirt.NAME)),
-    				ItemList.fillwandironore_item = new ItemFillWandIronore(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandIronore.NAME)),
-    				ItemList.fillwandcobble_item = new ItemFillWandCobble(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandCobble.NAME)),
-    				ItemList.fillwandstone_item = new ItemFillWandStone(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandStone.NAME)),
-    				ItemList.fillwandair_item = new ItemFillWandAir(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandAir.NAME)),
-    				ItemList.gapfillwand_item = new ItemGapFillWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemGapFillWand.NAME)),
-    				ItemList.gapfillwaterwand_item = new ItemGapFillWaterWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemGapFillWaterWand.NAME)),
-    				ItemList.removewaterwand_item = new ItemRemoveWaterWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemRemoveWaterWand.NAME)),
-    				ItemList.allfillwand_item = new ItemFillWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWand.NAME)),
-    				ItemList.growwand_item = new ItemGrowWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemGrowWand.NAME)),
-    				ItemList.torchwand_item = new ItemTorchWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemTorchWand.NAME)),
-    				ItemList.filldownwand_item = new ItemFillDownWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillDownWand.NAME)) 
-    				//,    				
-    				//ItemList.copypastewand_item = new ItemCopyPasteWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemCopyPasteWand.NAME))
+    				ItemList.arrowwand_item = new ItemArrowWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemArrowWand.NAME))
+    				,ItemList.cubediggerwand_item = new ItemCubeDiggerWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemCubeDiggerWand.NAME))
+    				,ItemList.exchangewand_item = new ItemExchangeWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemExchangeWand.NAME))
+    				,ItemList.sandwaterwand_item = new ItemSandWaterWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemSandWaterWand.NAME))
+    				,ItemList.fillwanddirt_item = new ItemFillWandDirt(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandDirt.NAME))
+    				,ItemList.fillwandironore_item = new ItemFillWandIronore(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandIronore.NAME))
+    				,ItemList.fillwandcobble_item = new ItemFillWandCobble(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandCobble.NAME))
+    				,ItemList.fillwandstone_item = new ItemFillWandStone(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandStone.NAME))
+    				,ItemList.fillwandair_item = new ItemFillWandAir(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandAir.NAME))
+    				,ItemList.gapfillwand_item = new ItemGapFillWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemGapFillWand.NAME))
+    				,ItemList.gapfillwaterwand_item = new ItemGapFillWaterWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemGapFillWaterWand.NAME))
+    				,ItemList.removewaterwand_item = new ItemRemoveWaterWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemRemoveWaterWand.NAME))
+    				,ItemList.allfillwand_item = new ItemFillWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWand.NAME))
+    				,ItemList.growwand_item = new ItemGrowWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemGrowWand.NAME))
+    				,ItemList.torchwand_item = new ItemTorchWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemTorchWand.NAME))
+    				,ItemList.filldownwand_item = new ItemFillDownWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillDownWand.NAME)) 
+    				
+    				,ItemList.copypastewand_item = new ItemCopyPasteWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemCopyPasteWand.NAME))
     		);
     		LOGGER.info("Torojima's Buildhelper Items registered.");
     	}

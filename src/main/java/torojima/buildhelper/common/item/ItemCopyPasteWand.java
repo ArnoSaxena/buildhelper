@@ -2,11 +2,13 @@ package torojima.buildhelper.common.item;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -17,17 +19,21 @@ public class ItemCopyPasteWand extends ItemPosWand
 	public static final String NAME = "copypastewand_item";
 	
 	protected Map<ITextComponent, BlockPos> endPoint;
+	protected Map<ITextComponent, EnumFacing> sourceFace;
 	
 	public static final int NONE = 0;
 	public static final int START_STORED = 1;
 	public static final int END_STORED = 2;
 	protected int status;
 	
+	protected final Random rand = new Random();
+	
 	public ItemCopyPasteWand(Properties properties)
 	{
 		super(properties);
 		
 		this.endPoint = new HashMap<ITextComponent, BlockPos>();
+		this.sourceFace = new HashMap<ITextComponent, EnumFacing>();
 		
 		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
 				(_itemStack, _world, _livingBase) -> 
@@ -61,76 +67,59 @@ public class ItemCopyPasteWand extends ItemPosWand
 			if(this.isStartPointPresent(username))
 			{
 				if(this.isEndPointPresent(username))
-				{		
-					BlockPos startPos = this.popStartPos(username);
-					BlockPos endPos = this.popEndPos(username);
-					BlockPos copyPos = iuc.getPos();
-					
-					BlockPos vector = this.getVector(startPos, endPos);
-					
-					// ##########################
-					
-					BlockPos buildVector = null;
-			    	switch(iuc.getFace())
-			    	{
-			    	case DOWN:
-			    		buildVector = new BlockPos(0, 1, 0);
-			    	case UP:
-			    		buildVector = new BlockPos(0, -1, 0);
-			    		break;
-			    	case NORTH:
-			    		buildVector = new BlockPos(0, 0, 1);
-			    		break;
-			    	case SOUTH:
-			    		buildVector = new BlockPos(0, 0, -1);
-			    		break;
-			    	case WEST:
-			    		buildVector = new BlockPos(1, 0, 0);
-			    		break;
-			    	case EAST:
-			    		buildVector = new BlockPos(-1, 0, 0);
-			    		break;
-			    	default:
-			    		return EnumActionResult.FAIL;
-			    	}
-					
-					// ##########################
-					
-					
-										
-					if(this.pointsInDistanceLimit(startPos, endPos))
+				{
+					if (iuc.getFace() == EnumFacing.DOWN
+							|| iuc.getFace() == EnumFacing.UP)
 					{
-						BlockPos posA = this.getPosAllBig(startPos, endPos);
-						BlockPos posB = this.getPosAllSmall(startPos, endPos);
+						return returnValue;
+					}
+					
+					BlockPos startPos = this.popStartPos(username);
+					BlockPos protoEndPos = this.popEndPos(username);
+					EnumFacing sourceFace = this.popSourceFace(username);
+					BlockPos copyPos = iuc.getPos();
+															
+					if(this.pointsInDistanceLimit(startPos, protoEndPos))
+					{
+						BlockPos sourceEinheitsVector = new BlockPos(
+								startPos.getX() > protoEndPos.getX() ? -1 : 1,
+								startPos.getY() > protoEndPos.getY() ? -1 : 1,
+								startPos.getZ() > protoEndPos.getZ() ? -1 : 1
+								);
 						
+						// so for/next loops will cover the correct volume
+						BlockPos endPos = new BlockPos (
+								protoEndPos.getX() + sourceEinheitsVector.getX(),
+								protoEndPos.getY() + sourceEinheitsVector.getY(),
+								protoEndPos.getZ() + sourceEinheitsVector.getZ()
+								);
+				    	
 						int dX = 0;
 						int dY = 0;
 						int dZ = 0;
 						
-						// copy paste old area to new area
-						
-						for(int x = posA.getX(); x <= posB.getX(); x++)
+						for (int x = startPos.getX(); x != endPos.getX(); x += sourceEinheitsVector.getX())
 						{
-							dX = x - posA.getX();
-							
-							for(int y = posA.getY(); y <= posB.getY(); y++)
+							dX = Math.abs(x - startPos.getX());
+							for (int y = startPos.getY(); y != endPos.getY(); y += sourceEinheitsVector.getY())
 							{
-								dY = y - posA.getY();
-								
-								for(int z = posA.getZ(); z <= posB.getZ(); z++)
+								dY = Math.abs(y - startPos.getY());
+								for (int z = startPos.getZ(); z != endPos.getZ(); z += sourceEinheitsVector.getZ())
 								{
-									dZ = z - posA.getZ();
-									
+									dZ = Math.abs(z - startPos.getZ());
 									BlockPos sourcePos = new BlockPos(x,y,z);
-									BlockPos targetPos = new BlockPos(dX + copyPos.getX(), dY + copyPos.getY(), dZ + copyPos.getZ());
-									
+									BlockPos sourceVector = new BlockPos(dX,dY,dZ);
+									BlockPos targetPos = this.getTargetPos(copyPos, iuc.getFace(), sourcePos, sourceVector, sourceEinheitsVector, sourceFace);
 									if(!this.isBedRock(iuc.getWorld(), targetPos))
 									{
 										iuc.getWorld().setBlockState(targetPos, iuc.getWorld().getBlockState(sourcePos), 3);
 									}
 								}
+								
 							}
+							
 						}
+						
 						this.status = NONE;
 						returnValue = EnumActionResult.SUCCESS;
 					}
@@ -144,12 +133,171 @@ public class ItemCopyPasteWand extends ItemPosWand
 			}
 			else
 			{
+				if (iuc.getFace() == EnumFacing.DOWN
+						|| iuc.getFace() == EnumFacing.UP)
+				{
+					return returnValue;
+				}
 				this.putStartPos(iuc.getPos(), username);
+				this.putSourceFace(iuc.getFace(), username);
 				this.status = START_STORED;
 				returnValue = EnumActionResult.SUCCESS;
 			}
 		}
 		return returnValue;
+	}
+
+	private BlockPos getTargetPos(BlockPos copyPos, EnumFacing copyFace, 
+			BlockPos sourcePos, BlockPos sourceVector, BlockPos sourceEinheitsVector, 
+			EnumFacing sourceFace)
+	{
+		switch (copyFace)
+		{
+    	case NORTH:
+    		switch (sourceFace)
+    		{
+        	case NORTH:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getX() * sourceEinheitsVector.getX(),
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getZ() * sourceEinheitsVector.getZ()
+        				);
+        	case SOUTH:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getX() * sourceEinheitsVector.getX() * -1,
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getZ() * sourceEinheitsVector.getZ() * -1
+        				);
+        	case WEST:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getZ() * sourceEinheitsVector.getZ() * -1,
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getX() * sourceEinheitsVector.getX()
+        				);
+        	case EAST:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getZ() * sourceEinheitsVector.getZ(),
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getX() * sourceEinheitsVector.getX() * -1
+        				);
+        	case DOWN:
+        	case UP:
+        	default:
+        		return null;
+    		}
+    	case SOUTH:
+    		switch (sourceFace)
+    		{
+        	case NORTH:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getX() * sourceEinheitsVector.getX() * -1,
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getZ() * sourceEinheitsVector.getZ() * -1
+        				);
+        	case SOUTH:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getX() * sourceEinheitsVector.getX(),
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getZ() * sourceEinheitsVector.getZ()
+        				);
+        	case WEST:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getZ() * sourceEinheitsVector.getZ(),
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getX() * sourceEinheitsVector.getX() * -1
+        				);
+        	case EAST:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getZ() * sourceEinheitsVector.getZ() * -1,
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getX() * sourceEinheitsVector.getX()
+        				);
+        	case DOWN:
+        	case UP:
+        	default:
+        		return null;
+    		}
+    	case WEST:
+    		switch (sourceFace)
+    		{
+        	case NORTH:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getZ() * sourceEinheitsVector.getZ(),
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getX() * sourceEinheitsVector.getX() * -1
+        				);
+        	case SOUTH:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getZ() * sourceEinheitsVector.getZ() * -1,
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getX() * sourceEinheitsVector.getX()
+        				);
+        	case WEST:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getX() * sourceEinheitsVector.getX(),
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getZ() * sourceEinheitsVector.getZ()
+        				);
+        	case EAST:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getX() * sourceEinheitsVector.getX() * -1,
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getZ() * sourceEinheitsVector.getZ() * -1
+        				);
+        	case DOWN:
+        	case UP:
+        	default:
+        		return null;
+    		}
+    	case EAST:
+    		switch (sourceFace)
+    		{
+        	case NORTH:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getZ() * sourceEinheitsVector.getZ() * -1,
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getX() * sourceEinheitsVector.getX()
+        				);
+        	case SOUTH:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getZ() * sourceEinheitsVector.getZ(),
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getX() * sourceEinheitsVector.getX() * -1
+        				);        		
+        	case WEST:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getX() * sourceEinheitsVector.getX() * -1,
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getZ() * sourceEinheitsVector.getZ() * -1
+        				);
+        	case EAST:
+        		return new BlockPos(
+        				copyPos.getX() + sourceVector.getX() * sourceEinheitsVector.getX(),
+        				copyPos.getY() + sourceVector.getY() * sourceEinheitsVector.getY(),
+        				copyPos.getZ() + sourceVector.getZ() * sourceEinheitsVector.getZ()
+        				);
+        	case DOWN:
+        	case UP:
+        	default:
+        		return null;
+    		}
+    	case DOWN:
+    	case UP:
+    	default:
+    		return null;
+		}
+	}
+
+	protected void putSourceFace(EnumFacing sourceFace, ITextComponent username)
+	{
+		this.sourceFace.put(username, sourceFace);
+	}
+	
+	protected EnumFacing popSourceFace(ITextComponent username)
+	{
+		EnumFacing face = this.sourceFace.get(username);
+		this.sourceFace.remove(username);
+		return face;
 	}
 	
 	protected boolean isEndPointPresent(ITextComponent username)
@@ -187,13 +335,5 @@ public class ItemCopyPasteWand extends ItemPosWand
 			return true;
 		}
 		return false;
-	}
-	
-	protected BlockPos getVector(BlockPos startPos, BlockPos endPos)
-	{
-		int vectorX = startPos.getX() > endPos.getX() ? 1 : -1;
-		int vectorY = startPos.getY() > endPos.getY() ? 1 : -1;
-		int vectorZ = startPos.getZ() > endPos.getZ() ? 1 : -1;
-		return new BlockPos(vectorX, vectorY, vectorZ);
 	}
 }
