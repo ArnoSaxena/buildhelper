@@ -14,6 +14,10 @@
 
 package torojima.buildhelper.common.item;
 
+import java.util.function.BooleanSupplier;
+
+import com.google.gson.JsonObject;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
@@ -24,6 +28,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.common.crafting.IConditionSerializer;
 
 public class ItemArrowWand extends Item
 {
@@ -53,5 +58,15 @@ public class ItemArrowWand extends Item
     public float getAttackDamage()
     {
         return ATK_DMG;
+    }
+    
+    public static class RecipeCondition implements IConditionSerializer
+    {
+		@Override
+		public BooleanSupplier parse(JsonObject json)
+		{
+			BooleanSupplier recipeContition = () -> (true);// implement the config entry here
+			return recipeContition;
+		}
     }
 }

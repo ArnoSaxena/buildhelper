@@ -87,6 +87,13 @@ public class ItemFillWand extends ItemPosWand
 		
 		if(!iuc.getWorld().isRemote)
 		{
+			if (iuc.getPlayer().isSneaking())
+			{
+				this.resetWand(username);
+				this.usedBlocks.remove(username);
+				return EnumActionResult.SUCCESS;
+			}
+			
 			if(this.usedBlocks.containsKey(username))
 			{
 				if(this.isStartPointPresent(username))

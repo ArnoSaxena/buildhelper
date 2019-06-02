@@ -12,6 +12,8 @@ special thanks to
 - Chinyun for the Chinese translation
 
 Changelog:
+2.1.1.0 : 1. adding shift-right click to reset wands
+
 2.1.0.0 : 1. adding copy/paste wand
 
 2.0.1.2 : 1. adding Chinese language file

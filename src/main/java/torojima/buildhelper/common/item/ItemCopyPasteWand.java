@@ -64,6 +64,15 @@ public class ItemCopyPasteWand extends ItemPosWand
 		
 		if (!iuc.getWorld().isRemote)
 		{
+			if (iuc.getPlayer().isSneaking())
+			{
+				this.resetWand(username);
+				this.endPoint.remove(username);
+				this.sourceFace.remove(username);
+				this.status = NONE;
+				return EnumActionResult.SUCCESS;
+			}
+			
 			if(this.isStartPointPresent(username))
 			{
 				if(this.isEndPointPresent(username))

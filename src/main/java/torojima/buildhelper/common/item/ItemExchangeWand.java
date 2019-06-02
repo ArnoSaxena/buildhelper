@@ -70,6 +70,13 @@ public class ItemExchangeWand extends ItemFillWand
 		
 		if (!iuc.getWorld().isRemote)
 		{
+			if (iuc.getPlayer().isSneaking())
+			{
+				this.resetWand(username);
+				this.fillBlocks.remove(username);
+				return EnumActionResult.SUCCESS;
+			}
+			
 			if(this.usedBlocks.containsKey(username))
 			{
 				if(this.fillBlocks.containsKey(username))

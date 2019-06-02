@@ -1,4 +1,4 @@
-This is Torojimas Build Helper v2.1.0.0 for usage with minecraft 1.13.2 
+This is Torojimas Build Helper v2.1.1.0 for usage with minecraft 1.13.2 
 
 This mod adds wand items for convenient and fast building of of multiple blocks to the game. 
 
@@ -12,11 +12,13 @@ special thanks to
 - Chinyun for the Chinese translation
 
 Changelog:
-2.1.0.0 : Adding copy/paste wand
+2.1.1.0 : 1. adding shift-right click to reset wands
 
-2.0.1.2 : adding Chinese language file
+2.1.0.0 : 1. Adding copy/paste wand
 
-2.0.1.1 : adding more languages
+2.0.1.2 : 1. adding Chinese language file
+
+2.0.1.1 : 1. adding more languages
 
 2.0.1.0 : 1. fixed torch wand issue
           2. fixed changing icons issue

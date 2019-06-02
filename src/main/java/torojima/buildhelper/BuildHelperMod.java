@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -16,6 +17,7 @@ import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import torojima.buildhelper.common.BuildHelperConfig;
 import torojima.buildhelper.common.item.ItemArrowWand;
 import torojima.buildhelper.common.item.ItemCubeDiggerWand;
 import torojima.buildhelper.common.item.ItemExchangeWand;
@@ -44,7 +46,7 @@ public class BuildHelperMod
     private static final Logger LOGGER = LogManager.getLogger();
     
     public static final String MODID = "buildhelper";
-    public static final String VERSION = "2.1.0.0";
+    public static final String VERSION = "2.1.1.0";
     public static final String UPDATEJSON = "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/update.json";
 
     public BuildHelperMod()
@@ -62,6 +64,8 @@ public class BuildHelperMod
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        
+        ModLoadingContext.get().registerConfig(net.minecraftforge.fml.config.ModConfig.Type.COMMON, BuildHelperConfig.sp﻿ec);
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -91,7 +95,12 @@ public class BuildHelperMod
     	@SubscribeEvent
     	public static void registerItems(final RegistryEvent.Register<Item> event)
     	{
-    		event.getRegistry().registerAll(    		
+    		//if(BuildHelperConfig.WANDS.AirWandEnabled.get())
+    		//{
+    		//	event.getRegistry().register(ItemList.fillwandair_item = new ItemFillWandAir(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWandAir.NAME)));
+    		//}
+    		
+    		event.getRegistry().registerAll(
     				ItemList.arrowwand_item = new ItemArrowWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemArrowWand.NAME))
     				,ItemList.cubediggerwand_item = new ItemCubeDiggerWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemCubeDiggerWand.NAME))
     				,ItemList.exchangewand_item = new ItemExchangeWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemExchangeWand.NAME))
@@ -107,8 +116,7 @@ public class BuildHelperMod
     				,ItemList.allfillwand_item = new ItemFillWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillWand.NAME))
     				,ItemList.growwand_item = new ItemGrowWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemGrowWand.NAME))
     				,ItemList.torchwand_item = new ItemTorchWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemTorchWand.NAME))
-    				,ItemList.filldownwand_item = new ItemFillDownWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillDownWand.NAME)) 
-    				
+    				,ItemList.filldownwand_item = new ItemFillDownWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemFillDownWand.NAME))
     				,ItemList.copypastewand_item = new ItemCopyPasteWand(new Item.Properties().maxStackSize(1).group(ItemGroup.TOOLS)).setRegistryName(new ResourceLocation(MODID, ItemCopyPasteWand.NAME))
     		);
     		LOGGER.info("Torojima's Buildhelper Items registered.");
