@@ -12,6 +12,8 @@ special thanks to
 - Chinyun for the Chinese translation
 
 Changelog:
+2.1.1.1 : 1. chaning reset wands from shift-click to right click. No need to click on block.
+
 2.1.1.0 : 1. adding shift-right click to reset wands
 
 2.1.0.0 : 1. adding copy/paste wand

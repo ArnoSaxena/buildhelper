@@ -18,11 +18,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.World;
 
 public class ItemExchangeWand extends ItemFillWand
 {
@@ -62,6 +67,17 @@ public class ItemExchangeWand extends ItemFillWand
 	}	
 	
 	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+	{
+		if (worldIn.isRemote)
+		{
+			this.resetWand(playerIn.getName());
+			this.fillBlocks.remove(playerIn.getName());
+		}
+		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+	
+	@Override
     public EnumActionResult onItemUse(ItemUseContext iuc)
 	{
 		ITextComponent username = iuc.getPlayer().getName();
@@ -70,13 +86,6 @@ public class ItemExchangeWand extends ItemFillWand
 		
 		if (!iuc.getWorld().isRemote)
 		{
-			if (iuc.getPlayer().isSneaking())
-			{
-				this.resetWand(username);
-				this.fillBlocks.remove(username);
-				return EnumActionResult.SUCCESS;
-			}
-			
 			if(this.usedBlocks.containsKey(username))
 			{
 				if(this.fillBlocks.containsKey(username))

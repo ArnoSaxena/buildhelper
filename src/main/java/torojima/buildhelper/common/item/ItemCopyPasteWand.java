@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -57,6 +60,19 @@ public class ItemCopyPasteWand extends ItemPosWand
 	}
 	
 	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+	{
+		if (worldIn.isRemote)
+		{
+			this.resetWand(playerIn.getName());
+			this.endPoint.remove(playerIn.getName());
+			this.sourceFace.remove(playerIn.getName());
+			this.status = NONE;
+		}
+		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}	
+	
+	@Override
     public EnumActionResult onItemUse(ItemUseContext iuc)
 	{
 		ITextComponent username = iuc.getPlayer().getName();
@@ -64,15 +80,6 @@ public class ItemCopyPasteWand extends ItemPosWand
 		
 		if (!iuc.getWorld().isRemote)
 		{
-			if (iuc.getPlayer().isSneaking())
-			{
-				this.resetWand(username);
-				this.endPoint.remove(username);
-				this.sourceFace.remove(username);
-				this.status = NONE;
-				return EnumActionResult.SUCCESS;
-			}
-			
 			if(this.isStartPointPresent(username))
 			{
 				if(this.isEndPointPresent(username))

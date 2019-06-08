@@ -18,10 +18,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -78,6 +81,17 @@ public class ItemFillWand extends ItemPosWand
 		}
 		return false;
 	}
+	
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+	{
+		if (worldIn.isRemote)
+		{
+			this.resetWand(playerIn.getName());
+			this.usedBlocks.remove(playerIn.getName());
+		}
+		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
 
 	@Override
     public EnumActionResult onItemUse(ItemUseContext iuc)
@@ -87,13 +101,6 @@ public class ItemFillWand extends ItemPosWand
 		
 		if(!iuc.getWorld().isRemote)
 		{
-			if (iuc.getPlayer().isSneaking())
-			{
-				this.resetWand(username);
-				this.usedBlocks.remove(username);
-				return EnumActionResult.SUCCESS;
-			}
-			
 			if(this.usedBlocks.containsKey(username))
 			{
 				if(this.isStartPointPresent(username))
