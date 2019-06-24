@@ -17,10 +17,10 @@ package torojima.buildhelper.common.item;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -34,7 +34,7 @@ public class ItemCubeDiggerWand extends Item
 	}
 	
     @Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
     {    	
     	BlockPos startPos;
     	BlockPos endPos;
@@ -69,7 +69,7 @@ public class ItemCubeDiggerWand extends Item
     		endPos   = new BlockPos(pos.getX(),    pos.getY() +1, pos.getZ() +1);
     		break;
     	default:
-            return EnumActionResult.FAIL;
+            return ActionResultType.FAIL;
     	}
     	    	
 		for(int x = startPos.getX(); x <= endPos.getX(); x++)
@@ -89,7 +89,7 @@ public class ItemCubeDiggerWand extends Item
 				}
 			}
 		}
-        return EnumActionResult.PASS;
+        return ActionResultType.PASS;
     }
     
 	protected boolean isBedRock(World world, BlockPos pos)

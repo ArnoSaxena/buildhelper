@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -22,7 +22,7 @@ public class ItemCopyPasteWand extends ItemPosWand
 	public static final String NAME = "copypastewand_item";
 	
 	protected Map<ITextComponent, BlockPos> endPoint;
-	protected Map<ITextComponent, EnumFacing> sourceFace;
+	protected Map<ITextComponent, Direction> sourceFace;
 	
 	public static final int NONE = 0;
 	public static final int START_STORED = 1;
@@ -36,7 +36,7 @@ public class ItemCopyPasteWand extends ItemPosWand
 		super(properties);
 		
 		this.endPoint = new HashMap<ITextComponent, BlockPos>();
-		this.sourceFace = new HashMap<ITextComponent, EnumFacing>();
+		this.sourceFace = new HashMap<ITextComponent, Direction>();
 		
 		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
 				(_itemStack, _world, _livingBase) -> 
@@ -60,7 +60,7 @@ public class ItemCopyPasteWand extends ItemPosWand
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
 		if (worldIn.isRemote)
 		{
@@ -73,10 +73,10 @@ public class ItemCopyPasteWand extends ItemPosWand
 	}	
 	
 	@Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
 	{
 		ITextComponent username = iuc.getPlayer().getName();
-		EnumActionResult returnValue = EnumActionResult.FAIL;
+		ActionResultType returnValue = ActionResultType.FAIL;
 		
 		if (!iuc.getWorld().isRemote)
 		{
@@ -84,15 +84,15 @@ public class ItemCopyPasteWand extends ItemPosWand
 			{
 				if(this.isEndPointPresent(username))
 				{
-					if (iuc.getFace() == EnumFacing.DOWN
-							|| iuc.getFace() == EnumFacing.UP)
+					if (iuc.getFace() == Direction.DOWN
+							|| iuc.getFace() == Direction.UP)
 					{
 						return returnValue;
 					}
 					
 					BlockPos startPos = this.popStartPos(username);
 					BlockPos protoEndPos = this.popEndPos(username);
-					EnumFacing sourceFace = this.popSourceFace(username);
+					Direction sourceFace = this.popSourceFace(username);
 					BlockPos copyPos = iuc.getPos();
 															
 					if(this.pointsInDistanceLimit(startPos, protoEndPos))
@@ -137,35 +137,35 @@ public class ItemCopyPasteWand extends ItemPosWand
 						}
 						
 						this.status = NONE;
-						returnValue = EnumActionResult.SUCCESS;
+						returnValue = ActionResultType.SUCCESS;
 					}
 				}
 				else
 				{
 					this.putEndPos(iuc.getPos(), username);
 					this.status = END_STORED;
-					returnValue = EnumActionResult.SUCCESS;
+					returnValue = ActionResultType.SUCCESS;
 				}
 			}
 			else
 			{
-				if (iuc.getFace() == EnumFacing.DOWN
-						|| iuc.getFace() == EnumFacing.UP)
+				if (iuc.getFace() == Direction.DOWN
+						|| iuc.getFace() == Direction.UP)
 				{
 					return returnValue;
 				}
 				this.putStartPos(iuc.getPos(), username);
 				this.putSourceFace(iuc.getFace(), username);
 				this.status = START_STORED;
-				returnValue = EnumActionResult.SUCCESS;
+				returnValue = ActionResultType.SUCCESS;
 			}
 		}
 		return returnValue;
 	}
 
-	private BlockPos getTargetPos(BlockPos copyPos, EnumFacing copyFace, 
+	private BlockPos getTargetPos(BlockPos copyPos, Direction copyFace, 
 			BlockPos sourcePos, BlockPos sourceVector, BlockPos sourceEinheitsVector, 
-			EnumFacing sourceFace)
+			Direction sourceFace)
 	{
 		switch (copyFace)
 		{
@@ -304,14 +304,14 @@ public class ItemCopyPasteWand extends ItemPosWand
 		}
 	}
 
-	protected void putSourceFace(EnumFacing sourceFace, ITextComponent username)
+	protected void putSourceFace(Direction sourceFace, ITextComponent username)
 	{
 		this.sourceFace.put(username, sourceFace);
 	}
 	
-	protected EnumFacing popSourceFace(ITextComponent username)
+	protected Direction popSourceFace(ITextComponent username)
 	{
-		EnumFacing face = this.sourceFace.get(username);
+		Direction face = this.sourceFace.get(username);
 		this.sourceFace.remove(username);
 		return face;
 	}

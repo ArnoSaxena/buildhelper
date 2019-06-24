@@ -17,14 +17,14 @@ package torojima.buildhelper.common.item;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -38,13 +38,13 @@ public class ItemFillWand extends ItemPosWand
 	public static final int NAMED = 1;
 	public static final int CHARGED = 2;
 
-	protected Map<ITextComponent, IBlockState> usedBlocks;
+	protected Map<ITextComponent, BlockState> usedBlocks;
 	protected int status;
 
 	public ItemFillWand(Properties properties)
 	{
 		super(properties);
-		this.usedBlocks = new HashMap<ITextComponent, IBlockState>();
+		this.usedBlocks = new HashMap<ITextComponent, BlockState>();
 		this.status = NONE;
 		
 		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
@@ -83,7 +83,7 @@ public class ItemFillWand extends ItemPosWand
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
 		if (worldIn.isRemote)
 		{
@@ -94,7 +94,7 @@ public class ItemFillWand extends ItemPosWand
 	}
 
 	@Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
     {
 		ITextComponent username = iuc.getPlayer().getName();
 		Boolean blocksChanged = false;
@@ -112,7 +112,7 @@ public class ItemFillWand extends ItemPosWand
 						BlockPos posA = this.getPosAllBig(startPos, endPos);
 						BlockPos posB = this.getPosAllSmall(startPos, endPos);
 					
-						IBlockState usedBlock = this.usedBlocks.get(username);
+						BlockState usedBlock = this.usedBlocks.get(username);
 						this.usedBlocks.remove(username);
 
 						for(int x = posA.getX(); x <= posB.getX(); x++)
@@ -142,18 +142,18 @@ public class ItemFillWand extends ItemPosWand
 				{
 					this.putStartPos(iuc.getPos(), username);
 					this.status = CHARGED;
-					return EnumActionResult.SUCCESS;
+					return ActionResultType.SUCCESS;
 				}
 			}
 			else
 			{
-				IBlockState targetBlockState = iuc.getWorld().getBlockState(iuc.getPos());
+				BlockState targetBlockState = iuc.getWorld().getBlockState(iuc.getPos());
 				this.usedBlocks.put(username, targetBlockState);
 				this.status = NAMED;
-				return EnumActionResult.SUCCESS;
+				return ActionResultType.SUCCESS;
 			}
 		}
-		return blocksChanged ? EnumActionResult.SUCCESS : EnumActionResult.FAIL;
+		return blocksChanged ? ActionResultType.SUCCESS : ActionResultType.FAIL;
     }
 	
 	@Override

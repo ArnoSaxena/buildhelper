@@ -14,9 +14,9 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ActionResultType;
 
 public class ItemFillWandIronore extends ItemFillWand
 {
@@ -28,7 +28,7 @@ public class ItemFillWandIronore extends ItemFillWand
 	}
 	
 	@Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
 	{
 		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.IRON_ORE.getDefaultState());
 		return super.onItemUse(iuc);

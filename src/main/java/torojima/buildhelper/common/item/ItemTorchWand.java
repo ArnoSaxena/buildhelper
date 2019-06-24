@@ -14,11 +14,11 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 
 public class ItemTorchWand extends Item
@@ -31,21 +31,21 @@ public class ItemTorchWand extends Item
 	}
 	
     @Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
     {    	
     	BlockPos torchPos;
     	BlockPos pos = iuc.getPos();
 		if(iuc.getWorld().getBlockState(pos).getBlock() == Blocks.TORCH
 				|| iuc.getWorld().getBlockState(pos).getBlock() == Blocks.WALL_TORCH)
 		{
-			return EnumActionResult.FAIL;
+			return ActionResultType.FAIL;
 		}
     	
     	Boolean isWallTorch = false;
     	switch(iuc.getFace())
     	{
     	case DOWN:
-    		return EnumActionResult.FAIL;
+    		return ActionResultType.FAIL;
     	case UP:
     		torchPos = new BlockPos(pos.getX(), pos.getY() +1, pos.getZ());
     		break;
@@ -66,21 +66,21 @@ public class ItemTorchWand extends Item
     		isWallTorch = true;
     		break;
     	default:
-    		return EnumActionResult.FAIL;
+    		return ActionResultType.FAIL;
     	}
     	
     	if(iuc.getWorld().getBlockState(torchPos).getBlock() == Blocks.AIR)
     	{
     		if (isWallTorch)
     		{
-    			iuc.getWorld().setBlockState(torchPos, Blocks.WALL_TORCH.getDefaultState().with(BlockHorizontal.HORIZONTAL_FACING, iuc.getFace()));
+    			iuc.getWorld().setBlockState(torchPos, Blocks.WALL_TORCH.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, iuc.getFace()));
     		}
     		else
     		{
     			iuc.getWorld().setBlockState(torchPos, Blocks.TORCH.getDefaultState());
     		}
-    		return EnumActionResult.SUCCESS;
+    		return ActionResultType.SUCCESS;
     	}
-    	return EnumActionResult.FAIL;
+    	return ActionResultType.FAIL;
     }
 }

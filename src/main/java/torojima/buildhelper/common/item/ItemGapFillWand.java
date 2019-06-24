@@ -14,9 +14,9 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.ResourceLocation;
 
 public class ItemGapFillWand extends ItemExchangeWand
@@ -48,7 +48,7 @@ public class ItemGapFillWand extends ItemExchangeWand
 	}
 	
 	@Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
 	{		
 		if(this.status == NONE)
 		{

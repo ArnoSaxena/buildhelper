@@ -17,13 +17,13 @@ package torojima.buildhelper.common.item;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -35,12 +35,12 @@ public class ItemExchangeWand extends ItemFillWand
 	
 	public static final String NAME = "exchangewand_item";
 
-	protected Map<ITextComponent, IBlockState> fillBlocks;
+	protected Map<ITextComponent, BlockState> fillBlocks;
 
 	public ItemExchangeWand(Properties properties)
 	{
 		super(properties);
-		this.fillBlocks = new HashMap<ITextComponent, IBlockState>();
+		this.fillBlocks = new HashMap<ITextComponent, BlockState>();
 		
 		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
 				(_itemStack, _world, _livingBase) -> 
@@ -67,7 +67,7 @@ public class ItemExchangeWand extends ItemFillWand
 	}	
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
 		if (worldIn.isRemote)
 		{
@@ -78,11 +78,11 @@ public class ItemExchangeWand extends ItemFillWand
 	}
 	
 	@Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
 	{
 		ITextComponent username = iuc.getPlayer().getName();
 		
-		EnumActionResult returnValue = EnumActionResult.FAIL;
+		ActionResultType returnValue = ActionResultType.FAIL;
 		
 		if (!iuc.getWorld().isRemote)
 		{
@@ -99,10 +99,10 @@ public class ItemExchangeWand extends ItemFillWand
 							BlockPos posA = this.getPosAllBig(startPos, endPos);
 							BlockPos posB = this.getPosAllSmall(startPos, endPos);
 
-							IBlockState usedBlock = this.usedBlocks.get(username);
+							BlockState usedBlock = this.usedBlocks.get(username);
 							this.usedBlocks.remove(username);
 							
-							IBlockState fillBlock = this.fillBlocks.get(username);
+							BlockState fillBlock = this.fillBlocks.get(username);
 							this.fillBlocks.remove(username);
 
 							for(int x = posA.getX(); x <= posB.getX(); x++)
@@ -122,7 +122,7 @@ public class ItemExchangeWand extends ItemFillWand
 								}
 							}
 							this.status = NONE;
-							returnValue = EnumActionResult.SUCCESS;
+							returnValue = ActionResultType.SUCCESS;
 						}
 						else
 						{
@@ -133,21 +133,21 @@ public class ItemExchangeWand extends ItemFillWand
 					{
 						this.putStartPos(iuc.getPos(), username);
 						this.status = CHARGED;
-						returnValue = EnumActionResult.SUCCESS;
+						returnValue = ActionResultType.SUCCESS;
 					}
 				}
 				else
 				{
 					this.fillBlocks.put(username, iuc.getWorld().getBlockState(iuc.getPos()));
 					this.status = FILL;
-					returnValue = EnumActionResult.SUCCESS;
+					returnValue = ActionResultType.SUCCESS;
 				}
 			}
 			else
 			{
 				this.usedBlocks.put(username, iuc.getWorld().getBlockState(iuc.getPos()));
 				this.status = NAMED;
-				returnValue = EnumActionResult.SUCCESS;
+				returnValue = ActionResultType.SUCCESS;
 			}
 		}
 		

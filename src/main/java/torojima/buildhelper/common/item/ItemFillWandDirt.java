@@ -14,9 +14,9 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ActionResultType;
 
 public class ItemFillWandDirt extends ItemFillWand
 {
@@ -28,7 +28,7 @@ public class ItemFillWandDirt extends ItemFillWand
 	}
 	
 	@Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
 	{
 		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.DIRT.getDefaultState());
 		return super.onItemUse(iuc);

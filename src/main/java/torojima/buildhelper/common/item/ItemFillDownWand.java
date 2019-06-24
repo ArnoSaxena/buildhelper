@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -37,11 +37,11 @@ public class ItemFillDownWand extends Item
 	}
 	
 	@Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
 	{
 		BlockPos pos = iuc.getPos();
 		
-		IBlockState fillBlock = iuc.getWorld().getBlockState(pos);
+		BlockState fillBlock = iuc.getWorld().getBlockState(pos);
 		
 		if (fillBlock.getBlock() == Blocks.BEDROCK)
 		{
@@ -79,12 +79,12 @@ public class ItemFillDownWand extends Item
     	
 		if(this.placeDownColumns(iuc.getWorld(), pos, fillBlock))
 		{
-			return EnumActionResult.SUCCESS;
+			return ActionResultType.SUCCESS;
 		}		
-		return EnumActionResult.FAIL;
+		return ActionResultType.FAIL;
 	}
 	
-    private boolean placeDownColumns(World world, BlockPos pos, IBlockState fillBlock)
+    private boolean placeDownColumns(World world, BlockPos pos, BlockState fillBlock)
     {
     	boolean putFillBlock = false;
 
@@ -113,11 +113,10 @@ public class ItemFillDownWand extends Item
     	targetMaterial.add(Material.CACTUS);
     	targetMaterial.add(Material.CARPET);
     	targetMaterial.add(Material.CAKE);
-    	targetMaterial.add(Material.CLOTH);
+    	targetMaterial.add(Material.WOOL);
     	targetMaterial.add(Material.ICE);
     	targetMaterial.add(Material.OCEAN_PLANT);
     	targetMaterial.add(Material.SEA_GRASS);
-    	targetMaterial.add(Material.VINE);
     	targetMaterial.add(Material.WEB);
     	
     	ArrayList<Block> targetBlocks = new ArrayList<Block>();

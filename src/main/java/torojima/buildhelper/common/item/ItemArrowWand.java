@@ -18,15 +18,15 @@ import java.util.function.BooleanSupplier;
 
 import com.google.gson.JsonObject;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.item.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArrow;
+import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.IConditionSerializer;
 
@@ -41,18 +41,18 @@ public class ItemArrowWand extends Item
 	}
 
 	@Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
     {
         if (!worldIn.isRemote)
         {
-            ItemArrow itemarrow = (ItemArrow)Items.ARROW;
-            EntityArrow entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
+        	ArrowItem itemarrow = (ArrowItem)Items.ARROW;
+            AbstractArrowEntity entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
             float arrowVelocity = 60.0F;
             entityarrow.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
             entityarrow.setDamage(ATK_DMG);
-            worldIn.spawnEntity(entityarrow);
+            worldIn.addEntity(entityarrow);
         }
-        return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
     }
 	
     public float getAttackDamage()

@@ -15,10 +15,10 @@
 package torojima.buildhelper.common.item;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -32,7 +32,7 @@ public class ItemSandWaterWand extends Item
 	}
 		
 	@Override
-    public EnumActionResult onItemUse(ItemUseContext iuc)
+    public ActionResultType onItemUse(ItemUseContext iuc)
 	{
 		BlockPos pos = iuc.getPos();
     	switch(iuc.getFace())
@@ -66,9 +66,9 @@ public class ItemSandWaterWand extends Item
 		
 		if(this.placeSandColumn(iuc.getWorld(), pos))
 		{
-			return EnumActionResult.SUCCESS;
+			return ActionResultType.SUCCESS;
 		}		
-		return EnumActionResult.FAIL;
+		return ActionResultType.FAIL;
 	}
 	
     private boolean placeSandColumn(World world, BlockPos pos)

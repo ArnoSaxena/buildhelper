@@ -19,7 +19,6 @@ public class ItemList
     public static Item allfillwand_item;
     public static Item growwand_item;
     public static Item torchwand_item;
-    public static Item filldownwand_item;
-    
+    public static Item filldownwand_item;    
     public static Item copypastewand_item;
 }
