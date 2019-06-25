@@ -1,4 +1,4 @@
-This is Torojimas Build Helper v2.1.1.1 for usage with minecraft 1.13.2 
+This is Torojimas Build Helper v3.0.0.0 for usage with minecraft 1.14.2 
 
 This mod adds wand items for convenient and fast building of of multiple blocks to the game. 
 
@@ -12,6 +12,8 @@ special thanks to
 - Chinyun for the Chinese translation
 
 Changelog:
+3.0.0.0 : 1. updated for 1.14.2
+
 2.1.1.1 : 1. chaning reset wands from shift-click to right click. No need to click on block.
 
 2.1.1.0 : 1. adding shift-right click to reset wands

@@ -46,7 +46,7 @@ public class BuildHelperMod
     private static final Logger LOGGER = LogManager.getLogger();
     
     public static final String MODID = "buildhelper";
-    public static final String VERSION = "2.1.1.1";
+    public static final String VERSION = "3.0.0.0";
     public static final String UPDATEJSON = "https://github.com/ArnoSaxena/buildhelper/blob/master/bin/update.json";
 
     public BuildHelperMod()
