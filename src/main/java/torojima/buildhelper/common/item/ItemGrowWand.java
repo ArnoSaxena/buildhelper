@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
@@ -44,7 +45,8 @@ public class ItemGrowWand extends Item
                 {
                     if (igrowable.canUseBonemeal(iuc.getWorld(), iuc.getWorld().rand, iuc.getPos(), iblockstate))
                     {
-                        igrowable.grow(iuc.getWorld(), iuc.getWorld().rand, iuc.getPos(), iblockstate);
+                    	// grow function not deobfuscated ...
+                        igrowable.func_225535_a_((ServerWorld)iuc.getWorld(), iuc.getWorld().rand, iuc.getPos(), iblockstate);
                     }
                 }
                 return ActionResultType.SUCCESS;
