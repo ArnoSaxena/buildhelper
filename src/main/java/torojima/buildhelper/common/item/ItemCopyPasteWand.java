@@ -12,7 +12,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
+//import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -36,56 +36,56 @@ public class ItemCopyPasteWand extends ItemPosWand
 		super(properties);
 		
 		this.endPoint = new HashMap<ITextComponent, BlockPos>();
-		this.sourceFace = new HashMap<ITextComponent, Direction>();
+		this.sourceFace = new HashMap<ITextComponent, Direction>();		
 		
-		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
-				(_itemStack, _world, _livingBase) -> 
-			{
-				if(_itemStack.getItem() instanceof ItemCopyPasteWand)
-				{
-					ItemCopyPasteWand icpw = (ItemCopyPasteWand)_itemStack.getItem();
-					if (icpw.getStatus() == ItemCopyPasteWand.START_STORED)
-					{
-						return 0.1F;
-					}
-					else if (icpw.getStatus() == ItemCopyPasteWand.END_STORED)
-					{
-						return 0.2F;
-					}
-				}
-				return 0.0F;
-			}
-		);
+//		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
+//				(_itemStack, _world, _livingBase) -> 
+//			{
+//				if(_itemStack.getItem() instanceof ItemCopyPasteWand)
+//				{
+//					ItemCopyPasteWand icpw = (ItemCopyPasteWand)_itemStack.getItem();
+//					if (icpw.getStatus() == ItemCopyPasteWand.START_STORED)
+//					{
+//						return 0.1F;
+//					}
+//					else if (icpw.getStatus() == ItemCopyPasteWand.END_STORED)
+//					{
+//						return 0.2F;
+//					}
+//				}
+//				return 0.0F;
+//			}
+//		);
 		
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
-		if (worldIn.isRemote)
+		if (worldIn.isClientSide)
 		{
 			this.resetWand(playerIn.getName());
 			this.endPoint.remove(playerIn.getName());
 			this.sourceFace.remove(playerIn.getName());
 			this.status = NONE;
 		}
-		return super.onItemRightClick(worldIn, playerIn, handIn);
+		return super.use(worldIn, playerIn, handIn);
 	}	
 	
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{
 		ITextComponent username = iuc.getPlayer().getName();
 		ActionResultType returnValue = ActionResultType.FAIL;
 		
-		if (!iuc.getWorld().isRemote)
+		if (!iuc.getLevel().isClientSide)
 		{
 			if(this.isStartPointPresent(username))
 			{
 				if(this.isEndPointPresent(username))
 				{
-					if (iuc.getFace() == Direction.DOWN
-							|| iuc.getFace() == Direction.UP)
+					if (iuc.getClickedFace() == Direction.DOWN
+							|| iuc.getClickedFace() == Direction.UP)
 					{
 						return returnValue;
 					}
@@ -93,7 +93,7 @@ public class ItemCopyPasteWand extends ItemPosWand
 					BlockPos startPos = this.popStartPos(username);
 					BlockPos protoEndPos = this.popEndPos(username);
 					Direction sourceFace = this.popSourceFace(username);
-					BlockPos copyPos = iuc.getPos();
+					BlockPos copyPos = iuc.getClickedPos();
 															
 					if(this.pointsInDistanceLimit(startPos, protoEndPos))
 					{
@@ -125,10 +125,10 @@ public class ItemCopyPasteWand extends ItemPosWand
 									dZ = Math.abs(z - startPos.getZ());
 									BlockPos sourcePos = new BlockPos(x,y,z);
 									BlockPos sourceVector = new BlockPos(dX,dY,dZ);
-									BlockPos targetPos = this.getTargetPos(copyPos, iuc.getFace(), sourcePos, sourceVector, sourceEinheitsVector, sourceFace);
-									if(!this.isBedRock(iuc.getWorld(), targetPos))
+									BlockPos targetPos = this.getTargetPos(copyPos, iuc.getClickedFace(), sourcePos, sourceVector, sourceEinheitsVector, sourceFace);
+									if(!this.isBedRock(iuc.getLevel(), targetPos))
 									{
-										iuc.getWorld().setBlockState(targetPos, iuc.getWorld().getBlockState(sourcePos), 3);
+										iuc.getLevel().setBlock(targetPos, iuc.getLevel().getBlockState(sourcePos), 3);
 									}
 								}
 								
@@ -142,20 +142,20 @@ public class ItemCopyPasteWand extends ItemPosWand
 				}
 				else
 				{
-					this.putEndPos(iuc.getPos(), username);
+					this.putEndPos(iuc.getClickedPos(), username);
 					this.status = END_STORED;
 					returnValue = ActionResultType.SUCCESS;
 				}
 			}
 			else
 			{
-				if (iuc.getFace() == Direction.DOWN
-						|| iuc.getFace() == Direction.UP)
+				if (iuc.getClickedFace() == Direction.DOWN
+						|| iuc.getClickedFace() == Direction.UP)
 				{
 					return returnValue;
 				}
-				this.putStartPos(iuc.getPos(), username);
-				this.putSourceFace(iuc.getFace(), username);
+				this.putStartPos(iuc.getClickedPos(), username);
+				this.putSourceFace(iuc.getClickedFace(), username);
 				this.status = START_STORED;
 				returnValue = ActionResultType.SUCCESS;
 			}
@@ -344,7 +344,7 @@ public class ItemCopyPasteWand extends ItemPosWand
 	}
 	
 	@Override
-	public boolean hasEffect(ItemStack stack)
+	public boolean isFoil(ItemStack stack)
 	{
 		if(this.getStatus() == ItemCopyPasteWand.END_STORED)
 		{

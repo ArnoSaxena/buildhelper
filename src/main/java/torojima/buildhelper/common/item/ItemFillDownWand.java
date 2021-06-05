@@ -37,47 +37,47 @@ public class ItemFillDownWand extends Item
 	}
 	
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{
-		BlockPos pos = iuc.getPos();
+		BlockPos pos = iuc.getClickedPos();
 		
-		BlockState fillBlock = iuc.getWorld().getBlockState(pos);
+		BlockState fillBlock = iuc.getLevel().getBlockState(pos);
 		
 		if (fillBlock.getBlock() == Blocks.BEDROCK)
 		{
-			fillBlock = Blocks.SAND.getDefaultState();
+			fillBlock = Blocks.SAND.defaultBlockState();
 		}
 		
-    	switch(iuc.getFace())
+    	switch(iuc.getClickedFace())
     	{
     		case UP:
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() -1), fillBlock);
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() +1), fillBlock);
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() -1), fillBlock);
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() +1), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() -1), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() +1), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() -1), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() +1), fillBlock);
     			break;
     	
     		case NORTH:
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
     			break;
     		case SOUTH:
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
     			break;
     		case WEST:
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
     			break;
     		case EAST:
-    			this.placeDownColumns(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
+    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
     			break;
     		default:
     			break;
     	}
     	
-		if(this.placeDownColumns(iuc.getWorld(), pos, fillBlock))
+		if(this.placeDownColumns(iuc.getLevel(), pos, fillBlock))
 		{
 			return ActionResultType.SUCCESS;
 		}		
@@ -93,7 +93,7 @@ public class ItemFillDownWand extends Item
         	BlockPos posYIter = new BlockPos(pos.getX(), pos.getY(), pos.getZ());
         	while(this.blockPosIsTargetBlock(world, posYIter))
         	{
-        		world.setBlockState(posYIter, fillBlock);
+        		world.setBlockAndUpdate(posYIter, fillBlock);
         		putFillBlock = true;
         		posYIter = new BlockPos(posYIter.getX(), posYIter.getY() - 1, posYIter.getZ());
         	}
@@ -108,22 +108,24 @@ public class ItemFillDownWand extends Item
     	targetMaterial.add(Material.WATER);
     	targetMaterial.add(Material.LAVA);
     	targetMaterial.add(Material.LEAVES);
-    	targetMaterial.add(Material.PLANTS);
+    	targetMaterial.add(Material.PLANT);
     	targetMaterial.add(Material.SNOW);
     	targetMaterial.add(Material.CACTUS);
-    	targetMaterial.add(Material.CARPET);
+    	targetMaterial.add(Material.DECORATION);
     	targetMaterial.add(Material.CAKE);
     	targetMaterial.add(Material.WOOL);
     	targetMaterial.add(Material.ICE);
-    	targetMaterial.add(Material.OCEAN_PLANT);
-    	targetMaterial.add(Material.SEA_GRASS);
-    	targetMaterial.add(Material.WEB);
+    	targetMaterial.add(Material.WATER_PLANT);
+        targetMaterial.add(Material.WEB);
+        targetMaterial.add(Material.WOOD);
     	
     	ArrayList<Block> targetBlocks = new ArrayList<Block>();
     	targetBlocks.add(Blocks.GRASS);
     	targetBlocks.add(Blocks.FERN);
     	targetBlocks.add(Blocks.TALL_GRASS);
-    	targetBlocks.add(Blocks.TORCH);
+        targetBlocks.add(Blocks.TORCH);
+        targetBlocks.add(Blocks.SEAGRASS);
+        targetBlocks.add(Blocks.TALL_SEAGRASS);
     	
     	return targetMaterial.contains(world.getBlockState(pos).getMaterial())
     			|| targetBlocks.contains(world.getBlockState(pos).getBlock());

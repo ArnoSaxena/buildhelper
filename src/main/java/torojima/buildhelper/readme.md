@@ -1,8 +1,8 @@
-This is Torojimas Build Helper v3.2.0.0 for usage with minecraft 1.15.1
+This is Torojimas Build Helper v3.3.0.1 for usage with minecraft 1.16.x 
 
 This mod adds wand items for convenient and fast building of of multiple blocks to the game. 
 
-see the minecraft forums for further informations
+see cursforge for further informations
 https://minecraft.curseforge.com/projects/torojimas-buildhelper
 
 or follow me on twitter https://twitter.com/Torojima
@@ -12,30 +12,34 @@ special thanks to
 - Chinyun for the Chinese translation
 
 Changelog:
-3.2.0.0 : 1. updated for 1.15.1
+3.3.0.1 : 1. Updated for minecraft 1.16.5
 
-3.1.0.0 : 1. updated for 1.14.4
+3.3.0.0 : 1. Updated for minecraft 1.16.2
 
-3.0.0.0 : 1. updated for 1.14.2
+3.2.1.0 : 1. updated for minecraft 1.15.2
+
+3.2.0.0 : 1. Updated for minecraft 1.15.1
+
+3.0.0.0 : 1. Updated for minecraft 1.14.2
 
 2.1.1.1 : 1. chaning reset wands from shift-click to right click. No need to click on block.
 
 2.1.1.0 : 1. adding shift-right click to reset wands
 
-2.1.0.0 : 1. Adding copy/paste wand
+2.1.0.0 : 1. adding copy/paste wand
 
 2.0.1.2 : 1. adding Chinese language file
 
-2.0.1.1 : 1. adding more languages
+2.0.1.1 : 1. adding language files
 
-2.0.1.0 : 1. fixed torch wand issue
-          2. fixed changing icons issue
+2.0.1.0 : 1. fixed torch wand issues
+          2. fixed change icon issues for exchange wands
 
-2.0.0.0 : 1. updated for 1.13.2
+2.0.0.0 : 1. updated for usage with minecraft 1.13.2
 
-1.0.4.1 : 1. new wand using sand in case of clicked bedrock.
+1.0.4.1 : 1. Down fill wand will used sand in case of clicked bedrock
 
-1.0.4 : 1. Adding fill down wand
+1.0.4 : 1. Adding down fill wand
 
 1.0.3 : 1. Adding torch wand
 

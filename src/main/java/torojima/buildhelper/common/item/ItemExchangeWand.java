@@ -24,7 +24,7 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
+//import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -42,49 +42,49 @@ public class ItemExchangeWand extends ItemFillWand
 		super(properties);
 		this.fillBlocks = new HashMap<ITextComponent, BlockState>();
 		
-		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
-				(_itemStack, _world, _livingBase) -> 
-			{
-				if(_itemStack.getItem() instanceof ItemExchangeWand)
-				{
-					ItemExchangeWand iew = (ItemExchangeWand)_itemStack.getItem();
-					if (iew.getStatus() == ItemExchangeWand.NAMED)
-					{
-						return 0.1F;
-					}
-					else if (iew.getStatus() == ItemExchangeWand.FILL)
-					{
-						return 0.2F;
-					}
-					else if (iew.getStatus() == ItemExchangeWand.CHARGED)
-					{
-						return 0.3F;
-					}
-				}
-				return 0.0F;
-			}
-		);
+//		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
+//				(_itemStack, _world, _livingBase) -> 
+//			{
+//				if(_itemStack.getItem() instanceof ItemExchangeWand)
+//				{
+//					ItemExchangeWand iew = (ItemExchangeWand)_itemStack.getItem();
+//					if (iew.getStatus() == ItemExchangeWand.NAMED)
+//					{
+//						return 0.1F;
+//					}
+//					else if (iew.getStatus() == ItemExchangeWand.FILL)
+//					{
+//						return 0.2F;
+//					}
+//					else if (iew.getStatus() == ItemExchangeWand.CHARGED)
+//					{
+//						return 0.3F;
+//					}
+//				}
+//				return 0.0F;
+//			}
+//		);
 	}	
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
-		if (worldIn.isRemote)
+		if (worldIn.isClientSide)
 		{
 			this.resetWand(playerIn.getName());
 			this.fillBlocks.remove(playerIn.getName());
 		}
-		return super.onItemRightClick(worldIn, playerIn, handIn);
+		return super.use(worldIn, playerIn, handIn);
 	}
 	
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{
 		ITextComponent username = iuc.getPlayer().getName();
 		
 		ActionResultType returnValue = ActionResultType.FAIL;
 		
-		if (!iuc.getWorld().isRemote)
+		if (!iuc.getLevel().isClientSide)
 		{
 			if(this.usedBlocks.containsKey(username))
 			{
@@ -93,7 +93,7 @@ public class ItemExchangeWand extends ItemFillWand
 					if(this.isStartPointPresent(username))
 					{
 						BlockPos startPos = this.popStartPos(username);
-						BlockPos endPos = iuc.getPos();
+						BlockPos endPos = iuc.getClickedPos();
 						if(this.pointsInDistanceLimit(startPos, endPos))
 						{
 							BlockPos posA = this.getPosAllBig(startPos, endPos);
@@ -113,10 +113,10 @@ public class ItemExchangeWand extends ItemFillWand
 									{
 										BlockPos changePos = new BlockPos(x,y,z);
 										
-										if(iuc.getWorld().getBlockState(changePos).getBlock() == fillBlock.getBlock()
-												&& !this.isBedRock(iuc.getWorld(), changePos))
+										if(iuc.getLevel().getBlockState(changePos).getBlock() == fillBlock.getBlock()
+												&& !this.isBedRock(iuc.getLevel(), changePos))
 										{
-											iuc.getWorld().setBlockState(changePos, usedBlock, 3);
+											iuc.getLevel().setBlock(changePos, usedBlock, 3);
 										}
 									}
 								}
@@ -131,21 +131,21 @@ public class ItemExchangeWand extends ItemFillWand
 					}
 					else
 					{
-						this.putStartPos(iuc.getPos(), username);
+						this.putStartPos(iuc.getClickedPos(), username);
 						this.status = CHARGED;
 						returnValue = ActionResultType.SUCCESS;
 					}
 				}
 				else
 				{
-					this.fillBlocks.put(username, iuc.getWorld().getBlockState(iuc.getPos()));
+					this.fillBlocks.put(username, iuc.getLevel().getBlockState(iuc.getClickedPos()));
 					this.status = FILL;
 					returnValue = ActionResultType.SUCCESS;
 				}
 			}
 			else
 			{
-				this.usedBlocks.put(username, iuc.getWorld().getBlockState(iuc.getPos()));
+				this.usedBlocks.put(username, iuc.getLevel().getBlockState(iuc.getClickedPos()));
 				this.status = NAMED;
 				returnValue = ActionResultType.SUCCESS;
 			}

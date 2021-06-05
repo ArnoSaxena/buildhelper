@@ -20,11 +20,18 @@ public class ItemGrowWand extends Item
 	}
 	
     @Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
     {
-        BlockState iblockstate = iuc.getWorld().getBlockState(iuc.getPos());
+        BlockState iblockstate = iuc.getLevel().getBlockState(iuc.getClickedPos());
 
-        BonemealEvent event = new BonemealEvent(iuc.getPlayer(), iuc.getWorld(), iuc.getPos(), iblockstate, iuc.getPlayer().getActiveItemStack());
+        BonemealEvent event = 
+                new BonemealEvent(
+                        iuc.getPlayer(), 
+                        iuc.getLevel(), 
+                        iuc.getClickedPos(), 
+                        iblockstate, 
+                        iuc.getPlayer().getMainHandItem()
+                        );
         if (MinecraftForge.EVENT_BUS.post(event))
         {
         	return ActionResultType.PASS;
@@ -38,15 +45,14 @@ public class ItemGrowWand extends Item
         if (iblockstate.getBlock() instanceof IGrowable)
         {
             IGrowable igrowable = (IGrowable)iblockstate.getBlock();
-
-            if (igrowable.canGrow(iuc.getWorld(), iuc.getPos(), iblockstate, iuc.getWorld().isRemote))
+            
+            if (igrowable.isValidBonemealTarget(iuc.getLevel(), iuc.getClickedPos(), iblockstate, iuc.getLevel().isClientSide))
             {
-                if (!iuc.getWorld().isRemote)
+                if (!iuc.getLevel().isClientSide)
                 {
-                    if (igrowable.canUseBonemeal(iuc.getWorld(), iuc.getWorld().rand, iuc.getPos(), iblockstate))
+                    if (igrowable.isBonemealSuccess(iuc.getLevel(), iuc.getLevel().random, iuc.getClickedPos(), iblockstate))
                     {
-                    	// grow function not deobfuscated ...
-                        igrowable.func_225535_a_((ServerWorld)iuc.getWorld(), iuc.getWorld().rand, iuc.getPos(), iblockstate);
+                        igrowable.performBonemeal((ServerWorld)iuc.getLevel(), iuc.getLevel().random, iuc.getClickedPos(), iblockstate);
                     }
                 }
                 return ActionResultType.SUCCESS;

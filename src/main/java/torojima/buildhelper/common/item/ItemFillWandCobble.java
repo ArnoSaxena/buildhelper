@@ -28,9 +28,9 @@ public class ItemFillWandCobble extends ItemFillWand
 	}
 	
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{
-		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.COBBLESTONE.getDefaultState());
-		return super.onItemUse(iuc);
+		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.COBBLESTONE.defaultBlockState());
+		return super.useOn(iuc);
 	}
 }

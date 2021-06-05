@@ -40,18 +40,26 @@ public class ItemArrowWand extends Item
 	}
 
 	@Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
     {
-        if (!worldIn.isRemote)
+        if (!worldIn.isClientSide)
         {
         	ArrowItem itemarrow = (ArrowItem)Items.ARROW;
             AbstractArrowEntity entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
-            float arrowVelocity = 60.0F;
-            entityarrow.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, arrowVelocity, 1.0F);
-            entityarrow.setDamage(ATK_DMG);
-            worldIn.addEntity(entityarrow);
+            float arrowPower = 60.0F;
+            float uncertainty = 0.0F;            
+            entityarrow.shoot(
+                    playerIn.getLookAngle().x,
+                    playerIn.getLookAngle().y,
+                    playerIn.getLookAngle().z,
+                    arrowPower, 
+                    uncertainty);
+            
+            //entityarrow.shoot(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, arrowVelocity, 1.0F);
+            entityarrow.setBaseDamage(ATK_DMG);
+            worldIn.addFreshEntity(entityarrow);
         }
-        return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getHeldItem(handIn));
+        return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
     }
 	
     public float getAttackDamage()

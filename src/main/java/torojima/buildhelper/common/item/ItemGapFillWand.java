@@ -17,7 +17,7 @@ package torojima.buildhelper.common.item;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.ResourceLocation;
+//import net.minecraft.util.ResourceLocation;
 
 public class ItemGapFillWand extends ItemExchangeWand
 {
@@ -27,34 +27,34 @@ public class ItemGapFillWand extends ItemExchangeWand
 	{
 		super(properties);
 		
-		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
-				(_itemStack, _world, _livingBase) -> 
-			{
-				if(_itemStack.getItem() instanceof ItemGapFillWand)
-				{
-					ItemGapFillWand igfw = (ItemGapFillWand)_itemStack.getItem();
-					if (igfw.getStatus() == ItemGapFillWand.NAMED)
-					{
-						return 0.1F;
-					}
-					else if (igfw.getStatus() == ItemGapFillWand.CHARGED)
-					{
-						return 0.2F;
-					}
-				}
-				return 0.0F;
-			}
-		);
+//		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
+//				(_itemStack, _world, _livingBase) -> 
+//			{
+//				if(_itemStack.getItem() instanceof ItemGapFillWand)
+//				{
+//					ItemGapFillWand igfw = (ItemGapFillWand)_itemStack.getItem();
+//					if (igfw.getStatus() == ItemGapFillWand.NAMED)
+//					{
+//						return 0.1F;
+//					}
+//					else if (igfw.getStatus() == ItemGapFillWand.CHARGED)
+//					{
+//						return 0.2F;
+//					}
+//				}
+//				return 0.0F;
+//			}
+//		);
 	}
 	
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{		
 		if(this.status == NONE)
 		{
-			this.fillBlocks.put(iuc.getPlayer().getName(), Blocks.AIR.getDefaultState());
+			this.fillBlocks.put(iuc.getPlayer().getName(), Blocks.AIR.defaultBlockState());
 			this.status = NAMED;
 		}
-		return super.onItemUse(iuc);
+		return super.useOn(iuc);
 	}
 }

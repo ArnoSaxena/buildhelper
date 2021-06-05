@@ -25,7 +25,7 @@ import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
+//import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
@@ -47,24 +47,24 @@ public class ItemFillWand extends ItemPosWand
 		this.usedBlocks = new HashMap<ITextComponent, BlockState>();
 		this.status = NONE;
 		
-		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
-				(_itemStack, _world, _livingBase) -> 
-			{
-				if(_itemStack.getItem() instanceof ItemFillWand)
-				{
-					ItemFillWand ifw = (ItemFillWand)_itemStack.getItem();
-					if (ifw.getStatus() == ItemFillWand.NAMED)
-					{
-						return 0.1F;
-					}
-					else if (ifw.getStatus() == ItemFillWand.CHARGED)
-					{
-						return 0.2F;
-					}
-				}
-				return 0.0F;
-			}
-		);
+//		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
+//				(_itemStack, _world, _livingBase) -> 
+//			{
+//				if(_itemStack.getItem() instanceof ItemFillWand)
+//				{
+//					ItemFillWand ifw = (ItemFillWand)_itemStack.getItem();
+//					if (ifw.getStatus() == ItemFillWand.NAMED)
+//					{
+//						return 0.1F;
+//					}
+//					else if (ifw.getStatus() == ItemFillWand.CHARGED)
+//					{
+//						return 0.2F;
+//					}
+//				}
+//				return 0.0F;
+//			}
+//		);
 	}
 	
 	public int getStatus()
@@ -73,7 +73,7 @@ public class ItemFillWand extends ItemPosWand
 	}
 	
 	@Override
-	public boolean hasEffect(ItemStack stack)
+	public boolean isFoil(ItemStack stack)
 	{
 		if(this.getStatus() == ItemFillWand.CHARGED)
 		{
@@ -83,30 +83,30 @@ public class ItemFillWand extends ItemPosWand
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
+	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
-		if (worldIn.isRemote)
+		if (worldIn.isClientSide)
 		{
 			this.resetWand(playerIn.getName());
 			this.usedBlocks.remove(playerIn.getName());
 		}
-		return super.onItemRightClick(worldIn, playerIn, handIn);
+		return super.use(worldIn, playerIn, handIn);
 	}
 
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
     {
 		ITextComponent username = iuc.getPlayer().getName();
 		Boolean blocksChanged = false;
 		
-		if(!iuc.getWorld().isRemote)
+		if(!iuc.getLevel().isClientSide)
 		{
 			if(this.usedBlocks.containsKey(username))
 			{
 				if(this.isStartPointPresent(username))
 				{
 					BlockPos startPos = this.popStartPos(username);
-					BlockPos endPos = iuc.getPos();
+					BlockPos endPos = iuc.getClickedPos();
 					if(this.pointsInDistanceLimit(startPos, endPos))
 					{
 						BlockPos posA = this.getPosAllBig(startPos, endPos);
@@ -123,9 +123,9 @@ public class ItemFillWand extends ItemPosWand
 								{
 									BlockPos changePos = new BlockPos(x,y,z);
 								
-									if(!this.isBedRock(iuc.getWorld(), changePos))
+									if(!this.isBedRock(iuc.getLevel(), changePos))
 									{
-										iuc.getWorld().setBlockState(changePos, usedBlock, 3);
+										iuc.getLevel().setBlock(changePos, usedBlock, 3);
 										blocksChanged = true;
 									}
 								}
@@ -140,14 +140,14 @@ public class ItemFillWand extends ItemPosWand
 				}
 				else
 				{
-					this.putStartPos(iuc.getPos(), username);
+					this.putStartPos(iuc.getClickedPos(), username);
 					this.status = CHARGED;
 					return ActionResultType.SUCCESS;
 				}
 			}
 			else
 			{
-				BlockState targetBlockState = iuc.getWorld().getBlockState(iuc.getPos());
+				BlockState targetBlockState = iuc.getLevel().getBlockState(iuc.getClickedPos());
 				this.usedBlocks.put(username, targetBlockState);
 				this.status = NAMED;
 				return ActionResultType.SUCCESS;

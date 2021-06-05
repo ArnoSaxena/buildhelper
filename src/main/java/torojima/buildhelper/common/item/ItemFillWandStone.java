@@ -28,9 +28,9 @@ public class ItemFillWandStone extends ItemFillWand
 	}
 
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{
-		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.STONE.getDefaultState());
-		return super.onItemUse(iuc);
+		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.STONE.defaultBlockState());
+		return super.useOn(iuc);
 	}
 }

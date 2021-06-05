@@ -32,39 +32,39 @@ public class ItemSandWaterWand extends Item
 	}
 		
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{
-		BlockPos pos = iuc.getPos();
-    	switch(iuc.getFace())
+		BlockPos pos = iuc.getClickedPos();
+    	switch(iuc.getClickedFace())
     	{
     		case UP:
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() -1));
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()));
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() +1));
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1));
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1));
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() -1));
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()));
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() +1));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() -1));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() +1));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() -1));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() +1));
     			break;
     	
     		case NORTH:
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1));
     			break;
     		case SOUTH:
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1));
     			break;
     		case WEST:
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()));
     			break;
     		case EAST:
-    			this.placeSandColumn(iuc.getWorld(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()));
+    			this.placeSandColumn(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()));
     			break;
     		default:
     			break;
     	}
 		
-		if(this.placeSandColumn(iuc.getWorld(), pos))
+		if(this.placeSandColumn(iuc.getLevel(), pos))
 		{
 			return ActionResultType.SUCCESS;
 		}		
@@ -80,7 +80,7 @@ public class ItemSandWaterWand extends Item
         	BlockPos posYIter = new BlockPos(pos.getX(), pos.getY(), pos.getZ());
         	while(this.blockPosIsWater(world, posYIter))
         	{
-        		world.setBlockState(posYIter, Blocks.SAND.getDefaultState());
+        		world.setBlockAndUpdate(posYIter, Blocks.SAND.defaultBlockState());
         		putSand = true;
         		posYIter = new BlockPos(posYIter.getX(), posYIter.getY() - 1, posYIter.getZ());
         	}

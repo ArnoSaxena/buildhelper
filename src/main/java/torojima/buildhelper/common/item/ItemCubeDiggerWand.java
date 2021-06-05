@@ -34,15 +34,15 @@ public class ItemCubeDiggerWand extends Item
 	}
 	
     @Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
     {    	
     	BlockPos startPos;
     	BlockPos endPos;
-    	BlockPos pos = iuc.getPos();
-    	World worldIn = iuc.getWorld();
+    	BlockPos pos = iuc.getClickedPos();
+    	World worldIn = iuc.getLevel();
     	
     	// side: 0 => bottom;  1 => top;  2 => z-;  3 => z+;  4 => x-;  5 => x+
-    	switch(iuc.getFace())
+    	switch(iuc.getClickedFace())
     	{
     	case DOWN:
     		startPos = new BlockPos(pos.getX() -1, pos.getY(),    pos.getZ() -1);
@@ -84,7 +84,7 @@ public class ItemCubeDiggerWand extends Item
 			    	if(this.isDiggableBlock(currentBlock)
 			    			&& !this.isBedRock(worldIn, currentPos))
 			    	{
-			    		worldIn.setBlockState(currentPos, Blocks.AIR.getDefaultState(), 3);
+			    		worldIn.setBlock(currentPos, Blocks.AIR.defaultBlockState(), 3);
 			    	}
 				}
 			}

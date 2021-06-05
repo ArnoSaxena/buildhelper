@@ -31,18 +31,18 @@ public class ItemTorchWand extends Item
 	}
 	
     @Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
     {    	
     	BlockPos torchPos;
-    	BlockPos pos = iuc.getPos();
-		if(iuc.getWorld().getBlockState(pos).getBlock() == Blocks.TORCH
-				|| iuc.getWorld().getBlockState(pos).getBlock() == Blocks.WALL_TORCH)
+    	BlockPos pos = iuc.getClickedPos();
+		if(iuc.getLevel().getBlockState(pos).getBlock() == Blocks.TORCH
+				|| iuc.getLevel().getBlockState(pos).getBlock() == Blocks.WALL_TORCH)
 		{
 			return ActionResultType.FAIL;
 		}
     	
     	Boolean isWallTorch = false;
-    	switch(iuc.getFace())
+    	switch(iuc.getClickedFace())
     	{
     	case DOWN:
     		return ActionResultType.FAIL;
@@ -69,15 +69,16 @@ public class ItemTorchWand extends Item
     		return ActionResultType.FAIL;
     	}
     	
-    	if(iuc.getWorld().getBlockState(torchPos).getBlock() == Blocks.AIR)
+    	if(iuc.getLevel().getBlockState(torchPos).getBlock() == Blocks.AIR)
     	{
     		if (isWallTorch)
     		{
-    			iuc.getWorld().setBlockState(torchPos, Blocks.WALL_TORCH.getDefaultState().with(HorizontalBlock.HORIZONTAL_FACING, iuc.getFace()));
+    			iuc.getLevel().setBlockAndUpdate(torchPos, Blocks.WALL_TORCH
+    			        .defaultBlockState().setValue(HorizontalBlock.FACING, iuc.getClickedFace()));
     		}
     		else
     		{
-    			iuc.getWorld().setBlockState(torchPos, Blocks.TORCH.getDefaultState());
+    			iuc.getLevel().setBlockAndUpdate(torchPos, Blocks.TORCH.defaultBlockState());
     		}
     		return ActionResultType.SUCCESS;
     	}

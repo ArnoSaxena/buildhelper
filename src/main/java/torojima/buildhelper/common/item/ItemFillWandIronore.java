@@ -28,9 +28,9 @@ public class ItemFillWandIronore extends ItemFillWand
 	}
 	
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{
-		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.IRON_ORE.getDefaultState());
-		return super.onItemUse(iuc);
+		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.IRON_ORE.defaultBlockState());
+		return super.useOn(iuc);
 	}
 }

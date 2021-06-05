@@ -1,4 +1,4 @@
-This is Torojimas Build Helper v3.2.0.0 for usage with minecraft 1.15.x 
+This is Torojimas Build Helper v3.3.0.1 for usage with minecraft 1.16.x 
 
 This mod adds wand items for convenient and fast building of of multiple blocks to the game. 
 
@@ -12,6 +12,12 @@ special thanks to
 - Chinyun for the Chinese translation
 
 Changelog:
+3.3.0.1 : 1. Updated for minecraft 1.16.5
+
+3.3.0.0 : 1. Updated for minecraft 1.16.2
+
+3.2.1.0 : 1. updated for minecraft 1.15.2
+
 3.2.0.0 : 1. Updated for minecraft 1.15.1
 
 3.0.0.0 : 1. Updated for minecraft 1.14.2

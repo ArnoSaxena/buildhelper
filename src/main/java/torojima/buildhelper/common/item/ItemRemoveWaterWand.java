@@ -28,14 +28,14 @@ public class ItemRemoveWaterWand extends ItemGapFillWand
 	}
 
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{
 		if(this.status == NONE)
 		{
-			this.fillBlocks.put(iuc.getPlayer().getName(), Blocks.WATER.getDefaultState());
-			this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.AIR.getDefaultState());
+			this.fillBlocks.put(iuc.getPlayer().getName(), Blocks.WATER.defaultBlockState());
+			this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.AIR.defaultBlockState());
 			this.status = FILL;
 		}
-		return super.onItemUse(iuc);
+		return super.useOn(iuc);
 	}
 }

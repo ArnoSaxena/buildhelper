@@ -17,7 +17,7 @@ package torojima.buildhelper.common.item;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.ResourceLocation;
+//import net.minecraft.util.ResourceLocation;
 
 public class ItemGapFillWaterWand extends ItemGapFillWand
 {
@@ -27,31 +27,31 @@ public class ItemGapFillWaterWand extends ItemGapFillWand
 	{
 		super(properties);
 		
-		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
-				(_itemStack, _world, _livingBase) -> 
-			{
-				if(_itemStack.getItem() instanceof ItemGapFillWaterWand)
-				{
-					ItemGapFillWaterWand igfww = (ItemGapFillWaterWand)_itemStack.getItem();
-					if (igfww.getStatus() == ItemGapFillWaterWand.CHARGED)
-					{
-						return 0.1F;
-					}
-				}
-				return 0.0F;
-			}
-		);
+//		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
+//				(_itemStack, _world, _livingBase) -> 
+//			{
+//				if(_itemStack.getItem() instanceof ItemGapFillWaterWand)
+//				{
+//					ItemGapFillWaterWand igfww = (ItemGapFillWaterWand)_itemStack.getItem();
+//					if (igfww.getStatus() == ItemGapFillWaterWand.CHARGED)
+//					{
+//						return 0.1F;
+//					}
+//				}
+//				return 0.0F;
+//			}
+//		);
 	}
 
 	@Override
-    public ActionResultType onItemUse(ItemUseContext iuc)
+    public ActionResultType useOn(ItemUseContext iuc)
 	{
 		if(this.status == NONE)
 		{
-			this.fillBlocks.put(iuc.getPlayer().getName(), Blocks.AIR.getDefaultState());
-			this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.WATER.getDefaultState());
+			this.fillBlocks.put(iuc.getPlayer().getName(), Blocks.AIR.defaultBlockState());
+			this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.WATER.defaultBlockState());
 			this.status = FILL;
 		}
-		return super.onItemUse(iuc);
+		return super.useOn(iuc);
 	}	
 }
