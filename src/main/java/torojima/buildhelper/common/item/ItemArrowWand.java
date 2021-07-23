@@ -17,16 +17,17 @@ package torojima.buildhelper.common.item;
 //import java.util.function.BooleanSupplier;
 //import com.google.gson.JsonObject;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ArrowItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
+
+
 //import net.minecraftforge.common.crafting.IConditionSerializer;
 
 public class ItemArrowWand extends Item
@@ -34,18 +35,18 @@ public class ItemArrowWand extends Item
 	public static final String NAME = "arrowwand_item";
 	public static final float ATK_DMG = 50.0F;
 
-	public ItemArrowWand(Properties properties)
+	public ItemArrowWand(Item.Properties properties)
 	{
 		super(properties);
 	}
 
 	@Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn)
     {
         if (!worldIn.isClientSide)
         {
         	ArrowItem itemarrow = (ArrowItem)Items.ARROW;
-            AbstractArrowEntity entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
+            AbstractArrow entityarrow = itemarrow.createArrow(worldIn, new ItemStack(Items.ARROW), playerIn);
             float arrowPower = 60.0F;
             float uncertainty = 0.0F;            
             entityarrow.shoot(
@@ -59,7 +60,7 @@ public class ItemArrowWand extends Item
             entityarrow.setBaseDamage(ATK_DMG);
             worldIn.addFreshEntity(entityarrow);
         }
-        return new ActionResult<ItemStack>(ActionResultType.PASS, playerIn.getItemInHand(handIn));
+        return InteractionResultHolder.pass(playerIn.getItemInHand(handIn));
     }
 	
     public float getAttackDamage()

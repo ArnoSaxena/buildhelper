@@ -14,13 +14,16 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.core.BlockPos;
+
+
 
 public class ItemSandWaterWand extends Item
 {
@@ -32,7 +35,7 @@ public class ItemSandWaterWand extends Item
 	}
 		
 	@Override
-    public ActionResultType useOn(ItemUseContext iuc)
+    public InteractionResult useOn(UseOnContext iuc)
 	{
 		BlockPos pos = iuc.getClickedPos();
     	switch(iuc.getClickedFace())
@@ -66,12 +69,12 @@ public class ItemSandWaterWand extends Item
 		
 		if(this.placeSandColumn(iuc.getLevel(), pos))
 		{
-			return ActionResultType.SUCCESS;
+			return InteractionResult.SUCCESS;
 		}		
-		return ActionResultType.FAIL;
+		return InteractionResult.FAIL;
 	}
 	
-    private boolean placeSandColumn(World world, BlockPos pos)
+    private boolean placeSandColumn(Level world, BlockPos pos)
     {
     	boolean putSand = false;
 
@@ -88,7 +91,7 @@ public class ItemSandWaterWand extends Item
     	return putSand;    	
     }
     
-    private boolean blockPosIsWater(World world, BlockPos pos)
+    private boolean blockPosIsWater(Level world, BlockPos pos)
     {
     	return world.getBlockState(pos).getMaterial() == Material.WATER;
     }

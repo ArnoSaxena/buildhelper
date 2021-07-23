@@ -4,25 +4,27 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-//import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+
+
 
 public class ItemCopyPasteWand extends ItemPosWand
 {
 	public static final String NAME = "copypastewand_item";
 	
-	protected Map<ITextComponent, BlockPos> endPoint;
-	protected Map<ITextComponent, Direction> sourceFace;
+	protected Map<Component, BlockPos> endPoint;
+	protected Map<Component, Direction> sourceFace;
 	
 	public static final int NONE = 0;
 	public static final int START_STORED = 1;
@@ -31,12 +33,12 @@ public class ItemCopyPasteWand extends ItemPosWand
 	
 	protected final Random rand = new Random();
 	
-	public ItemCopyPasteWand(Properties properties)
+	public ItemCopyPasteWand(Item.Properties properties)
 	{
 		super(properties);
 		
-		this.endPoint = new HashMap<ITextComponent, BlockPos>();
-		this.sourceFace = new HashMap<ITextComponent, Direction>();		
+		this.endPoint = new HashMap<Component, BlockPos>();
+		this.sourceFace = new HashMap<Component, Direction>();		
 		
 //		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
 //				(_itemStack, _world, _livingBase) -> 
@@ -60,7 +62,7 @@ public class ItemCopyPasteWand extends ItemPosWand
 	}
 	
 	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn)
 	{
 		if (worldIn.isClientSide)
 		{
@@ -73,10 +75,10 @@ public class ItemCopyPasteWand extends ItemPosWand
 	}	
 	
 	@Override
-    public ActionResultType useOn(ItemUseContext iuc)
+    public InteractionResult useOn(UseOnContext iuc)
 	{
-		ITextComponent username = iuc.getPlayer().getName();
-		ActionResultType returnValue = ActionResultType.FAIL;
+	    Component username = iuc.getPlayer().getName();
+	    InteractionResult returnValue = InteractionResult.FAIL;
 		
 		if (!iuc.getLevel().isClientSide)
 		{
@@ -137,14 +139,14 @@ public class ItemCopyPasteWand extends ItemPosWand
 						}
 						
 						this.status = NONE;
-						returnValue = ActionResultType.SUCCESS;
+						returnValue = InteractionResult.SUCCESS;
 					}
 				}
 				else
 				{
 					this.putEndPos(iuc.getClickedPos(), username);
 					this.status = END_STORED;
-					returnValue = ActionResultType.SUCCESS;
+					returnValue = InteractionResult.SUCCESS;
 				}
 			}
 			else
@@ -157,7 +159,7 @@ public class ItemCopyPasteWand extends ItemPosWand
 				this.putStartPos(iuc.getClickedPos(), username);
 				this.putSourceFace(iuc.getClickedFace(), username);
 				this.status = START_STORED;
-				returnValue = ActionResultType.SUCCESS;
+				returnValue = InteractionResult.SUCCESS;
 			}
 		}
 		return returnValue;
@@ -304,29 +306,29 @@ public class ItemCopyPasteWand extends ItemPosWand
 		}
 	}
 
-	protected void putSourceFace(Direction sourceFace, ITextComponent username)
+	protected void putSourceFace(Direction sourceFace, Component username)
 	{
 		this.sourceFace.put(username, sourceFace);
 	}
 	
-	protected Direction popSourceFace(ITextComponent username)
+	protected Direction popSourceFace(Component username)
 	{
 		Direction face = this.sourceFace.get(username);
 		this.sourceFace.remove(username);
 		return face;
 	}
 	
-	protected boolean isEndPointPresent(ITextComponent username)
+	protected boolean isEndPointPresent(Component username)
 	{
 		return this.endPoint.containsKey(username);
 	}
 	
-	protected void putEndPos(BlockPos pos, ITextComponent username)
+	protected void putEndPos(BlockPos pos, Component username)
 	{
 		this.endPoint.put(username, pos);
 	}
 	
-	protected BlockPos popEndPos(ITextComponent username)
+	protected BlockPos popEndPos(Component username)
 	{		
 		BlockPos pos = this.endPoint.get(username);
 		this.endPoint.remove(username);
@@ -338,7 +340,7 @@ public class ItemCopyPasteWand extends ItemPosWand
 		return this.status;
 	}
 	
-	protected boolean isBedRock(World world, BlockPos pos)
+	protected boolean isBedRock(Level world, BlockPos pos)
 	{
 		return world.getBlockState(pos).getBlock() == Blocks.BEDROCK;
 	}

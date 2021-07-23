@@ -1,14 +1,16 @@
 package torojima.buildhelper.common.item;
 
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.eventbus.api.Event.Result;
+
+
 
 public class ItemGrowWand extends Item
 {
@@ -20,7 +22,7 @@ public class ItemGrowWand extends Item
 	}
 	
     @Override
-    public ActionResultType useOn(ItemUseContext iuc)
+    public InteractionResult useOn(UseOnContext iuc)
     {
         BlockState iblockstate = iuc.getLevel().getBlockState(iuc.getClickedPos());
 
@@ -34,17 +36,17 @@ public class ItemGrowWand extends Item
                         );
         if (MinecraftForge.EVENT_BUS.post(event))
         {
-        	return ActionResultType.PASS;
+        	return InteractionResult.PASS;
         }
         
         if (event.getResult() == Result.ALLOW)
         {
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
-        if (iblockstate.getBlock() instanceof IGrowable)
+        if (iblockstate.getBlock() instanceof BonemealableBlock)
         {
-            IGrowable igrowable = (IGrowable)iblockstate.getBlock();
+            BonemealableBlock igrowable = (BonemealableBlock)iblockstate.getBlock();
             
             if (igrowable.isValidBonemealTarget(iuc.getLevel(), iuc.getClickedPos(), iblockstate, iuc.getLevel().isClientSide))
             {
@@ -52,12 +54,13 @@ public class ItemGrowWand extends Item
                 {
                     if (igrowable.isBonemealSuccess(iuc.getLevel(), iuc.getLevel().random, iuc.getClickedPos(), iblockstate))
                     {
-                        igrowable.performBonemeal((ServerWorld)iuc.getLevel(), iuc.getLevel().random, iuc.getClickedPos(), iblockstate);
+                        //igrowable.performBonemeal((ServerWorld)iuc.getLevel(), iuc.getLevel().random, iuc.getClickedPos(), iblockstate);
+                        igrowable.performBonemeal((ServerLevel)iuc.getLevel(), iuc.getLevel().random, iuc.getClickedPos(), iblockstate);
                     }
                 }
-                return ActionResultType.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
-        return ActionResultType.FAIL;
+        return InteractionResult.FAIL;
     }
 }

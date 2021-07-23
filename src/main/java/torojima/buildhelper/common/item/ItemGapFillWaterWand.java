@@ -14,10 +14,10 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-//import net.minecraft.util.ResourceLocation;
+
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.block.Blocks;
 
 public class ItemGapFillWaterWand extends ItemGapFillWand
 {
@@ -44,7 +44,7 @@ public class ItemGapFillWaterWand extends ItemGapFillWand
 	}
 
 	@Override
-    public ActionResultType useOn(ItemUseContext iuc)
+    public InteractionResult useOn(UseOnContext iuc)
 	{
 		if(this.status == NONE)
 		{

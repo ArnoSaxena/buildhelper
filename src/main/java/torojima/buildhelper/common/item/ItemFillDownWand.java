@@ -17,15 +17,15 @@ package torojima.buildhelper.common.item;
 
 import java.util.ArrayList;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
 
 public class ItemFillDownWand extends Item
 {
@@ -37,7 +37,7 @@ public class ItemFillDownWand extends Item
 	}
 	
 	@Override
-    public ActionResultType useOn(ItemUseContext iuc)
+    public InteractionResult useOn(UseOnContext iuc)
 	{
 		BlockPos pos = iuc.getClickedPos();
 		
@@ -79,12 +79,12 @@ public class ItemFillDownWand extends Item
     	
 		if(this.placeDownColumns(iuc.getLevel(), pos, fillBlock))
 		{
-			return ActionResultType.SUCCESS;
+			return InteractionResult.SUCCESS;
 		}		
-		return ActionResultType.FAIL;
+		return InteractionResult.FAIL;
 	}
 	
-    private boolean placeDownColumns(World world, BlockPos pos, BlockState fillBlock)
+    private boolean placeDownColumns(Level world, BlockPos pos, BlockState fillBlock)
     {
     	boolean putFillBlock = false;
 
@@ -101,7 +101,7 @@ public class ItemFillDownWand extends Item
     	return putFillBlock;    	
     }
     
-    private boolean blockPosIsTargetBlock(World world, BlockPos pos)
+    private boolean blockPosIsTargetBlock(Level world, BlockPos pos)
     {
     	ArrayList<Material> targetMaterial = new ArrayList<Material>();
     	targetMaterial.add(Material.AIR);

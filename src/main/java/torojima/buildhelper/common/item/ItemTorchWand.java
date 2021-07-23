@@ -14,12 +14,12 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.core.BlockPos;
 
 public class ItemTorchWand extends Item
 {
@@ -31,21 +31,21 @@ public class ItemTorchWand extends Item
 	}
 	
     @Override
-    public ActionResultType useOn(ItemUseContext iuc)
+    public InteractionResult useOn(UseOnContext iuc)
     {    	
     	BlockPos torchPos;
     	BlockPos pos = iuc.getClickedPos();
 		if(iuc.getLevel().getBlockState(pos).getBlock() == Blocks.TORCH
 				|| iuc.getLevel().getBlockState(pos).getBlock() == Blocks.WALL_TORCH)
 		{
-			return ActionResultType.FAIL;
+			return InteractionResult.FAIL;
 		}
     	
     	Boolean isWallTorch = false;
     	switch(iuc.getClickedFace())
     	{
     	case DOWN:
-    		return ActionResultType.FAIL;
+    		return InteractionResult.FAIL;
     	case UP:
     		torchPos = new BlockPos(pos.getX(), pos.getY() +1, pos.getZ());
     		break;
@@ -66,7 +66,7 @@ public class ItemTorchWand extends Item
     		isWallTorch = true;
     		break;
     	default:
-    		return ActionResultType.FAIL;
+    		return InteractionResult.FAIL;
     	}
     	
     	if(iuc.getLevel().getBlockState(torchPos).getBlock() == Blocks.AIR)
@@ -74,14 +74,14 @@ public class ItemTorchWand extends Item
     		if (isWallTorch)
     		{
     			iuc.getLevel().setBlockAndUpdate(torchPos, Blocks.WALL_TORCH
-    			        .defaultBlockState().setValue(HorizontalBlock.FACING, iuc.getClickedFace()));
+    			        .defaultBlockState().setValue(HorizontalDirectionalBlock.FACING, iuc.getClickedFace()));
     		}
     		else
     		{
     			iuc.getLevel().setBlockAndUpdate(torchPos, Blocks.TORCH.defaultBlockState());
     		}
-    		return ActionResultType.SUCCESS;
+    		return InteractionResult.SUCCESS;
     	}
-    	return ActionResultType.FAIL;
+    	return InteractionResult.FAIL;
     }
 }

@@ -14,9 +14,9 @@
 
 package torojima.buildhelper.common.item;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.block.Blocks;
 
 public class ItemFillWandStone extends ItemFillWand
 {
@@ -28,7 +28,7 @@ public class ItemFillWandStone extends ItemFillWand
 	}
 
 	@Override
-    public ActionResultType useOn(ItemUseContext iuc)
+    public InteractionResult useOn(UseOnContext iuc)
 	{
 		this.usedBlocks.put(iuc.getPlayer().getName(), Blocks.STONE.defaultBlockState());
 		return super.useOn(iuc);

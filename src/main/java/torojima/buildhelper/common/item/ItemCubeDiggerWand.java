@@ -16,13 +16,13 @@ package torojima.buildhelper.common.item;
 
 import java.util.ArrayList;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 public class ItemCubeDiggerWand extends Item
 {
@@ -34,12 +34,12 @@ public class ItemCubeDiggerWand extends Item
 	}
 	
     @Override
-    public ActionResultType useOn(ItemUseContext iuc)
+    public InteractionResult useOn(UseOnContext iuc)
     {    	
     	BlockPos startPos;
     	BlockPos endPos;
     	BlockPos pos = iuc.getClickedPos();
-    	World worldIn = iuc.getLevel();
+    	Level worldIn = iuc.getLevel();
     	
     	// side: 0 => bottom;  1 => top;  2 => z-;  3 => z+;  4 => x-;  5 => x+
     	switch(iuc.getClickedFace())
@@ -69,7 +69,7 @@ public class ItemCubeDiggerWand extends Item
     		endPos   = new BlockPos(pos.getX(),    pos.getY() +1, pos.getZ() +1);
     		break;
     	default:
-            return ActionResultType.FAIL;
+            return InteractionResult.FAIL;
     	}
     	    	
 		for(int x = startPos.getX(); x <= endPos.getX(); x++)
@@ -89,10 +89,10 @@ public class ItemCubeDiggerWand extends Item
 				}
 			}
 		}
-        return ActionResultType.PASS;
+        return InteractionResult.PASS;
     }
     
-	protected boolean isBedRock(World world, BlockPos pos)
+	protected boolean isBedRock(Level world, BlockPos pos)
 	{
 		return world.getBlockState(pos).getBlock() == Blocks.BEDROCK;
 	}

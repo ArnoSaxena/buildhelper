@@ -17,17 +17,17 @@ package torojima.buildhelper.common.item;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-//import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+
 
 public class ItemExchangeWand extends ItemFillWand
 {
@@ -35,12 +35,12 @@ public class ItemExchangeWand extends ItemFillWand
 	
 	public static final String NAME = "exchangewand_item";
 
-	protected Map<ITextComponent, BlockState> fillBlocks;
+	protected Map<Component, BlockState> fillBlocks;
 
 	public ItemExchangeWand(Properties properties)
 	{
 		super(properties);
-		this.fillBlocks = new HashMap<ITextComponent, BlockState>();
+		this.fillBlocks = new HashMap<Component, BlockState>();
 		
 //		this.addPropertyOverride(new ResourceLocation("buildhelper:status"), 
 //				(_itemStack, _world, _livingBase) -> 
@@ -67,7 +67,7 @@ public class ItemExchangeWand extends ItemFillWand
 	}	
 	
 	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn)
 	{
 		if (worldIn.isClientSide)
 		{
@@ -78,11 +78,11 @@ public class ItemExchangeWand extends ItemFillWand
 	}
 	
 	@Override
-    public ActionResultType useOn(ItemUseContext iuc)
+    public InteractionResult useOn(UseOnContext iuc)
 	{
-		ITextComponent username = iuc.getPlayer().getName();
+		Component username = iuc.getPlayer().getName();
 		
-		ActionResultType returnValue = ActionResultType.FAIL;
+		InteractionResult returnValue = InteractionResult.FAIL;
 		
 		if (!iuc.getLevel().isClientSide)
 		{
@@ -122,7 +122,7 @@ public class ItemExchangeWand extends ItemFillWand
 								}
 							}
 							this.status = NONE;
-							returnValue = ActionResultType.SUCCESS;
+							returnValue = InteractionResult.SUCCESS;
 						}
 						else
 						{
@@ -133,21 +133,21 @@ public class ItemExchangeWand extends ItemFillWand
 					{
 						this.putStartPos(iuc.getClickedPos(), username);
 						this.status = CHARGED;
-						returnValue = ActionResultType.SUCCESS;
+						returnValue = InteractionResult.SUCCESS;
 					}
 				}
 				else
 				{
 					this.fillBlocks.put(username, iuc.getLevel().getBlockState(iuc.getClickedPos()));
 					this.status = FILL;
-					returnValue = ActionResultType.SUCCESS;
+					returnValue = InteractionResult.SUCCESS;
 				}
 			}
 			else
 			{
 				this.usedBlocks.put(username, iuc.getLevel().getBlockState(iuc.getClickedPos()));
 				this.status = NAMED;
-				returnValue = ActionResultType.SUCCESS;
+				returnValue = InteractionResult.SUCCESS;
 			}
 		}
 		
