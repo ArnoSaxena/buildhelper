@@ -12,6 +12,8 @@ special thanks to
 - Chinyun for the Chinese translation
 
 Changelog:
+3.5.0.0 : 1. Updated for minecraft 1.18
+
 3.4.0.0 : 1. Updated for minecraft 1.17.1
 
 3.3.0.2 : 1. Updated for minecraft 1.16.5
