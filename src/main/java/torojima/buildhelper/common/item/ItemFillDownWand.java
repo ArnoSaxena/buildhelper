@@ -48,36 +48,39 @@ public class ItemFillDownWand extends Item
 			fillBlock = Blocks.SAND.defaultBlockState();
 		}
 		
+		Boolean blocksChanged = false;
+		
     	switch(iuc.getClickedFace())
     	{
     		case UP:
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() -1), fillBlock);
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() +1), fillBlock);
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() -1), fillBlock);
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() +1), fillBlock);
+    			blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() -1), fillBlock);
+    			blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
+    			blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ() +1), fillBlock);
+    			blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
+    			blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
+    			blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() -1), fillBlock);
+    			blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
+    			blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ() +1), fillBlock);
     			break;
     	
     		case NORTH:
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
+    		    blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() -1), fillBlock);
     			break;
     		case SOUTH:
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
+    		    blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX(), pos.getY(), pos.getZ() +1), fillBlock);
     			break;
     		case WEST:
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
+    		    blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() -1, pos.getY(), pos.getZ()), fillBlock);
     			break;
     		case EAST:
-    			this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
+    		    blocksChanged |= this.placeDownColumns(iuc.getLevel(), new BlockPos(pos.getX() +1, pos.getY(), pos.getZ()), fillBlock);
     			break;
     		default:
     			break;
     	}
     	
-		if(this.placeDownColumns(iuc.getLevel(), pos, fillBlock))
+		//if(this.placeDownColumns(iuc.getLevel(), pos, fillBlock))
+    	if(blocksChanged)
 		{
 			return InteractionResult.SUCCESS;
 		}		
@@ -94,6 +97,7 @@ public class ItemFillDownWand extends Item
         	while(this.blockPosIsTargetBlock(world, posYIter))
         	{
         		world.setBlockAndUpdate(posYIter, fillBlock);
+        		
         		putFillBlock = true;
         		posYIter = new BlockPos(posYIter.getX(), posYIter.getY() - 1, posYIter.getZ());
         	}
